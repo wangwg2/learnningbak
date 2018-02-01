@@ -1,0 +1,12 @@
+apply plugin: 'java'
+
+//jar文件增加manifest信息 
+jar {
+    manifest {
+        attributes 'Main-Class': 'SimpApp'
+    }
+}
+
+//使用application插件，支持 "gradle run"
+apply plugin: 'application'
+mainClassName = 'SimpApp'

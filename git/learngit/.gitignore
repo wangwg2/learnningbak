@@ -1,0 +1,120 @@
+
+## customize
+*.cpp
+
+############# RESERVED #############
+# ## temp file
+*.sw?
+.#*
+*#
+*~
+
+#.exe
+.prefs
+Thumbs.db
+.DS_Store
+.factorypath
+dump.rdb
+transaction-logs
+
+#local.properties
+#.*.md.html
+#manifest.yml
+#MANIFEST.MF
+#settings.xml
+
+#.metadata
+#.settings
+
+
+# ### Java.gitignore ###
+*.class
+*.log
+*.ctxt
+.mtj.tmp/
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+hs_err_pid*
+
+
+# ### Gradle.gitignore ###
+.gradle
+/build/
+gradle-app.setting
+.gradletasknamecache
+#!gradle-wrapper.jar
+# gradle/wrapper/gradle-wrapper.properties
+
+# ### Maven.gitignore ###
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+#!/.mvn/wrapper/maven-wrapper.jar
+
+
+# ### Eclipse.gitignore ###
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
+
+# Eclipse
+.project
+.externalToolBuilders/
+*.launch
+
+*.pydevproject
+.cproject
+.classpath
+.factorypath
+.buildpath
+.target
+.tern-project
+.texlipse
+.springBeans
+.recommenders/
+.cache-main
+.scala_dependencies
+.worksheet
+
+# ### Intellij IDEA ###
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/datasources.xml
+.idea/dataSources.ids
+*.iml
+*.ipr
+*.iws
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/

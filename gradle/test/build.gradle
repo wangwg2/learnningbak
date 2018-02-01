@@ -1,0 +1,35 @@
+plugins {
+    id 'war'
+    id 'org.hidetake.ssh' version '2.9.0'
+}
+
+ssh.settings {
+    dryRun = project.hasProperty('dryRun')
+}
+
+remotes {
+    localhost {
+        host = 'localhost'
+        user = System.properties['user.name']
+        identity = file("${System.properties['user.home']}/.ssh/id_rsa")
+    }
+}
+
+task showPlatformVersion << {
+    println ssh.version
+    ssh.run {
+        session(remotes.localhost) {
+            execute 'uname -a'
+            execute 'cat /etc/*-release', ignoreError: true
+        }
+    }
+}
+
+task deploy(dependsOn: war) << {
+    ssh.run {
+        session(remotes.localhost) {
+            put from: war.archivePath.path, into: '/webapps'
+            execute 'sudo service tomcat restart'
+        }
+    }
+}

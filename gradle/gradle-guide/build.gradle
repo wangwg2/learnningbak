@@ -1,0 +1,74 @@
+defaultTasks 'hello', 'count'
+
+task hello {
+    group 'Welcome'
+    description 'Produces a greeting'
+
+    doLast {
+        println 'Hello, World'
+    }
+}
+
+
+task upper {
+    group 'test'
+    description '构建脚本代码'
+
+    doLast {
+        String someString = 'mY_nAmE'
+        println "Original: " + someString
+        println "Upper case: " + someString.toUpperCase()
+    }
+}
+
+
+task count {
+    group 'test'
+    description '构建脚本代码'
+
+    doLast {
+        4.times { print "$it " }
+    }
+}
+
+task intro(dependsOn: hello) {
+    group 'test'
+    description '构建脚本代码-依赖'
+
+    doLast { println "I'm Gradle" }
+}
+
+
+4.times {
+    counter ->
+    task "task$counter" << {
+        println "I'm task number $counter"
+    }
+}
+
+task0.dependsOn task2, task3
+
+
+hello.doFirst {
+    println 'Hello doFirst'
+}
+
+hello.doLast {
+    println 'Hello doLast'
+}
+
+
+task myTask {
+    ext.myProperty = "myValue"
+}
+
+task printTaskProperties {
+    doLast { println myTask.myProperty }
+}
+
+
+
+task(copy, type: Copy) {
+    from(file('srcDir'))
+    into(buildDir)
+}

@@ -1,0 +1,108 @@
+
+// 例1： Hello world
+task hello {
+    group 'basic'
+    description 'Hello'
+
+    doLast {
+        println 'Hello world!'
+    }
+}
+
+// 例4：使用Groovy脚本 (Using Groovy in Gradle's tasks)
+task upper {
+    group 'basic'
+    description '使用Groovy代码'
+
+    doLast {
+        String someString = 'mY_nAmE'
+        println "Original: " + someString
+        println "Upper case: " + someString.toUpperCase()
+    }
+}
+
+// 例5：使用Groovy脚本
+task count {
+    group 'basic'
+    description '使用Groovy代码'
+
+    doLast {
+        4.times { print "$it " }
+    }
+}
+
+
+// 例6： 申明任务之间的依赖关系
+// 任务依赖 (Task dependencies)
+task intro(dependsOn: hello) {
+    group 'basic'
+    description '任务依赖'
+
+    doLast {
+        println "I'm Gradle"
+    }
+}
+
+// 例7：Lazy dependsOn - 其他的任务还没有存在
+task taskX(dependsOn: 'taskY') {
+    group 'basic'
+    description '任务依赖'
+    doLast {
+        println 'taskX'
+    }
+}
+task taskY {
+    group 'basic'
+    description '任务依赖'
+    doLast {
+        println 'taskY'
+    }
+}
+
+// 例8： 动态的创建一个任务
+// 动态创建任务 (Dynamic tasks)
+4.times { counter ->
+    task "task$counter" {
+        group 'Basic - Dynamic create'
+        description '动态任务'
+        doLast {
+            println "I'm task number $counter"
+        }
+    }
+}
+
+// 例9： 通过API访问一个任务 - 加入一个依赖
+// 控制现存任务 (Manipulating existing tasks)
+task0.dependsOn task2, task3
+
+// 例10： 通过API访问一个任务 - 加入行为
+// 控制现存任务 (Accessing a task via API - adding behaviour)
+hello.doFirst {
+    println 'Hello Venus'
+}
+hello.doLast {
+    println 'Hello Mars'
+}
+hello {
+    doLast {
+        println 'Hello Jupiter'
+    }
+}
+
+
+// 例11： 短标记法 Shortcut notations
+hello.doLast {
+    println "Greetings from the $hello.name task."
+}
+
+
+// 例12： 自定义任务属性 Extra task properties
+task myTask {
+    ext.myProperty = "myValue"
+}
+
+task printTaskProperties {
+    doLast {
+        println myTask.myProperty
+    }
+}

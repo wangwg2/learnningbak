@@ -1,0 +1,101 @@
+// 例13：使用 AntBuilder 来执行 ant.loadfile 任务
+task antloadfile {
+    group 'basic'
+    description '调用 Ant 任务'
+    doLast {
+        def files = file('../antLoadfileResources').listFiles().sort()
+        files.each { File file ->
+            if (file.isFile()) {
+                ant.loadfile(srcFile: file, property: file.name)
+                println " *** $file.name ***"
+                println "${ant.properties[file.name]}"
+            }
+        }
+    }
+}
+
+
+
+// 例14：使用方法 (Using methods)
+
+task checksum {
+    group 'basic'
+    description '使用方法'
+    doLast {
+        fileList('./srcdir').each { File file ->
+            ant.checksum(file: file, property: "cs_$file.name")
+            println "$file.name Checksum: ${ant.properties["cs_$file.name"]}"
+        }
+    }
+}
+
+task loadfile {
+    group 'basic'
+    description '使用方法'
+    doLast {
+        fileList('./srcdir').each { File file ->
+            ant.loadfile(srcFile: file, property: file.name)
+            println "I'm fond of $file.name"
+        }
+    }
+}
+
+File[] fileList(String dir) {
+    file(dir).listFiles({file -> file.isFile() } as FileFilter).sort()
+}
+
+
+// 例15： 默认任务 (Default tasks)
+defaultTasks 'clean', 'run'
+
+task clean {
+    group 'basic'
+    description '默认任务-默认运行'
+    doLast {
+        println 'Default Cleaning!'
+    }
+}
+
+task run {
+    group 'basic'
+    description '默认任务-默认运行'
+    doLast {
+        println 'Default Running!'
+    }
+}
+
+task other {
+    group 'basic'
+    description '默认任务-默认不运行'
+    doLast {
+        println "I'm not a default task!"
+    }
+}
+
+
+// 例16： 通过 DAG 配置 (Configure by DAG)
+task distribution {
+    group 'basic'
+    description 'Configure by DAG'
+
+    doLast {
+        println "We build the zip with version=$version"
+    }
+}
+
+task release(dependsOn: 'distribution') {
+    group 'basic'
+    description 'Configure by DAG'
+
+    doLast {
+        println 'We release now'
+    }
+}
+
+gradle.taskGraph.whenReady {taskGraph ->
+    if (taskGraph.hasTask(release)) {
+        version = '1.0'
+    } else {
+        version = '1.0-SNAPSHOT'
+    }
+}
