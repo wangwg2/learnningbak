@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <title>maven</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:///C:\Users\wangwg2\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.3.4\node_modules\@shd101wyy\mume\dependencies\katex\katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+      <style> 
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+.markdown-preview.markdown-preview {
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  color: black;
+  /* 等宽字体 */
+  /* HEAD字体 */
+  /* 文本字体 */
+  font-family: Geneva, Arial, Helvetica, "Microsoft YaHei", "华文细黑", sans-serif;
+}
+.markdown-preview.markdown-preview h1,
+.markdown-preview.markdown-preview h2,
+.markdown-preview.markdown-preview h3,
+.markdown-preview.markdown-preview h4,
+.markdown-preview.markdown-preview h5,
+.markdown-preview.markdown-preview h6 {
+  font-family: Geneva, Arial, Helvetica, "Microsoft YaHei", sans-serif;
+}
+.markdown-preview.markdown-preview pre,
+.markdown-preview.markdown-preview code {
+  font-family: "Microsoft Yahei Mono", "Consolas", "Courier New", sans-serif;
+  background-color: whitesmoke;
+}
+.markdown-preview.markdown-preview pre {
+  border-width: thin;
+  border-color: gray;
+}
+.markdown-preview.markdown-preview.phantomjs-pdf {
+  font-family: Geneva, Arial, Helvetica, "Microsoft YaHei", "华文细黑", sans-serif;
+  font-size: 15px;
+  color: black;
+  background-color: white;
+}
+.markdown-preview.markdown-preview.phantomjs-pdf pre,
+.markdown-preview.markdown-preview.phantomjs-pdf code {
+  background-color: white;
+}
+.markdown-preview.markdown-preview.phantomjs-pdf pre {
+  color: black;
+  border-style: solid;
+  border-width: thin;
+}
+ 
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview   ">
+      <h2 class="mume-header" id="maven-3">Maven 3</h2>
+
+<p>参考</p>
+<ul>
+<li><a href="https://maven.apache.org/index.html">Welcome to Apache Maven</a></li>
+<li><a href="https://maven.apache.org/archetype/maven-archetype-plugin/index.html">Maven Archetype Plugin</a></li>
+<li><a href="https://maven.apache.org/guides/mini/guide-creating-archetypes.html">Guide to Creating Archetypes</a></li>
+<li><a href="https://docs.gradle.org/current/userguide/maven_plugin.html">Gradle - The Maven Plugin</a></li>
+<li></li>
+</ul>
+<p>内容</p>
+<ul>
+<li>使用</li>
+<li><a href="#intro">概述</a></li>
+<li><a href="#install">安装与配置</a></li>
+<li><a href="#concept">核心概念</a></li>
+<li><a href="#pom">pom.xml</a></li>
+<li><a href="#lifecycle">生命周期</a></li>
+</ul>
+<h2 class="mume-header" id="%E4%BD%BF%E7%94%A8">使用</h2>
+
+<p>初始化<br>
+<code>mvn archetype:generate -DgroupId=net.dsl -DartifactId=myproject -Dversion=1.0-SNAPSHOT</code></p>
+<h4 class="mume-header" id="maven-archetype-plugin">Maven Archetype Plugin</h4>
+
+<p>The archetype plugin has four goals for direct use:</p>
+<ul>
+<li><code>archetype:generate</code> creates a Maven project from an archetype: asks the user to choose an archetype from the archetype catalog, and retrieves it from the remote repository. Once retrieved, it is processed to create a working Maven project.</li>
+<li><code>archetype:create-from-project</code> creates an archetype from an existing project.</li>
+<li><code>archetype:crawl</code> search a repository for archetypes and updates a catalog.</li>
+</ul>
+<p>and three goals bound to default lifecycle by 'maven-archetype' packaging:</p>
+<ul>
+<li><code>archetype:jar</code> (bound to the package phase) is used to build the archetype jar artifact.</li>
+<li><code>archetype:integration-test</code> (bound to the integration-test phase) is used to execute archetype integration tests by generating sample projects from the just built archetype.</li>
+<li><code>archetype:update-local-catalog</code> (bound to the install phase) is used to update the local catalog.</li>
+</ul>
+<p><strong>示例</strong></p>
+<p><code>mvn archetype:generate -B -DarchetypeGroupId=org.apache.maven.archetypes -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.1 -DgroupId=com.company -DartifactId=project -Dversion=1.0-SNAPSHOT -Dpackage=com.company.project</code></p>
+<p><code>mvn archetype:create-from-project</code></p>
+<h4 class="mume-header" id="mvn-archetypegenerate">mvn archetype:generate</h4>
+
+<p>mvn archetype:generate</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash">mvn archetype:generate                         \
+  -DarchetypeGroupId<span class="token operator">=</span><span class="token operator">&lt;</span>archetype-groupId<span class="token operator">></span>       \
+  -DarchetypeArtifactId<span class="token operator">=</span><span class="token operator">&lt;</span>archetype-artifactId<span class="token operator">></span> \
+  -DarchetypeVersion<span class="token operator">=</span><span class="token operator">&lt;</span>archetype-version<span class="token operator">></span>       \
+  -DgroupId<span class="token operator">=</span><span class="token operator">&lt;</span>my.groupid<span class="token operator">></span>                       \
+  -DartifactId<span class="token operator">=</span><span class="token operator">&lt;</span>my-artifactId<span class="token operator">></span>
+</pre><ul>
+<li><code>archetype:generate</code></li>
+<li>-D<code>groupId</code>  项目创建团体或组织的唯一标志符. 全局中唯一的标识符<br>
+-D<code>groupId</code>=<code>com.mycompany.helloworld</code><br>
+-D<code>groupId</code>=<code>com.trinea.maven.test</code></li>
+<li>-D<code>artifactId</code>  项目产生的主要产品的基本名称.<br>
+-D<code>artifactId</code>=<code>helloworld</code><br>
+-D<code>artifactId</code>=<code>CounterWebApp</code></li>
+<li>-D<code>package</code>=<code>com.mycompany.helloworld</code></li>
+<li>-D<code>version</code>=<code>1.0-SNAPSHOT</code></li>
+<li>-D<code>interactiveMode</code>=<code>false</code></li>
+</ul>
+<p>其中</p>
+<ul>
+<li><code>archetype</code></li>
+<li>-D<code>groupId</code> 指定groupId.<br>
+<code>groupId</code> 项目创建团体或组织的唯一标志符，通常是域名倒写.</li>
+<li>-D<code>artifactId</code> 指定<code>artifactId</code>.<br>
+<code>artifactId</code> 指明此项目产生的主要产品的基本名称。项目的主要产品通常为一个JAR文件。<br>
+象源代码包通常使用<code>artifactId</code>作为最后名称的一部分。典型的产品名称使用这个格式：<br>
+ <code>&lt;artifactId&gt;-&lt;version&gt;.&lt;extension&gt;</code>(比如：myapp-1.0.jar)。</li>
+<li>-D<code>archetypeArtifactId</code> 指定<code>ArchetypeId</code>，</li>
+<li>-D<code>interactiveMode</code> 表示是否使用交互模式，交互模式会让用户填写版本信息之类的，</li>
+</ul>
+<h4 class="mume-header" id="maven-%E4%B8%8E-gradle-%E4%BA%92%E7%9B%B8%E8%BD%AC%E5%8C%96">Maven 与 Gradle 互相转化</h4>
+
+<p><strong>Gradle项目 转为 Maven项目</strong><br>
+在<code>build.gradle</code>中增加以下内容</p>
+<pre data-role="codeBlock" data-info="groovy" class="language-groovy">apply plugin<span class="token punctuation">:</span> <span class="token string">'java'</span>
+apply plugin<span class="token punctuation">:</span> <span class="token string">'maven'</span>
+
+group <span class="token operator">=</span> <span class="token string">'net.dsl'</span>
+version <span class="token operator">=</span> <span class="token string">'1.0-dev'</span>
+sourceCompatibility <span class="token operator">=</span> <span class="token number">1.8</span>
+</pre><p><code>gradle install</code> 将生成 <code>build/poms/pom-default.xml</code></p>
+<p><strong>Maven项目 转为 Gradle项目</strong><br>
+在maven根目录下运行<br>
+<code>gradle init --type pom</code></p>
+<h4 class="mume-header" id="%E5%BA%93">库</h4>
+
+<p>Maven库：<a href="http://repo2.maven.org/maven2/">http://repo2.maven.org/maven2/</a><br>
+Maven依赖查询：<a href="http://mvnrepository.com/">http://mvnrepository.com/</a></p>
+<h4 class="mume-header" id="%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4">常用命令</h4>
+
+<ul>
+<li>创建Maven的普通java项目：<br>
+<code>mvn archetype:generate -DgroupId=packageName -DartifactId=projectName</code></li>
+<li>创建Maven的Web项目：<br>
+<code>mvn archetype:generate -DgroupId=packageName -DartifactId=webappName archetypeArtifactId=maven-archetype-webapp</code></li>
+<li>编译源代码： <code>mvn compile</code></li>
+<li>编译测试代码：<code>mvn test-compile</code></li>
+<li>运行测试：<code>mvn test</code></li>
+<li>产生site：<code>mvn site</code></li>
+<li>打包：<code>mvn package</code></li>
+<li>在本地Repository中安装jar：mvn install</li>
+<li>清除产生的项目：<code>mvn clean</code></li>
+<li>生成eclipse项目：<code>mvn eclipse:eclipse</code></li>
+<li>生成idea项目：<code>mvn idea:idea</code></li>
+<li>组合使用goal命令，如只打包不测试：<code>mvn -Dtest package</code></li>
+<li>编译测试的内容：<code>mvn test-compile</code></li>
+<li>只打jar包: <code>mvn jar:jar</code></li>
+<li>只测试而不编译，也不测试编译：<code>mvn test -skipping compile -skipping test-compile</code> ( -skipping 的灵活运用，当然也可以用于其他组合命令)</li>
+<li>清除eclipse的一些系统设置:<code>mvn eclipse:clean</code></li>
+</ul>
+<pre data-role="codeBlock" data-info="" class="language-"><code>mvn compile         &#x7F16;&#x8BD1;&#x6E90;&#x4EE3;&#x7801;
+mvn test-compile    &#x7F16;&#x8BD1;&#x6D4B;&#x8BD5;&#x4EE3;&#x7801;
+mvn test            &#x8FD0;&#x884C;&#x6D4B;&#x8BD5;
+mvn site            &#x4EA7;&#x751F;site
+mvn package         &#x6253;&#x5305;
+mvn install         &#x5728;&#x672C;&#x5730;Repository&#x4E2D;&#x5B89;&#x88C5;jar
+mvn clean           &#x6E05;&#x9664;&#x4EA7;&#x751F;&#x7684;&#x9879;&#x76EE;
+mvn eclipse:eclipse &#x751F;&#x6210;eclipse&#x9879;&#x76EE;
+mvn idea:idea       &#x751F;&#x6210;idea&#x9879;&#x76EE;
+mvn -Dtest package  &#x7EC4;&#x5408;&#x4F7F;&#x7528;goal&#x547D;&#x4EE4;&#xFF0C;&#x5982;&#x53EA;&#x6253;&#x5305;&#x4E0D;&#x6D4B;&#x8BD5;
+mvn test-compile    &#x6D4B;&#x8BD5;&#x7F16;&#x8BD1;&#x7684;&#x5185;&#x5BB9;
+mvn jar:jar         &#x53EA;&#x6253;jar&#x5305;
+mvn test -skipping compile   &#x53EA;&#x6D4B;&#x8BD5;&#x800C;&#x4E0D;&#x7F16;&#x8BD1;
+mvn eclipse:clean   &#x6E05;&#x9664;eclipse&#x7684;&#x4E00;&#x4E9B;&#x7CFB;&#x7EDF;&#x8BBE;&#x7F6E;
+</code></pre><p>ps：<br>
+一般使用情况是这样，首先通过cvs或svn下载代码到本机，然后执行mvn eclipse:eclipse生成ecllipse项目文件，然后导入到eclipse就行了；修改代码后执行mvn compile或mvn test检验，也可以下载eclipse的maven插件。<br>
+mvn -version/-v 显示版本信息<br>
+mvn archetype:generate 创建mvn项目<br>
+mvn archetype:create -DgroupId=com.oreilly -DartifactId=my-app 创建mvn项目<br>
+mvn package 生成target目录，编译、测试代码，生成测试报告，生成jar/war文件<br>
+mvn jetty:run 运行项目于jetty上,<br>
+mvn compile 编译<br>
+mvn test 编译并测试<br>
+mvn clean 清空生成的文件<br>
+mvn site 生成项目相关信息的网站<br>
+mvn -Dwtpversion=1.0 eclipse:eclipse 生成Wtp插件的Web项目<br>
+mvn -Dwtpversion=1.0 eclipse:clean 清除Eclipse项目的配置信息(Web项目)<br>
+mvn eclipse:eclipse 将项目转化为Eclipse项目<br>
+mvn -e                显示详细错误 信息.<br>
+mvn validate          验证工程是否正确，所有需要的资源是否可用。<br>
+mvn test-compile      编译项目测试代码。 。<br>
+mvn integration-test  在集成测试可以运行的环境中处理和发布包。<br>
+mvn verify            运行任何检查，验证包是否有效且达到质量标准。<br>
+mvn generate-sources  产生应用需要的任何额外的源代码，如xdoclet。</p>
+<p>常用命令：</p>
+<pre data-role="codeBlock" data-info="" class="language-"><code>mvn -v   &#x663E;&#x793A;&#x7248;&#x672C;
+mvn help:describe -Dplugin=help  &#x4F7F;&#x7528; help &#x63D2;&#x4EF6;&#x7684; describe &#x76EE;&#x6807;&#x6765;&#x8F93;&#x51FA; Maven Help &#x63D2;&#x4EF6;&#x7684;&#x4FE1;&#x606F;&#x3002;
+mvn help:describe -Dplugin=help -Dfull   &#x4F7F;&#x7528;Help &#x63D2;&#x4EF6;&#x8F93;&#x51FA;&#x5B8C;&#x6574;&#x7684;&#x5E26;&#x6709;&#x53C2;&#x6570;&#x7684;&#x76EE;&#x6807;&#x5217;
+mvn help:describe -Dplugin=compiler -Dmojo=compile -Dfull  &#x83B7;&#x53D6;&#x5355;&#x4E2A;&#x76EE;&#x6807;&#x7684;&#x4FE1;&#x606F;,&#x8BBE;&#x7F6E; mojo &#x53C2;&#x6570;&#x548C; plugin &#x53C2;&#x6570;&#x3002;&#x6B64;&#x547D;&#x4EE4;&#x5217;&#x51FA;&#x4E86;Compiler &#x63D2;&#x4EF6;&#x7684;compile &#x76EE;&#x6807;&#x7684;&#x6240;&#x6709;&#x4FE1;&#x606F;
+mvn help:describe -Dplugin=exec -Dfull   &#x5217;&#x51FA;&#x6240;&#x6709; Maven Exec &#x63D2;&#x4EF6;&#x53EF;&#x7528;&#x7684;&#x76EE;&#x6807;
+mvn help:effective-pom   &#x770B;&#x8FD9;&#x4E2A;&#x201C;&#x6709;&#x6548;&#x7684; (effective)&#x201D;POM&#xFF0C;&#x5B83;&#x66B4;&#x9732;&#x4E86; Maven&#x7684;&#x9ED8;&#x8BA4;&#x8BBE;&#x7F6E;
+mvn archetype:create -DgroupId=org.sonatype.mavenbook.ch03 -DartifactId=simple -DpackageName=org.sonatype.mavenbook  &#x521B;&#x5EFA;Maven&#x7684;&#x666E;&#x901A;java&#x9879;&#x76EE;&#xFF0C;&#x5728;&#x547D;&#x4EE4;&#x884C;&#x4F7F;&#x7528;Maven Archetype &#x63D2;&#x4EF6;
+mvn exec:java -Dexec.mainClass=org.sonatype.mavenbook.weather.Main Exec  &#x63D2;&#x4EF6;&#x8BA9;&#x6211;&#x4EEC;&#x80FD;&#x591F;&#x5728;&#x4E0D;&#x5F80; classpath &#x8F7D;&#x5165;&#x9002;&#x5F53;&#x7684;&#x4F9D;&#x8D56;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x8FD0;&#x884C;&#x8FD9;&#x4E2A;&#x7A0B;&#x5E8F;
+mvn dependency:resolve   &#x6253;&#x5370;&#x51FA;&#x5DF2;&#x89E3;&#x51B3;&#x4F9D;&#x8D56;&#x7684;&#x5217;&#x8868;
+mvn dependency:tree  &#x6253;&#x5370;&#x6574;&#x4E2A;&#x4F9D;&#x8D56;&#x6811;
+mvn install -X   &#x60F3;&#x8981;&#x67E5;&#x770B;&#x5B8C;&#x6574;&#x7684;&#x4F9D;&#x8D56;&#x8E2A;&#x8FF9;&#xFF0C;&#x5305;&#x542B;&#x90A3;&#x4E9B;&#x56E0;&#x4E3A;&#x51B2;&#x7A81;&#x6216;&#x8005;&#x5176;&#x5B83;&#x539F;&#x56E0;&#x800C;&#x88AB;&#x62D2;&#x7EDD;&#x5F15;&#x5165;&#x7684;&#x6784;&#x4EF6;&#xFF0C;&#x6253;&#x5F00; Maven &#x7684;&#x8C03;&#x8BD5;&#x6807;&#x8BB0;&#x8FD0;&#x884C;
+mvn install -Dmaven.test.skip=true   &#x7ED9;&#x4EFB;&#x4F55;&#x76EE;&#x6807;&#x6DFB;&#x52A0;maven.test.skip &#x5C5E;&#x6027;&#x5C31;&#x80FD;&#x8DF3;&#x8FC7;&#x6D4B;&#x8BD5;
+mvn install assembly:assembly  &#x6784;&#x5EFA;&#x88C5;&#x914D;Maven Assembly &#x63D2;&#x4EF6;&#x662F;&#x4E00;&#x4E2A;&#x7528;&#x6765;&#x521B;&#x5EFA;&#x4F60;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x7279;&#x6709;&#x5206;&#x53D1;&#x5305;&#x7684;&#x63D2;&#x4EF6;
+mvn jetty:run  &#x8C03;&#x7528; Jetty &#x63D2;&#x4EF6;&#x7684; Run &#x76EE;&#x6807;&#x5728; Jetty Servlet &#x5BB9;&#x5668;&#x4E2D;&#x542F;&#x52A8; web &#x5E94;&#x7528;
+mvn compile  &#x7F16;&#x8BD1;&#x4F60;&#x7684;&#x9879;&#x76EE;
+mvn clean install  &#x5220;&#x9664;&#x518D;&#x7F16;&#x8BD1;
+mvn hibernate3:hbm2ddl   &#x4F7F;&#x7528; Hibernate3 &#x63D2;&#x4EF6;&#x6784;&#x9020;&#x6570;&#x636E;&#x5E93;
+</code></pre><p>在应用程序用使用多个存储库</p>
+<pre data-role="codeBlock" data-info="xml" class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>repositories</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>repository</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>id</span><span class="token punctuation">></span></span>Ibiblio<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>id</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>name</span><span class="token punctuation">></span></span>Ibiblio<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>name</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>url</span><span class="token punctuation">></span></span>http://www.ibiblio.org/maven/<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>url</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>repository</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>repository</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>id</span><span class="token punctuation">></span></span>PlanetMirror<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>id</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>name</span><span class="token punctuation">></span></span>Planet Mirror<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>name</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>url</span><span class="token punctuation">></span></span>http://public.planetmirror.com/pub/maven/<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>url</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>repository</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>repositories</span><span class="token punctuation">></span></span>
+</pre><p><code>mvn deploy:deploy-file -DgroupId=com -DartifactId=client -Dversion=0.1.0 -Dpackaging=jar -Dfile=d:\client-0.1.0.jar -DrepositoryId=maven-repository-inner -Durl=ftp://xxxxxxx/opt/maven/repository/</code></p>
+<p>发布第三方Jar到本地库中：<br>
+<code>mvn install:install-file -DgroupId=com -DartifactId=client -Dversion=0.1.0 -Dpackaging=jar -Dfile=d:\client-0.1.0.jar -DdownloadSources=true -DdownloadJavadocs=true</code></p>
+<hr>
+<p><span id="intro"></span></p>
+<h3 class="mume-header" id="%E6%A6%82%E8%BF%B0">概述</h3>
+
+<p>Maven主要服务于基于Java平台的项目构建、依赖管理和项目信息管理。</p>
+<ul>
+<li>Maven是一个异常强大的构建工具，能够帮我们自动化构建过程，从清理、编译、测试到生成报告，再到打包和部署。</li>
+<li>Maven抽象了一个完整的构建生命周期模型，这个模型吸取了大量其他的构建脚本和构建工具的优点，总结了大量项目的实际需求。如果遵循这个模型，可以避免很多不必要的错误，可以直接使用大量成熟的Maven插件来完成我们的任务（很多时候我们可能都不知道自己在使用Maven插件）。此外，如果有非常特殊的需求，我们也可以轻松实现自己的插件。</li>
+<li>能帮助我们标准化构建过程。所有项目的构建命令都是简单一致的。</li>
+<li>Maven还能帮助我们管理原本分散在项目中各个角落的项目信息，包括项目描述、开发者列表、版本控制系统地址、许可证、缺陷管理系统地址等。</li>
+<li>Maven还为全世界的Java开发者提供了一个免费的中央仓库，在其中几乎可以找到任何的流行开源类库。</li>
+<li>Maven对于项目目录结构、测试用例命名方式等内容都有既定的规则，只要遵循了这些成熟的规则，用户在项目间切换的时候就免去了额外的学习成本，可以说是约定优于配置（Convention Over Configuration）。</li>
+</ul>
+<p><span id="install"></span></p>
+<h3 class="mume-header" id="%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE">安装与配置</h3>
+
+<p><strong>安装Maven</strong></p>
+<ul>
+<li>下载maven的bin</li>
+<li>设置环境变量 <code>MAVEN_HOME</code>, 在PATH里加入maven的bin的路径</li>
+<li><code>mvn -v</code> 测试安装</li>
+</ul>
+<p><strong>目录与文件</strong></p>
+<pre data-role="codeBlock" data-info="" class="language-"><code>$M2_HOME                    &#x73AF;&#x5883;&#x53D8;&#x91CF;&#x6307;&#x5411;Maven&#x7684;&#x5B89;&#x88C5;&#x76EE;&#x5F55;&#x3002;
+$M2_HOME/conf/settings.xml  &#x5728;&#x673A;&#x5668;&#x4E0A;&#x5168;&#x5C40;&#x5730;&#x5B9A;&#x5236;Maven&#x7684;&#x884C;&#x4E3A;&#x3002;
+~/.m2                       &#x7528;&#x6237;maven&#x76EE;&#x5F55;
+~/.m2/repository            Maven&#x672C;&#x5730;&#x4ED3;&#x5E93;
+~/.m2/settings.xml          &#x5728;&#x7528;&#x6237;&#x8303;&#x56F4;&#x5B9A;&#x5236;Maven&#x7684;&#x884C;&#x4E3A;
+</code></pre><p><code>mvn help:system</code><br>
+打印出所有的Java系统属性和环境变量</p>
+<p><strong>设置HTTP代理</strong><br>
+在<code>settings.xml</code>中为Maven配置HTTP代理</p>
+<p><strong>设置MAVEN_OPTS环境变量</strong><br>
+通常需要设置<code>MAVEN_OPTS</code>的值为<code>-Xms128m-Xmx512m</code></p>
+<p><strong>Maven Eclipse配置</strong></p>
+<ul>
+<li>Eclipse Marketplace搜索关键字maven到插件Maven Integration for Eclipse 并点击安装即可。</li>
+<li>点击Window -&gt; Preference -&gt; Maven -&gt; Installation -&gt; Add进行设置</li>
+</ul>
+<p><span id="concept"></span></p>
+<h2 class="mume-header" id="maven-%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5">Maven 核心概念</h2>
+
+<p><strong>概念</strong></p>
+<ul>
+<li>LifeCycle : 生命周期，maven内置default,sie,clean三个生命周期</li>
+<li>Phase : 阶段，每个生命周期有不同的阶段</li>
+<li>Plugin : 插件，实现实际的构建功能</li>
+<li>Goal : 一个插件可以实现多个goal，goal具备具体的功能</li>
+<li>Execution : 通过配置，决定在某个Phase执行哪些Goal</li>
+<li>Project : maven管理的目标：软件工程，小的工程可以聚合成大工程</li>
+<li>PackageType : 为了便于管理工程，按照构建目标区分成不同的工程类型，如jar，war，ear等</li>
+<li>Dependency : 依赖，project之间存在依赖关系</li>
+<li>DependencyScope : maven对依赖定义了不同的作用范围</li>
+<li>Management : 可以配置一个工程如何管理依赖关系</li>
+<li>Repository : 仓库，存放包，分为本地库和远程库</li>
+<li>Build : 构建的动作。使用maven管理工程，主要是指定将project构建到某个phase</li>
+</ul>
+<p><strong>项目对象模型（POM）</strong>: POM是Maven中的里程碑式的模型。该模型的一部分已经构建到 Maven引擎（被亲切地称为反应堆 ）中，其余部分则通过一个名叫 pom.xml 的基于 XML 的元数据文件来声明。</p>
+<p><strong>依赖项管理模型</strong> : Maven 对如何管理项目的依赖项很在行. 依赖项管理是一片灰色地带, 典型的构建-管理工具和系统都未明确涉及. Maven 2 构建了 Maven 依赖项管理模型, 该模型能够适应大多数需求. 这个模型被证明是有效而高产的模型, 目前主要的开源项目都部署了该模型。</p>
+<p><strong>构建生命周期和阶段</strong>：和 POM 相关的概念是构建生命周期 和阶段。这是 Maven 2 的内嵌概念模型和现实物理世界之间的接口。使用 Maven 时，工作主要是通过插件来执行的。在构建周期中，Maven 2 通过遵循一系列定义好的阶段，将这些插件协调起来。</p>
+<p><strong>坐标</strong>： 对Maven坐标的使用贯穿于Maven配置文件和POM文件中。</p>
+<h4 class="mume-header" id="pomxml">pom.xml</h4>
+
+<pre data-role="codeBlock" data-info="xml" class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>project</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">xmlns:</span>xsi</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="token punctuation">"</span></span>
+  <span class="token attr-name"><span class="token namespace">xsi:</span>schemaLocation</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>modelVersion</span><span class="token punctuation">></span></span>4.0.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>modelVersion</span><span class="token punctuation">></span></span>
+
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.dsl.maven<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>demo<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>1.0-SNAPSHOT<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>packaging</span><span class="token punctuation">></span></span>jar<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>packaging</span><span class="token punctuation">></span></span>
+
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>name</span><span class="token punctuation">></span></span>Maven Demo Project<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>name</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>url</span><span class="token punctuation">></span></span>http://maven.apache.org<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>url</span><span class="token punctuation">></span></span>
+
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>properties</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>project.build.sourceEncoding</span><span class="token punctuation">></span></span>UTF-8<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>project.build.sourceEncoding</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>properties</span><span class="token punctuation">></span></span>
+
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencies</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>junit<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>junit<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>3.8.1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>scope</span><span class="token punctuation">></span></span>test<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>scope</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>project</span><span class="token punctuation">></span></span>
+</pre><p><strong>pom.xml说明</strong></p>
+<ul>
+<li><code>project</code>：pom.xml文件中的顶层元素;</li>
+<li><code>modelVersion</code>：指明POM使用的对象模型的版本。这个值很少改动。</li>
+<li><code>groupId</code>：指明创建项目的组织或者小组的唯一标识。<br>
+GroupId是项目的关键标识，典型的，此标识以组织的完全限定名来定义。比如，<code>org.apache.maven.plugins</code>是所有Maven插件项目指定的<code>groupId</code>。</li>
+<li><code>artifactId</code>：指明此项目产生的主要产品的基本名称。<br>
+项目的主要产品通常为一个JAR文件。<br>
+第二，象源代码包通常使用<code>artifactId</code>作为最后名称的一部分。典型的产品名称使用这个格式：<br>
+ <code>&lt;artifactId&gt;- &lt;version&gt;. &lt;extension&gt;</code>(比如：myapp-1.0.jar)。</li>
+<li><code>version</code>：项目产品的版本号。<br>
+Maven帮助你管理版本，可以经常看到SNAPSHOT这个版本，表明项目处于开发阶段。</li>
+<li><code>name</code>：项目的显示名称，通常用于maven产生的文档中。</li>
+<li><code>url</code>：指定项目站点，通常用于maven产生的文档中。</li>
+<li><code>description</code>：描述此项目，通常用于maven产生的文档中。</li>
+</ul>
+<h4 class="mume-header" id="maven-%E6%A0%87%E5%87%86%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84">Maven 标准目录结构</h4>
+
+<pre data-role="codeBlock" data-info="" class="language-"><code>project/              &#x9879;&#x76EE;&#x6839;
+    pom.xml           Maven2&#x7684;pom.xml&#x6587;&#x4EF6;
+    src/
+        main/         &#x9879;&#x76EE;&#x4E3B;&#x4F53;&#x76EE;&#x5F55;&#x6839;
+            java      &#x6E90;&#x4EE3;&#x7801;&#x76EE;&#x5F55;
+            resources &#x6240;&#x9700;&#x8D44;&#x6E90;&#x76EE;&#x5F55;
+            filters   &#x8D44;&#x6E90;&#x8FC7;&#x6EE4;&#x6587;&#x4EF6;&#x76EE;&#x5F55;
+            assembly  Assembly descriptors
+            config    &#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x76EE;&#x5F55;&#x6839;
+            scripts   &#x811A;&#x672C;&#x5E93;
+            webapp    web&#x5E94;&#x7528;&#x7684;&#x76EE;&#x5F55;&#x3002;WEB-INF&#x3001;css&#x3001;js&#x7B49;
+        test/         &#x9879;&#x76EE;&#x6D4B;&#x8BD5;&#x76EE;&#x5F55;&#x6839;
+            java      &#x6D4B;&#x8BD5;&#x4EE3;&#x7801;&#x76EE;&#x5F55;
+            resources &#x6240;&#x9700;&#x8D44;&#x6E90;&#x76EE;&#x5F55;
+            filters   &#x8D44;&#x6E90;&#x8FC7;&#x6EE4;&#x6587;&#x4EF6;&#x76EE;&#x5F55;
+        site          &#x4E0E;site&#x76F8;&#x5173;&#x7684;&#x8D44;&#x6E90;&#x76EE;&#x5F55;
+    target/           &#x8F93;&#x51FA;&#x76EE;&#x5F55;&#x6839;
+        classes       &#x9879;&#x76EE;&#x4E3B;&#x4F53;&#x8F93;&#x51FA;&#x76EE;&#x5F55;
+        test-classes  &#x9879;&#x76EE;&#x6D4B;&#x8BD5;&#x8F93;&#x51FA;&#x76EE;&#x5F55;
+</code></pre><h4 class="mume-header" id="%E4%BD%BF%E7%94%A8archetype%E7%94%9F%E6%88%90%E9%A1%B9%E7%9B%AE%E9%AA%A8%E6%9E%B6">使用Archetype生成项目骨架</h4>
+
+<pre data-role="codeBlock" data-info="" class="language-"><code>mvn archetype:generate
+</code></pre><h4 class="mume-header" id="maven%E5%9D%90%E6%A0%87">Maven坐标</h4>
+
+<p>Maven坐标是一组可以唯一标识工件的三元组值(组ID，工件ID，版本)。</p>
+<p>Maven坐标为各种构件引入了秩序，任何一个构件都必须明确定义自己的坐标，而一组Maven坐标是通过一些元素定义的，它们是<code>groupId</code>、<code>artifactId</code>、<code>version</code>、<code>packaging</code>、<code>classifier</code>。</p>
+<ul>
+<li><code>groupId</code>：定义当前Maven项目隶属的实际项目。</li>
+<li><code>artifactId</code>：该元素定义实际项目中的一个Maven项目（模块），推荐的做法是使用实际项目名称作为artifactId的前缀。</li>
+<li><code>version</code>：该元素定义Maven项目当前所处的版本。<br>
+Maven定义了一套完整的版本规范，以及快照（SNAPSHOT）的概念。</li>
+<li><code>packaging</code>：该元素定义Maven项目的打包方式。</li>
+<li><code>classifier</code>：该元素用来帮助定义构建输出的一些附属构件。<br>
+不能直接定义项目的<code>classifier</code>，因为附属构件不是项目直接默认生成的，而是由附加的插件帮助生成。</li>
+</ul>
+<p>上述5个元素中，<code>groupId</code>、<code>artifactId</code>、<code>version</code>是必须定义的，<code>packaging</code>是可选的（默认为jar），而<code>classifier</code>是不能直接定义的。</p>
+<p><strong>坐标规划的原则</strong></p>
+<ul>
+<li>groupId ：坐标规划一个原则是基于项目域名衍生。项目就必须用groupId来定义。</li>
+<li>artifactId : artifactId来定义模块，而不是定义项目。在定义<code>artiafctId</code>时也加入项目的信息。</li>
+<li>version ： <code>&lt;主版本&gt;.&lt;次版本&gt;.&lt;增量版本&gt;-&lt;限定符&gt;</code><br>
+主版本主要表示大型架构变更，次版本主要表示特性的增加，增量版本主要服务于bug修复，而限定符如alpha、beta等等是用来表示里程碑。</li>
+</ul>
+<h4 class="mume-header" id="%E4%BE%9D%E8%B5%96">依赖</h4>
+
+<h4 class="mume-header" id="%E5%AD%98%E5%82%A8%E5%BA%93">存储库</h4>
+
+<p>Maven 存储库是普通的目录树。</p>
+<p>Maven 维护了一个工件的 POM 文件，同时也为该工件和其存储库中的 POM 维护了检验和散列。当工件在存储库间转移时，这些文件帮助确保工件的完整性。该工件已由 Maven 的依赖项管理引擎从中央存储库下载并放置到本地存储库中。</p>
+<p>仓库主要用于获取工程依赖的其他工程的生成物，也可用来部署（deploy）maven工程的生成物。 生成物包括各种打包的生成物以及pom文件。<br>
+如果有必要，一个工程可以部署到多个仓库。<br>
+仓库可以分为本地库（local）和远程库（remote）。本地库通常位于本机的~/.m2/repository文件夹， 远程库最常见的是maven中央库（），此外也会有一些私服库用于企业内部。</p>
+<p><span id="lifecycle"></span></p>
+<h2 class="mume-header" id="%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F">生命周期</h2>
+
+<p>Maven的生命周期就是为了对所有的构建过程进行抽象和统一。这个生命周期包含了项目的清理、初始化、编译、测试、打包、集成测试、验证、部署和站点生成等几乎所有构建步骤。</p>
+<p>Maven将工程（Project）的构建过程理解为不同的生命周期(LifeCycle)和阶段（Phase）。<br>
+在工程的构建过程中，存在着不同的生命周期，这些生命周期互相独立，之间也没有一定的顺序关系。<br>
+每个生命周期又划分为不同的阶段（Phase）。阶段之间有明确的顺序关系， 同一生命周期内的阶段必须按顺序依次执行。</p>
+<p>生命周期抽象了构建的各个步骤，定义了它们的次序，但没有提供具体实现。<br>
+Maven设计了插件机制。每个构建步骤都可以绑定一个或者多个插件行为，而且Maven为大多数构建步骤编写并绑定了默认插件。</p>
+<p><strong>三套生命周期</strong></p>
+<p>Maven拥有三套相互独立的生命周期，它们分别为clean、default和site。</p>
+<ul>
+<li><code>clean</code> 生命周期的目的是清理项目</li>
+<li><code>default</code> 生命周期的目的是构建项目</li>
+<li><code>site</code> 生命周期的目的是建立项目站点。</li>
+</ul>
+<p>再次强调一下它们是相互独立的，你可以仅仅调用<code>clean</code>来清理工作目录，仅仅调用<code>site</code>来生成站点。当然你也可以直接运行<code>mvn clean install site</code>运行所有这三套生命周期。</p>
+<p>每套生命周期都由一组阶段(Phase)组成。<br>
+如<code>clean</code>生命周期包括 <code>pre-clean</code>,<code>clean</code>,<code>post-clean</code> 三个阶段。<br>
+我们平时在命令行输入的命令总会对应于一个特定的阶段。<br>
+比如，运行<code>mvn clean</code>，这个的<code>clean</code>是Clean生命周期的一个阶段。</p>
+<p>在一个生命周期中，运行某个阶段的时候，它之前的所有阶段都会被运行。<br>
+也就是说，<code>mvn clean</code>等同于<code>mvn pre-clean clean</code>。<br>
+如果我们运行<code>mvn post-clean</code>，那么<code>pre-clean</code>，<code>clean</code>都会被运行。<br>
+这是Maven很重要的一个规则，可以大大简化命令行的输入。</p>
+<p><strong>clean生命周期</strong></p>
+<p>lean生命周期的目的是清理项目，它包含三个阶段：</p>
+<ul>
+<li><code>pre-clean</code> 执行一些清理前需要完成的工作。</li>
+<li><code>clean</code> 清理上一次构建生成的文件。</li>
+<li><code>post-clean</code> 执行一些清理后需要完成的工作。</li>
+</ul>
+<p><strong>default生命周期</strong></p>
+<p>default生命周期定义了真正构建时所需要执行的所有步骤，它是所有生命周期中最核心的部分，其包含的阶段如下：代码生成器可以开始生成在以后阶段中处理或编译的源代码。</p>
+<ul>
+<li><code>validate</code> 确保当前配置和 POM 的内容是有效的。这包含对 pom.xml 文件树的验证。</li>
+<li><code>initialize</code> 在执行构建生命周期的主任务之前可以进行初始化。</li>
+<li><code>generate-sources</code> 代码生成器可以开始生成在以后阶段中处理或编译的源代码。</li>
+<li><code>process-sources</code> 处理项目主资源文件。一般来说，是对<code>src/main/resources</code>目录的内容进行变量替换等工作后，复制到项目输出的主<code>classpath</code>目录中。<br>
+提供解析、修改和转换源码。常规源码和生成的源码都可以在这里处理。</li>
+<li><code>generate-resources</code> 可以生成非源码资源。通常包括元数据文件和配置文件。</li>
+<li><code>process-resources</code> 处理非源码资源。修改、转换和重定位资源都能在这阶段发生。</li>
+<li><code>compile</code> 编译项目的主源码。一般来说，是编译<code>src/main/java</code>目录下的Java文件至项目输出的主<code>classpath</code>目录中。<br>
+编译源码。编译过的类被放到目标目录树中。</li>
+<li><code>process-classes</code> 处理类文件转换和增强步骤。字节码交织器和常用工具常在这一阶段操作。</li>
+<li><code>generate-test-sources</code> mojo 可以生成要操作的单元测试代码。</li>
+<li><code>process-test-sources</code> 处理项目测试资源文件。一般来说，是对<code>src/test/resources</code>目录的内容进行变量替换等工作后，复制到项目输出的测试<code>classpath</code>目录中。<br>
+在编译前对测试源码执行任何必要的处理。在这一阶段，可以修改、转换或复制源代码。</li>
+<li><code>generate-test-resources</code> 允许生成与测试相关的（非源码）资源。</li>
+<li><code>process-test-resources</code> 可以处理、转换和重新定位与测试相关的资源。</li>
+<li><code>test-compile</code> 编译项目的测试代码。一般来说，是编译<code>src/test/java</code>目录下的Java文件至项目输出的测试<code>classpath</code>目录中。</li>
+<li><code>process-test-classes</code></li>
+<li><code>test</code> 使用单元测试框架运行测试，测试代码不会被打包或部署。<br>
+运行编译过的单元测试并累计结果。</li>
+<li><code>prepare-package</code></li>
+<li><code>package</code> 接受编译好的代码，打包成可发布的格式，如JAR。</li>
+<li><code>pre-integration-test</code> 准备集成测试。这种情况下的集成测试是指在一个受到一定控制的模拟的真实部署环境中测试代码。这一步能将归档文件部署到一个服务器上执行。</li>
+<li><code>integration-test</code> 执行真正的集成测试。</li>
+<li><code>post-integration-test</code> 解除集成测试准备。这一步涉及测试环境重置或重新初始化。</li>
+<li><code>verify</code> 检验可部署归档的有效性和完整性。过了这个阶段，将安装该归档。</li>
+<li><code>install</code> 将包安装到Maven本地仓库，供本地其他Maven项目使用。</li>
+<li><code>deploy</code> 将最终的包复制到远程仓库，供其他开发人员和Maven项目使用。</li>
+</ul>
+<p>若想了解进一步的这些阶段的详细信息，可以参阅<a href="http://maven.apache.org/guides/introduc-tion/introduction-to-the-lifecycle.html">官方的解释</a>。</p>
+<p><strong>site生命周期</strong></p>
+<p>site生命周期的目的是建立和发布项目站点，Maven能够基于POM所包含的信息，自动生成一个友好的站点，方便团队交流和发布项目信息。该生命周期包含如下阶段：</p>
+<ul>
+<li><code>pre-site</code> 执行一些在生成项目站点之前需要完成的工作。</li>
+<li><code>site</code> 生成项目站点文档。</li>
+<li><code>post-site</code> 执行一些在生成项目站点之后需要完成的工作。</li>
+<li><code>site-deploy</code> 将生成的项目站点发布到服务器上。</li>
+</ul>
+
+      </div>
+      <div class="md-sidebar-toc"><ul>
+<li><a href="#maven-3">Maven 3</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8">使用</a><br>
+* <a href="#maven-archetype-plugin">Maven Archetype Plugin</a><br>
+* <a href="#mvn-archetypegenerate">mvn archetype:generate</a><br>
+* <a href="#maven-%E4%B8%8E-gradle-%E4%BA%92%E7%9B%B8%E8%BD%AC%E5%8C%96">Maven 与 Gradle 互相转化</a><br>
+* <a href="#%E5%BA%93">库</a><br>
+* <a href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4">常用命令</a>
+<ul>
+<li><a href="#%E6%A6%82%E8%BF%B0">概述</a></li>
+<li><a href="#%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE">安装与配置</a></li>
+</ul>
+</li>
+<li><a href="#maven-%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5">Maven 核心概念</a><br>
+* <a href="#pomxml">pom.xml</a><br>
+* <a href="#maven-%E6%A0%87%E5%87%86%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84">Maven 标准目录结构</a><br>
+* <a href="#%E4%BD%BF%E7%94%A8archetype%E7%94%9F%E6%88%90%E9%A1%B9%E7%9B%AE%E9%AA%A8%E6%9E%B6">使用Archetype生成项目骨架</a><br>
+* <a href="#maven%E5%9D%90%E6%A0%87">Maven坐标</a><br>
+* <a href="#%E4%BE%9D%E8%B5%96">依赖</a><br>
+* <a href="#%E5%AD%98%E5%82%A8%E5%BA%93">存储库</a></li>
+<li><a href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F">生命周期</a></li>
+</ul>
+</div>
+      <a id="sidebar-toc-btn">≡</a>
+    </body>
+    
+    
+    
+    
+    
+    
+    <script>
+(function bindTaskListEvent() {
+  var taskListItemCheckboxes = document.body.getElementsByClassName('task-list-item-checkbox')
+  for (var i = 0; i < taskListItemCheckboxes.length; i++) {
+    var checkbox = taskListItemCheckboxes[i]
+    var li = checkbox.parentElement
+    if (li.tagName !== 'LI') li = li.parentElement
+    if (li.tagName === 'LI') {
+      li.classList.add('task-list-item')
+    }
+  }
+}())    
+</script>
+    
+<script>
+
+var sidebarTOCBtn = document.getElementById('sidebar-toc-btn')
+sidebarTOCBtn.addEventListener('click', function(event) {
+  event.stopPropagation()
+  if (document.body.hasAttribute('html-show-sidebar-toc')) {
+    document.body.removeAttribute('html-show-sidebar-toc')
+  } else {
+    document.body.setAttribute('html-show-sidebar-toc', true)
+  }
+})
+</script>
+      
+  </html>
