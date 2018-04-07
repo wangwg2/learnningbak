@@ -4,7 +4,6 @@
 * [Maven Archetype Plugin](https://maven.apache.org/archetype/maven-archetype-plugin/index.html)
 * [Guide to Creating Archetypes](https://maven.apache.org/guides/mini/guide-creating-archetypes.html)
 * [Gradle - The Maven Plugin](https://docs.gradle.org/current/userguide/maven_plugin.html)
-* 
 
 内容
 * 使用
@@ -15,7 +14,6 @@
 * [生命周期](#lifecycle)
 
 ## 使用
-
 初始化  
 `mvn archetype:generate -DgroupId=net.dsl -DartifactId=myproject -Dversion=1.0-SNAPSHOT`
 
@@ -90,8 +88,6 @@ mvn archetype:generate
 ```bash
 mvn archetype:create-from-project -Darchetype.filteredExtensions=java
 ```
-
-
 
 #### mvn archetype:generate
 mvn archetype:generate

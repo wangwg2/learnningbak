@@ -261,7 +261,6 @@ code.language-yaml {
 <li><a href="https://maven.apache.org/archetype/maven-archetype-plugin/index.html">Maven Archetype Plugin</a></li>
 <li><a href="https://maven.apache.org/guides/mini/guide-creating-archetypes.html">Guide to Creating Archetypes</a></li>
 <li><a href="https://docs.gradle.org/current/userguide/maven_plugin.html">Gradle - The Maven Plugin</a></li>
-<li></li>
 </ul>
 <p>内容</p>
 <ul>
@@ -276,7 +275,12 @@ code.language-yaml {
 
 <p>初始化<br>
 <code>mvn archetype:generate -DgroupId=net.dsl -DartifactId=myproject -Dversion=1.0-SNAPSHOT</code></p>
-<h4 class="mume-header" id="maven-archetype-%E6%8F%92%E4%BB%B6">Maven Archetype 插件</h4>
+<h4 class="mume-header" id="maven-archetype">Maven Archetype</h4>
+
+<p>简而言之，Archetype是一个Maven项目模板工具包。一个原型被定义为一种原始模式或模型，其他所有同类事物都是从该原始模式或模型中作出的。</p>
+<p>使用原型提供了一种很好的方式，可以让开发人员以与您的项目或组织采用的最佳实践相一致的方式快速开展工作。</p>
+<p>您可能想要在组织内标准化J2EE开发，以便您可以为EJB或WAR或Web服务提供原型。一旦这些原型被创建并部署到组织的存储库中，它们就可供组织中的所有开发人员使用。</p>
+<h6 class="mume-header" id="maven-archetype-%E6%8F%92%E4%BB%B6">Maven Archetype 插件</h6>
 
 <p>archetype 插件有四个直接使用的目标:</p>
 <ul>
@@ -298,9 +302,59 @@ code.language-yaml {
 </ul>
 <h6 class="mume-header" id="%E7%A4%BA%E4%BE%8B-%E4%BB%A5%E6%89%B9%E5%A4%84%E7%90%86%E6%A8%A1%E5%BC%8F%E7%94%9F%E6%88%90%E9%A1%B9%E7%9B%AE">示例: 以批处理模式生成项目</h6>
 
+<p>通过将 <code>interactive</code> 属性设置为<code>false</code>或使用<code>-B</code>标志，可以摆脱Maven Archetype Plugin的交互性。然后需要一些有意义的属性：</p>
+<ul>
+<li><code>archetypeGroupId</code>， <code>archetypeArtifactId</code> 和 <code>archetypeVersion</code> 定义用于项目生成的原型。</li>
+<li><code>groupId</code>，<code>artifactId</code>，版本和包是要设置的主要属性。每个原型都需要这些属性。一些原型定义了其他属性; 如果需要，请参考相应的原型文档。</li>
+</ul>
 <p><code>mvn archetype:generate -B -DarchetypeGroupId=org.apache.maven.archetypes -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.1 -DgroupId=com.company -DartifactId=project -Dversion=1.0-SNAPSHOT -Dpackage=com.company.project</code></p>
-<p><code>mvn archetype:create-from-project</code></p>
-<h4 class="mume-header" id="mvn-archetypegenerate">mvn archetype:generate</h4>
+<h6 class="mume-header" id="%E7%A4%BA%E4%BE%8B-%E4%BD%BF%E7%94%A8%E6%9B%BF%E4%BB%A3-catalog-%E7%94%9F%E6%88%90%E9%A1%B9%E7%9B%AE">示例： 使用替代 catalog 生成项目</h6>
+
+<p>通过将 <code>archetypeCatalog</code> 属性定义为一个特定值，可以使用替代目录作为内部目录：</p>
+<ul>
+<li><code>internal</code> 仅使用内部目录。</li>
+<li><code>local</code> 只能使用本地目录。</li>
+<li><code>remote</code> 使用Maven的远程目录。目前没有提供目录。</li>
+</ul>
+<p>默认值是远程的，本地的。因此本地目录显示在远程目录之后。</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash">mvn archetype:generate
+</pre><h6 class="mume-header" id="%E7%A4%BA%E4%BE%8B-%E5%8E%9F%E5%9E%8B%E5%88%9B%E5%BB%BA">示例: 原型创建</h6>
+
+<p>从现有项目创建原型涉及三个步骤：</p>
+<ul>
+<li>
+<p>原型决议</p>
+</li>
+<li>
+<p>原型安装：部署</p>
+</li>
+<li>
+<p>原型用法</p>
+</li>
+<li>
+<p>调用 <code>mvn archetype:create-from-project</code> 插件首先通过猜测项目目录来解析包。</p>
+</li>
+<li>
+<p>然后它在目标 <code>target/generated-sources/archetype</code> 目录中生成原型的目录树。</p>
+</li>
+<li>
+<p>然后移至生成的目录，并在创建的原型上调用 <code>mvn install</code>。</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash">$ <span class="token function">cd</span> target/generated-sources/archetype/
+$ mvn <span class="token function">install</span>  
+</pre></li>
+<li>
+<p>最后移动到一个新的目录并使用你的原型。</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash">$ <span class="token function">mkdir</span> /tmp/archetype
+$ <span class="token function">cd</span> /tmp/archetype
+$ mvn archetype:generate -DarchetypeCatalog<span class="token operator">=</span>local
+</pre></li>
+</ul>
+<h6 class="mume-header" id="%E7%A4%BA%E4%BE%8B-%E4%BB%8E%E5%A4%9A%E6%A8%A1%E5%9D%97%E9%A1%B9%E7%9B%AE%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%8E%9F%E5%9E%8B">示例: 从多模块项目创建一个原型</h6>
+
+<p>创建一个多模块项目的原型和创建一个单个模块项目原型同样简单。</p>
+<p>移动到多模块项目的根目录并调用 <code>mvn archetype:create-from-project</code>。在作为例子的原型中，一些文件需要不被过滤。这是通过给 archetype 插件 <code>archetype.filteredExtensions</code> 属性中的一些值来实现的。</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash">mvn archetype:create-from-project -Darchetype.filteredExtensions<span class="token operator">=</span>java
+</pre><h4 class="mume-header" id="mvn-archetypegenerate">mvn archetype:generate</h4>
 
 <p>mvn archetype:generate</p>
 <pre data-role="codeBlock" data-info="bash" class="language-bash">mvn archetype:generate                         \
@@ -676,8 +730,12 @@ Maven设计了插件机制。每个构建步骤都可以绑定一个或者多个
       <div class="md-sidebar-toc"><ul>
 <li><a href="#maven-3">Maven 3</a></li>
 <li><a href="#%E4%BD%BF%E7%94%A8">使用</a><br>
+* <a href="#maven-archetype">Maven Archetype</a><br>
 * <a href="#maven-archetype-%E6%8F%92%E4%BB%B6">Maven Archetype 插件</a><br>
 * <a href="#%E7%A4%BA%E4%BE%8B-%E4%BB%A5%E6%89%B9%E5%A4%84%E7%90%86%E6%A8%A1%E5%BC%8F%E7%94%9F%E6%88%90%E9%A1%B9%E7%9B%AE">示例: 以批处理模式生成项目</a><br>
+* <a href="#%E7%A4%BA%E4%BE%8B-%E4%BD%BF%E7%94%A8%E6%9B%BF%E4%BB%A3-catalog-%E7%94%9F%E6%88%90%E9%A1%B9%E7%9B%AE">示例： 使用替代 catalog 生成项目</a><br>
+* <a href="#%E7%A4%BA%E4%BE%8B-%E5%8E%9F%E5%9E%8B%E5%88%9B%E5%BB%BA">示例: 原型创建</a><br>
+* <a href="#%E7%A4%BA%E4%BE%8B-%E4%BB%8E%E5%A4%9A%E6%A8%A1%E5%9D%97%E9%A1%B9%E7%9B%AE%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%8E%9F%E5%9E%8B">示例: 从多模块项目创建一个原型</a><br>
 * <a href="#mvn-archetypegenerate">mvn archetype:generate</a><br>
 * <a href="#maven-%E4%B8%8E-gradle-%E4%BA%92%E7%9B%B8%E8%BD%AC%E5%8C%96">Maven 与 Gradle 互相转化</a><br>
 * <a href="#%E5%BA%93">库</a><br>
