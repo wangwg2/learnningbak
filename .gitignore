@@ -18,7 +18,7 @@
 Thumbs.db
 .DS_Store
 
-
+.sts4-cache
 .classpath
 .project
 .metadata
