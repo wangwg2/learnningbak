@@ -5,7 +5,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="file:///C:\Users\wangwg2\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.3.4\node_modules\@shd101wyy\mume\dependencies\katex\katex.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css">
       
       
       
@@ -276,21 +276,28 @@ code.language-yaml {
 
 <p>初始化<br>
 <code>mvn archetype:generate -DgroupId=net.dsl -DartifactId=myproject -Dversion=1.0-SNAPSHOT</code></p>
-<h4 class="mume-header" id="maven-archetype-plugin">Maven Archetype Plugin</h4>
+<h4 class="mume-header" id="maven-archetype-%E6%8F%92%E4%BB%B6">Maven Archetype 插件</h4>
 
-<p>The archetype plugin has four goals for direct use:</p>
+<p>archetype 插件有四个直接使用的目标:</p>
 <ul>
-<li><code>archetype:generate</code> creates a Maven project from an archetype: asks the user to choose an archetype from the archetype catalog, and retrieves it from the remote repository. Once retrieved, it is processed to create a working Maven project.</li>
-<li><code>archetype:create-from-project</code> creates an archetype from an existing project.</li>
-<li><code>archetype:crawl</code> search a repository for archetypes and updates a catalog.</li>
+<li><code>archetype:generate</code><br>
+从原型创建一个 maven 项目。</li>
+<li><code>archetype:create-from-project</code><br>
+从现有项目中创建一个原型。</li>
+<li><code>archetype:crawl</code><br>
+搜索原型库并更新目录。</li>
 </ul>
-<p>and three goals bound to default lifecycle by 'maven-archetype' packaging:</p>
+<p>并且通过 <code>'maven-archetype'</code> 包装将三个目标绑定到默认生命周期：</p>
 <ul>
-<li><code>archetype:jar</code> (bound to the package phase) is used to build the archetype jar artifact.</li>
-<li><code>archetype:integration-test</code> (bound to the integration-test phase) is used to execute archetype integration tests by generating sample projects from the just built archetype.</li>
-<li><code>archetype:update-local-catalog</code> (bound to the install phase) is used to update the local catalog.</li>
+<li><code>archetype:jar</code><br>
+绑定到包阶段）用于构建原型jar工件。</li>
+<li><code>archetype:integration-test</code><br>
+（绑定到集成测试阶段）用于通过从刚刚构建的原型生成示例项目来执行原型集成测试。</li>
+<li><code>archetype:update-local-catalog</code><br>
+（绑定到安装阶段）用于更新本地目录。</li>
 </ul>
-<p><strong>示例</strong></p>
+<h6 class="mume-header" id="%E7%A4%BA%E4%BE%8B-%E4%BB%A5%E6%89%B9%E5%A4%84%E7%90%86%E6%A8%A1%E5%BC%8F%E7%94%9F%E6%88%90%E9%A1%B9%E7%9B%AE">示例: 以批处理模式生成项目</h6>
+
 <p><code>mvn archetype:generate -B -DarchetypeGroupId=org.apache.maven.archetypes -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.1 -DgroupId=com.company -DartifactId=project -Dversion=1.0-SNAPSHOT -Dpackage=com.company.project</code></p>
 <p><code>mvn archetype:create-from-project</code></p>
 <h4 class="mume-header" id="mvn-archetypegenerate">mvn archetype:generate</h4>
@@ -669,7 +676,8 @@ Maven设计了插件机制。每个构建步骤都可以绑定一个或者多个
       <div class="md-sidebar-toc"><ul>
 <li><a href="#maven-3">Maven 3</a></li>
 <li><a href="#%E4%BD%BF%E7%94%A8">使用</a><br>
-* <a href="#maven-archetype-plugin">Maven Archetype Plugin</a><br>
+* <a href="#maven-archetype-%E6%8F%92%E4%BB%B6">Maven Archetype 插件</a><br>
+* <a href="#%E7%A4%BA%E4%BE%8B-%E4%BB%A5%E6%89%B9%E5%A4%84%E7%90%86%E6%A8%A1%E5%BC%8F%E7%94%9F%E6%88%90%E9%A1%B9%E7%9B%AE">示例: 以批处理模式生成项目</a><br>
 * <a href="#mvn-archetypegenerate">mvn archetype:generate</a><br>
 * <a href="#maven-%E4%B8%8E-gradle-%E4%BA%92%E7%9B%B8%E8%BD%AC%E5%8C%96">Maven 与 Gradle 互相转化</a><br>
 * <a href="#%E5%BA%93">库</a><br>
