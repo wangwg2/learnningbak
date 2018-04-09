@@ -261,6 +261,7 @@ code.language-yaml {
 <li><a href="https://maven.apache.org/archetype/maven-archetype-plugin/index.html">Maven Archetype Plugin</a></li>
 <li><a href="https://maven.apache.org/guides/mini/guide-creating-archetypes.html">Guide to Creating Archetypes</a></li>
 <li><a href="https://docs.gradle.org/current/userguide/maven_plugin.html">Gradle - The Maven Plugin</a></li>
+<li><a href="http://www.trinea.cn/android/maven/">Maven Intro</a></li>
 </ul>
 <p>内容</p>
 <ul>
@@ -534,24 +535,70 @@ $M2_HOME/conf/settings.xml  &#x5728;&#x673A;&#x5668;&#x4E0A;&#x5168;&#x5C40;&#x5
 <li>Eclipse Marketplace搜索关键字maven到插件Maven Integration for Eclipse 并点击安装即可。</li>
 <li>点击Window -&gt; Preference -&gt; Maven -&gt; Installation -&gt; Add进行设置</li>
 </ul>
-<p><span id="concept"></span></p>
+<br>
+<hr>
 <h2 class="mume-header" id="maven-%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5">Maven 核心概念</h2>
 
-<p><strong>概念</strong></p>
-<ul>
-<li>LifeCycle : 生命周期，maven内置default,sie,clean三个生命周期</li>
-<li>Phase : 阶段，每个生命周期有不同的阶段</li>
-<li>Plugin : 插件，实现实际的构建功能</li>
-<li>Goal : 一个插件可以实现多个goal，goal具备具体的功能</li>
-<li>Execution : 通过配置，决定在某个Phase执行哪些Goal</li>
-<li>Project : maven管理的目标：软件工程，小的工程可以聚合成大工程</li>
-<li>PackageType : 为了便于管理工程，按照构建目标区分成不同的工程类型，如jar，war，ear等</li>
-<li>Dependency : 依赖，project之间存在依赖关系</li>
-<li>DependencyScope : maven对依赖定义了不同的作用范围</li>
-<li>Management : 可以配置一个工程如何管理依赖关系</li>
-<li>Repository : 仓库，存放包，分为本地库和远程库</li>
-<li>Build : 构建的动作。使用maven管理工程，主要是指定将project构建到某个phase</li>
-</ul>
+<h6 class="mume-header" id="%E6%A6%82%E5%BF%B5%E8%AF%B4%E6%98%8E">概念说明</h6>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:left">概念</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">LifeCycle</td>
+<td style="text-align:left">生命周期，maven内置default,sie,clean三个生命周期</td>
+</tr>
+<tr>
+<td style="text-align:left">Phase</td>
+<td style="text-align:left">阶段，每个生命周期有不同的阶段</td>
+</tr>
+<tr>
+<td style="text-align:left">Plugin</td>
+<td style="text-align:left">插件，实现实际的构建功能</td>
+</tr>
+<tr>
+<td style="text-align:left">Goal</td>
+<td style="text-align:left">一个插件可以实现多个goal，goal具备具体的功能</td>
+</tr>
+<tr>
+<td style="text-align:left">Execution</td>
+<td style="text-align:left">通过配置，决定在某个Phase执行哪些Goal</td>
+</tr>
+<tr>
+<td style="text-align:left">Project</td>
+<td style="text-align:left">maven管理的目标：软件工程，小的工程可以聚合成大工程</td>
+</tr>
+<tr>
+<td style="text-align:left">PackageType</td>
+<td style="text-align:left">为了便于管理工程，按照构建目标区分成不同的工程类型，如jar，war，ear等</td>
+</tr>
+<tr>
+<td style="text-align:left">Dependency</td>
+<td style="text-align:left">依赖，project之间存在依赖关系</td>
+</tr>
+<tr>
+<td style="text-align:left">DependencyScope</td>
+<td style="text-align:left">maven对依赖定义了不同的作用范围</td>
+</tr>
+<tr>
+<td style="text-align:left">Management</td>
+<td style="text-align:left">可以配置一个工程如何管理依赖关系</td>
+</tr>
+<tr>
+<td style="text-align:left">Repository</td>
+<td style="text-align:left">仓库，存放包，分为本地库和远程库</td>
+</tr>
+<tr>
+<td style="text-align:left">Build</td>
+<td style="text-align:left">构建的动作。使用maven管理工程，主要是指定将project构建到某个phase</td>
+</tr>
+</tbody>
+</table>
 <p><strong>项目对象模型（POM）</strong>: POM是Maven中的里程碑式的模型。该模型的一部分已经构建到 Maven引擎（被亲切地称为反应堆 ）中，其余部分则通过一个名叫 pom.xml 的基于 XML 的元数据文件来声明。</p>
 <p><strong>依赖项管理模型</strong> : Maven 对如何管理项目的依赖项很在行. 依赖项管理是一片灰色地带, 典型的构建-管理工具和系统都未明确涉及. Maven 2 构建了 Maven 依赖项管理模型, 该模型能够适应大多数需求. 这个模型被证明是有效而高产的模型, 目前主要的开源项目都部署了该模型。</p>
 <p><strong>构建生命周期和阶段</strong>：和 POM 相关的概念是构建生命周期 和阶段。这是 Maven 2 的内嵌概念模型和现实物理世界之间的接口。使用 Maven 时，工作主要是通过插件来执行的。在构建周期中，Maven 2 通过遵循一系列定义好的阶段，将这些插件协调起来。</p>
@@ -623,7 +670,105 @@ Maven帮助你管理版本，可以经常看到SNAPSHOT这个版本，表明项�
 </code></pre><h4 class="mume-header" id="%E4%BD%BF%E7%94%A8archetype%E7%94%9F%E6%88%90%E9%A1%B9%E7%9B%AE%E9%AA%A8%E6%9E%B6">使用Archetype生成项目骨架</h4>
 
 <pre data-role="codeBlock" data-info="" class="language-"><code>mvn archetype:generate
-</code></pre><h4 class="mume-header" id="maven%E5%9D%90%E6%A0%87">Maven坐标</h4>
+</code></pre><hr>
+<h4 class="mume-header" id="%E5%B7%A5%E7%A8%8Bproject">工程（Project）</h4>
+
+<p>Maven管理的目标：工程（Project）</p>
+<p><?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="230px" preserveAspectRatio="none" style="width:351px;height:230px;" version="1.1" viewBox="0 0 351 230" width="351px" zoomAndPan="magnify"><defs><filter height="300%" id="fp23i6wqjbvji" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"></feGaussianBlur><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"></feColorMatrix><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"></feOffset><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"></feBlend></filter></defs><g><!--class Project--><rect fill="#F5F5F5" filter="url(#fp23i6wqjbvji)" height="102.4805" id="Project" style="stroke: #C0C0C0; stroke-width: 1.5;" width="61" x="126.5" y="15"></rect><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="38" x="138" y="33.752">Project</text><line style="stroke: #C0C0C0; stroke-width: 1.5;" x1="127.5" x2="186.5" y1="41.3887" y2="41.3887"></line><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="37" x="132.5" y="57.9946">groupID</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="42" x="132.5" y="73.0176">artifactId</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="36" x="132.5" y="88.0405">version</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="49" x="132.5" y="103.0635">packaging</text><line style="stroke: #C0C0C0; stroke-width: 1.5;" x1="127.5" x2="186.5" y1="109.4805" y2="109.4805"></line><!--class PackageType--><rect fill="#F5F5F5" filter="url(#fp23i6wqjbvji)" height="42.3887" id="PackageType" style="stroke: #C0C0C0; stroke-width: 1.5;" width="80" x="11" y="45"></rect><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="74" x="14" y="63.752">PackageType</text><line style="stroke: #C0C0C0; stroke-width: 1.5;" x1="12" x2="90" y1="71.3887" y2="71.3887"></line><line style="stroke: #C0C0C0; stroke-width: 1.5;" x1="12" x2="90" y1="79.3887" y2="79.3887"></line><!--class Dependency--><rect fill="#F5F5F5" filter="url(#fp23i6wqjbvji)" height="42.3887" id="Dependency" style="stroke: #C0C0C0; stroke-width: 1.5;" width="75" x="119.5" y="177"></rect><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="69" x="122.5" y="195.752">Dependency</text><line style="stroke: #C0C0C0; stroke-width: 1.5;" x1="120.5" x2="193.5" y1="203.3887" y2="203.3887"></line><line style="stroke: #C0C0C0; stroke-width: 1.5;" x1="120.5" x2="193.5" y1="211.3887" y2="211.3887"></line><!--class Management--><rect fill="#F5F5F5" filter="url(#fp23i6wqjbvji)" height="42.3887" id="Management" style="stroke: #C0C0C0; stroke-width: 1.5;" width="78" x="6" y="177"></rect><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="72" x="9" y="195.752">Management</text><line style="stroke: #C0C0C0; stroke-width: 1.5;" x1="7" x2="83" y1="203.3887" y2="203.3887"></line><line style="stroke: #C0C0C0; stroke-width: 1.5;" x1="7" x2="83" y1="211.3887" y2="211.3887"></line><!--class DependencyScope--><rect fill="#F5F5F5" filter="url(#fp23i6wqjbvji)" height="42.3887" id="DependencyScope" style="stroke: #C0C0C0; stroke-width: 1.5;" width="110" x="230" y="177"></rect><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="104" x="233" y="195.752">DependencyScope</text><line style="stroke: #C0C0C0; stroke-width: 1.5;" x1="231" x2="339" y1="203.3887" y2="203.3887"></line><line style="stroke: #C0C0C0; stroke-width: 1.5;" x1="231" x2="339" y1="211.3887" y2="211.3887"></line><!--link Project to Project--><path d="M200.695,41.366 C213.025,42.416 222.5,50.628 222.5,66 C222.5,86.496 205.655,94.262 187.659,89.298 " fill="none" id="Project-Project" style="stroke: #696969; stroke-width: 1.0;"></path><polygon fill="#FFFFFF" points="187.659,42.702,194.0357,46.0692,199.5964,41.4782,193.2198,38.111,187.659,42.702" style="stroke: #696969; stroke-width: 1.0;"></polygon><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="36" x="195.414" y="16.1">parent</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="22" x="202.414" y="33.8544">0..1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="42" x="195.5693" y="70.0859">module</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="22" x="205.5693" y="87.8403">0..1</text><!--link PackageType to Project--><path d="M91.1641,66 C102.9082,66 114.652,66 126.397,66 " fill="none" id="PackageType-Project" style="stroke: #696969; stroke-width: 1.0;"></path><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="5" x="113.3281" y="61.8595">*</text><!--link Project to Dependency--><path d="M157,117.261 C157,137.9817 157,160.8112 157,176.7132 " fill="none" id="Project-Dependency" style="stroke: #696969; stroke-width: 1.0;"></path><!--link Management to Dependency--><path d="M84.375,198 C96.0063,198 107.638,198 119.269,198 " fill="none" id="Management-Dependency" style="stroke: #696969; stroke-width: 1.0;"></path><!--link Dependency to DependencyScope--><path d="M195,198 C206.602,198 218.203,198 229.805,198 " fill="none" id="Dependency-DependencyScope" style="stroke: #696969; stroke-width: 1.0;"></path><!--
+@startuml
+skinparam class {
+  BackgroundColor WhiteSmoke 
+  ArrowColor DimGray
+  BorderColor Silver
+}
+hide circle
+
+class Project {
+  groupID
+  artifactId
+  version
+  packaging
+}
+
+Project "parent\n0..1" o-right- "module\n0..1" Project
+
+PackageType -right- "*" Project
+Project -down- Dependency
+Management -right- Dependency
+Dependency -right- DependencyScope
+@endumls
+
+PlantUML version 1.2018.01(Mon Jan 29 02:08:22 CST 2018)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Java Version: 1.8.0_162-b12
+Operating System: Windows 10
+OS Version: 10.0
+Default Encoding: GBK
+Language: zh
+Country: CN
+--></g></svg></p><p>Maven是一个软件工程（Software Project）管理工具。 对于maven来说，一个软件工程的唯一标识是由开发者（groupId)、生成物（artifactId)、版本（version） 共同决定的。</p>
+<p>每个工程都有一个打包类型，可以是jar, war, ear 或 pom。打包类型决定了工程最终产物的类型。 其中pom类型用于构件多模块工程。</p>
+<p>工程之间有两种关系：依赖和聚合。</p>
+<h6 class="mume-header" id="%E5%B7%A5%E7%A8%8B%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB">工程依赖关系</h6>
+
+<p>依赖关系的管理是maven最为人称道的地方。一个工程可以依赖多个其他工程， 通过工程的唯一标识（<code>groupId</code>+<code>artifactId</code>+<code>version</code>)可以明确指明依赖的库及版本，而且能够处理 依赖关系的传递。 maven可以指定依赖的作用范围（scope），包括以下几种：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">scope</th>
+<th style="text-align:center">编译期</th>
+<th style="text-align:center">测试期</th>
+<th style="text-align:center">运行期</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">compile</td>
+<td style="text-align:center">V</td>
+<td style="text-align:center">V</td>
+<td style="text-align:center">V</td>
+<td>默认scope</td>
+</tr>
+<tr>
+<td style="text-align:left">test</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">V</td>
+<td style="text-align:center"></td>
+<td>只在测试期依赖，如junit包</td>
+</tr>
+<tr>
+<td style="text-align:left">provided</td>
+<td style="text-align:center">V</td>
+<td style="text-align:center">V</td>
+<td style="text-align:center"></td>
+<td>运行期由容器提供，如servlet-api包</td>
+</tr>
+<tr>
+<td style="text-align:left">runtime</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">V</td>
+<td style="text-align:center">V</td>
+<td>编译期间不需要直接引用</td>
+</tr>
+<tr>
+<td style="text-align:left">system</td>
+<td style="text-align:center">V</td>
+<td style="text-align:center">V</td>
+<td style="text-align:center"></td>
+<td>编译和测试时由本机环境提供</td>
+</tr>
+</tbody>
+</table>
+<p>由于依赖关系的传递性可能会导致依赖的版本、scope等发生冲突，maven提供了仲裁机制，同时也 允许自己通过配置进行依赖管理。</p>
+<h6 class="mume-header" id="%E5%B7%A5%E7%A8%8B%E8%81%9A%E5%90%88%E5%85%B3%E7%B3%BB">工程聚合关系</h6>
+
+<p>前面提到pom类型用于于构件多模块工程，这体现了project之间的一种聚合关系： 将一系列小的模块聚合成整个产品。</p>
+<p>通过聚合后的工程可以同时管理每个相关模块的构建、清理、文档等工作。 聚合关系通过在子工程中指定一个<code>pom</code>类型的<code>project</code>作为父<code>project</code>来定义。</p>
+<hr>
+<h4 class="mume-header" id="maven%E5%9D%90%E6%A0%87">Maven坐标</h4>
 
 <p>Maven坐标是一组可以唯一标识工件的三元组值(组ID，工件ID，版本)。</p>
 <p>Maven坐标为各种构件引入了秩序，任何一个构件都必须明确定义自己的坐标，而一组Maven坐标是通过一些元素定义的，它们是<code>groupId</code>、<code>artifactId</code>、<code>version</code>、<code>packaging</code>、<code>classifier</code>。</p>
@@ -637,32 +782,93 @@ Maven定义了一套完整的版本规范，以及快照（SNAPSHOT）的概念�
 不能直接定义项目的<code>classifier</code>，因为附属构件不是项目直接默认生成的，而是由附加的插件帮助生成。</li>
 </ul>
 <p>上述5个元素中，<code>groupId</code>、<code>artifactId</code>、<code>version</code>是必须定义的，<code>packaging</code>是可选的（默认为jar），而<code>classifier</code>是不能直接定义的。</p>
-<p><strong>坐标规划的原则</strong></p>
+<h6 class="mume-header" id="%E5%9D%90%E6%A0%87%E6%A0%B7%E4%BE%8B">坐标样例</h6>
+
+<pre data-role="codeBlock" data-info="xml" class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.mycompany.app<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>myapp<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>1.0-SNAPSHOT<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>packaging</span><span class="token punctuation">></span></span>jar<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>packaging</span><span class="token punctuation">></span></span>
+</pre><h6 class="mume-header" id="%E5%9D%90%E6%A0%87%E8%A7%84%E5%88%92%E7%9A%84%E5%8E%9F%E5%88%99">坐标规划的原则</h6>
+
 <ul>
 <li>groupId ：坐标规划一个原则是基于项目域名衍生。项目就必须用groupId来定义。</li>
 <li>artifactId : artifactId来定义模块，而不是定义项目。在定义<code>artiafctId</code>时也加入项目的信息。</li>
 <li>version ： <code>&lt;主版本&gt;.&lt;次版本&gt;.&lt;增量版本&gt;-&lt;限定符&gt;</code><br>
 主版本主要表示大型架构变更，次版本主要表示特性的增加，增量版本主要服务于bug修复，而限定符如alpha、beta等等是用来表示里程碑。</li>
 </ul>
+<hr>
 <h4 class="mume-header" id="%E4%BE%9D%E8%B5%96">依赖</h4>
 
+<h6 class="mume-header" id="%E4%BE%9D%E8%B5%96%E9%85%8D%E7%BD%AE%E7%A4%BA%E4%BE%8B">依赖配置示例</h6>
+
+<pre data-role="codeBlock" data-info="xml" class="language-xml"><span class="token comment" spellcheck="true">&lt;!--添加依赖配置--></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencies</span><span class="token punctuation">></span></span>
+  <span class="token comment" spellcheck="true">&lt;!--项目要使用到junit的jar包，所以在这里添加junit的jar包的依赖--></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>junit<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>junit<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>4.9<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>scope</span><span class="token punctuation">></span></span>test<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>scope</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+  <span class="token comment" spellcheck="true">&lt;!--项目要使用到Hello的jar包，所以在这里添加Hello的jar包的依赖--></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>me.gacl.maven<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>Hello<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>0.0.1-SNAPSHOT<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>scope</span><span class="token punctuation">></span></span>compile<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>scope</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>    
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">></span></span>
+</pre><h6 class="mume-header" id="%E4%BE%9D%E8%B5%96%E8%8C%83%E5%9B%B4">依赖范围</h6>
+
+<p>依赖范围<code>scope</code>用来控制依赖和编译，测试，运行的<code>classpath</code>的关系. 主要的是三种依赖关系如下：</p>
+<ul>
+<li><code>compile</code>： 默认编译依赖范围。对于编译，测试，运行三种<code>classpath</code>都有效</li>
+<li><code>test</code>：测试依赖范围。只对于测试<code>classpath</code>有效</li>
+<li><code>provided</code>：已提供依赖范围。对于编译，测试的<code>classpath</code>都有效，但对于运行无效。因为由容器已经提供，例如<code>servlet-api</code></li>
+<li><code>runtime</code>:运行时提供。例如:<code>jdbc</code>驱动</li>
+</ul>
 <h4 class="mume-header" id="%E5%AD%98%E5%82%A8%E5%BA%93">存储库</h4>
 
 <p>Maven 存储库是普通的目录树。</p>
 <p>Maven 维护了一个工件的 POM 文件，同时也为该工件和其存储库中的 POM 维护了检验和散列。当工件在存储库间转移时，这些文件帮助确保工件的完整性。该工件已由 Maven 的依赖项管理引擎从中央存储库下载并放置到本地存储库中。</p>
-<p>仓库主要用于获取工程依赖的其他工程的生成物，也可用来部署（deploy）maven工程的生成物。 生成物包括各种打包的生成物以及pom文件。<br>
-如果有必要，一个工程可以部署到多个仓库。<br>
-仓库可以分为本地库（local）和远程库（remote）。本地库通常位于本机的~/.m2/repository文件夹， 远程库最常见的是maven中央库（），此外也会有一些私服库用于企业内部。</p>
-<p><span id="lifecycle"></span></p>
-<h2 class="mume-header" id="%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F">生命周期</h2>
+<p>仓库主要用于获取工程依赖的其他工程的生成物，也可用来部署（deploy）maven工程的生成物。 生成物包括各种打包的生成物以及pom文件。</p>
+<p>如果有必要，一个工程可以部署到多个仓库。</p>
+<p>仓库可以分为本地库（local）和远程库（remote）。本地库通常位于本机的<code>~/.m2/repository</code>文件夹， 远程库最常见的是maven中央库（），此外也会有一些私服库用于企业内部。</p>
+<hr>
+<h4 class="mume-header" id="%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F">生命周期</h4>
 
 <p>Maven的生命周期就是为了对所有的构建过程进行抽象和统一。这个生命周期包含了项目的清理、初始化、编译、测试、打包、集成测试、验证、部署和站点生成等几乎所有构建步骤。</p>
-<p>Maven将工程（Project）的构建过程理解为不同的生命周期(LifeCycle)和阶段（Phase）。<br>
-在工程的构建过程中，存在着不同的生命周期，这些生命周期互相独立，之间也没有一定的顺序关系。<br>
-每个生命周期又划分为不同的阶段（Phase）。阶段之间有明确的顺序关系， 同一生命周期内的阶段必须按顺序依次执行。</p>
+<p><?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="194px" preserveAspectRatio="none" style="width:202px;height:194px;" version="1.1" viewBox="0 0 202 194" width="202px" zoomAndPan="magnify"><defs><filter height="300%" id="foigu93lqwfcs" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"></feGaussianBlur><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"></feColorMatrix><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"></feOffset><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"></feBlend></filter></defs><g><!--class LifeCycle--><rect fill="#F5F5F5" filter="url(#foigu93lqwfcs)" height="48" id="LifeCycle" style="stroke: #C0C0C0; stroke-width: 1.5;" width="82" x="6" y="8"></rect><ellipse cx="21" cy="24" fill="#F5F5F5" rx="11" ry="11" style="stroke: #C0C0C0; stroke-width: 1.0;"></ellipse><path d="M19.5781,29.3594 Q17.7188,29.3594 16.625,27.9688 Q15.5313,26.5781 15.5313,23.5938 Q15.5313,21.0625 16.6953,19.4063 Q17.8594,17.75 19.8438,17.75 Q21.3125,17.75 21.7813,17.875 Q22.25,18.0781 22.25,18.0781 Q22.25,18.0781 22.25,18.0078 Q22.25,17.9375 22.8594,17.0156 L23.9063,20.6719 L22.5781,21.0781 Q22.1094,19.5313 21.4453,18.8672 Q20.7813,18.2031 19.7188,18.2031 Q19.3281,18.2031 18.5625,19.7344 Q17.7969,21.2656 17.7969,23.5156 Q17.7969,25.9844 18.4609,27.375 Q19.125,28.7656 19.6563,28.7656 Q20.7188,28.7656 21.4766,28 Q22.2344,27.2344 22.5781,25.5781 L23.9063,26.1719 Q23.5781,27.5781 22.6797,28.4688 Q21.7813,29.3594 19.5781,29.3594 Z "></path><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="50" x="35" y="29.5576">LifeCycle</text><line style="stroke: #C0C0C0; stroke-width: 1.5;" x1="7" x2="87" y1="40" y2="40"></line><line style="stroke: #C0C0C0; stroke-width: 1.5;" x1="7" x2="87" y1="48" y2="48"></line><!--class Phase--><rect fill="#F5F5F5" filter="url(#foigu93lqwfcs)" height="48" id="Phase" style="stroke: #C0C0C0; stroke-width: 1.5;" width="68" x="123" y="8"></rect><ellipse cx="138" cy="24" fill="#F5F5F5" rx="11" ry="11" style="stroke: #C0C0C0; stroke-width: 1.0;"></ellipse><path d="M136.5781,29.3594 Q134.7188,29.3594 133.625,27.9688 Q132.5313,26.5781 132.5313,23.5938 Q132.5313,21.0625 133.6953,19.4063 Q134.8594,17.75 136.8438,17.75 Q138.3125,17.75 138.7813,17.875 Q139.25,18.0781 139.25,18.0781 Q139.25,18.0781 139.25,18.0078 Q139.25,17.9375 139.8594,17.0156 L140.9063,20.6719 L139.5781,21.0781 Q139.1094,19.5313 138.4453,18.8672 Q137.7813,18.2031 136.7188,18.2031 Q136.3281,18.2031 135.5625,19.7344 Q134.7969,21.2656 134.7969,23.5156 Q134.7969,25.9844 135.4609,27.375 Q136.125,28.7656 136.6563,28.7656 Q137.7188,28.7656 138.4766,28 Q139.2344,27.2344 139.5781,25.5781 L140.9063,26.1719 Q140.5781,27.5781 139.6797,28.4688 Q138.7813,29.3594 136.5781,29.3594 Z "></path><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="36" x="152" y="29.5576">Phase</text><line style="stroke: #C0C0C0; stroke-width: 1.5;" x1="124" x2="190" y1="40" y2="40"></line><line style="stroke: #C0C0C0; stroke-width: 1.5;" x1="124" x2="190" y1="48" y2="48"></line><!--class Build--><rect fill="#F5F5F5" filter="url(#foigu93lqwfcs)" height="48" id="Build" style="stroke: #C0C0C0; stroke-width: 1.5;" width="60" x="127" y="135"></rect><ellipse cx="142" cy="151" fill="#F5F5F5" rx="11" ry="11" style="stroke: #C0C0C0; stroke-width: 1.0;"></ellipse><path d="M140.5781,156.3594 Q138.7188,156.3594 137.625,154.9688 Q136.5313,153.5781 136.5313,150.5938 Q136.5313,148.0625 137.6953,146.4063 Q138.8594,144.75 140.8438,144.75 Q142.3125,144.75 142.7813,144.875 Q143.25,145.0781 143.25,145.0781 Q143.25,145.0781 143.25,145.0078 Q143.25,144.9375 143.8594,144.0156 L144.9063,147.6719 L143.5781,148.0781 Q143.1094,146.5313 142.4453,145.8672 Q141.7813,145.2031 140.7188,145.2031 Q140.3281,145.2031 139.5625,146.7344 Q138.7969,148.2656 138.7969,150.5156 Q138.7969,152.9844 139.4609,154.375 Q140.125,155.7656 140.6563,155.7656 Q141.7188,155.7656 142.4766,155 Q143.2344,154.2344 143.5781,152.5781 L144.9063,153.1719 Q144.5781,154.5781 143.6797,155.4688 Q142.7813,156.3594 140.5781,156.3594 Z "></path><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="28" x="156" y="156.5576">Build</text><line style="stroke: #C0C0C0; stroke-width: 1.5;" x1="128" x2="186" y1="167" y2="167"></line><line style="stroke: #C0C0C0; stroke-width: 1.5;" x1="128" x2="186" y1="175" y2="175"></line><!--class Project--><rect fill="#F5F5F5" filter="url(#foigu93lqwfcs)" height="48" id="Project" style="stroke: #C0C0C0; stroke-width: 1.5;" width="70" x="22" y="135"></rect><ellipse cx="37" cy="151" fill="#F5F5F5" rx="11" ry="11" style="stroke: #C0C0C0; stroke-width: 1.0;"></ellipse><path d="M35.5781,156.3594 Q33.7188,156.3594 32.625,154.9688 Q31.5313,153.5781 31.5313,150.5938 Q31.5313,148.0625 32.6953,146.4063 Q33.8594,144.75 35.8438,144.75 Q37.3125,144.75 37.7813,144.875 Q38.25,145.0781 38.25,145.0781 Q38.25,145.0781 38.25,145.0078 Q38.25,144.9375 38.8594,144.0156 L39.9063,147.6719 L38.5781,148.0781 Q38.1094,146.5313 37.4453,145.8672 Q36.7813,145.2031 35.7188,145.2031 Q35.3281,145.2031 34.5625,146.7344 Q33.7969,148.2656 33.7969,150.5156 Q33.7969,152.9844 34.4609,154.375 Q35.125,155.7656 35.6563,155.7656 Q36.7188,155.7656 37.4766,155 Q38.2344,154.2344 38.5781,152.5781 L39.9063,153.1719 Q39.5781,154.5781 38.6797,155.4688 Q37.7813,156.3594 35.5781,156.3594 Z "></path><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="38" x="51" y="156.5576">Project</text><line style="stroke: #C0C0C0; stroke-width: 1.5;" x1="23" x2="91" y1="167" y2="167"></line><line style="stroke: #C0C0C0; stroke-width: 1.5;" x1="23" x2="91" y1="175" y2="175"></line><!--link LifeCycle to Phase--><path d="M101.512,32 C108.639,32 115.766,32 122.894,32 " fill="none" id="LifeCycle-Phase" style="stroke: #696969; stroke-width: 1.0;"></path><polygon fill="#696969" points="88.25,32,94.25,36,100.25,32,94.25,28,88.25,32" style="stroke: #696969; stroke-width: 1.0;"></polygon><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="20" x="95.0371" y="28.4511">1..*</text><!--link Phase to Build--><path d="M157,61.396 C157,83.6286 157,114.1591 157,134.9058 " fill="none" id="Phase-Build" style="stroke: #696969; stroke-width: 1.0;"></path><polygon fill="#696969" points="157,56.219,153,65.219,157,61.219,161,65.219,157,56.219" style="stroke: #696969; stroke-width: 1.0;"></polygon><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="25" x="158" y="101.8979">goto</text><!--link Project to Build--><path d="M92.1563,159 C103.7234,159 115.291,159 126.858,159 " fill="none" id="Project-Build" style="stroke: #696969; stroke-width: 1.0;"></path><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="20" x="100.0104" y="155.1013">1..*</text><!--
+@startuml
+skinparam class {
+  BackgroundColor WhiteSmoke 
+  ArrowColor DimGray
+  BorderColor Silver
+}
+skinparam stereotypeCBackgroundColor WhiteSmoke
+
+LifeCycle *-right- "1..*" Phase
+Build -up-> Phase: goto 
+Project -right- "1..*" Build
+@endumls
+
+PlantUML version 1.2018.01(Mon Jan 29 02:08:22 CST 2018)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Java Version: 1.8.0_162-b12
+Operating System: Windows 10
+OS Version: 10.0
+Default Encoding: GBK
+Language: zh
+Country: CN
+--></g></svg></p><p>Maven将工程（<code>Project</code>）的构建过程理解为不同的生命周期(<code>LifeCycle</code>)和阶段（<code>Phase</code>）。</p>
+<p>在工程的构建过程中，存在着不同的生命周期，这些生命周期互相独立，之间也没有一定的顺序关系。</p>
+<p>每个生命周期又划分为不同的阶段（<code>Phase</code>）。阶段之间有明确的顺序关系， 同一生命周期内的阶段必须按顺序依次执行。</p>
 <p>生命周期抽象了构建的各个步骤，定义了它们的次序，但没有提供具体实现。<br>
 Maven设计了插件机制。每个构建步骤都可以绑定一个或者多个插件行为，而且Maven为大多数构建步骤编写并绑定了默认插件。</p>
-<p><strong>三套生命周期</strong></p>
+<h6 class="mume-header" id="%E4%B8%89%E5%A5%97%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F">三套生命周期</h6>
+
 <p>Maven拥有三套相互独立的生命周期，它们分别为clean、default和site。</p>
 <ul>
 <li><code>clean</code> 生命周期的目的是清理项目</li>
@@ -670,24 +876,79 @@ Maven设计了插件机制。每个构建步骤都可以绑定一个或者多个
 <li><code>site</code> 生命周期的目的是建立项目站点。</li>
 </ul>
 <p>再次强调一下它们是相互独立的，你可以仅仅调用<code>clean</code>来清理工作目录，仅仅调用<code>site</code>来生成站点。当然你也可以直接运行<code>mvn clean install site</code>运行所有这三套生命周期。</p>
-<p>每套生命周期都由一组阶段(Phase)组成。<br>
-如<code>clean</code>生命周期包括 <code>pre-clean</code>,<code>clean</code>,<code>post-clean</code> 三个阶段。<br>
-我们平时在命令行输入的命令总会对应于一个特定的阶段。<br>
-比如，运行<code>mvn clean</code>，这个的<code>clean</code>是Clean生命周期的一个阶段。</p>
-<p>在一个生命周期中，运行某个阶段的时候，它之前的所有阶段都会被运行。<br>
-也就是说，<code>mvn clean</code>等同于<code>mvn pre-clean clean</code>。<br>
-如果我们运行<code>mvn post-clean</code>，那么<code>pre-clean</code>，<code>clean</code>都会被运行。<br>
-这是Maven很重要的一个规则，可以大大简化命令行的输入。</p>
-<p><strong>clean生命周期</strong></p>
+<p>每套生命周期都由一组阶段(Phase)组成。如<code>clean</code>生命周期包括 <code>pre-clean</code>,<code>clean</code>,<code>post-clean</code> 三个阶段。我们平时在命令行输入的命令总会对应于一个特定的阶段。比如，运行<code>mvn clean</code>，这个的<code>clean</code>是Clean生命周期的一个阶段。</p>
+<p>在一个生命周期中，运行某个阶段的时候，它之前的所有阶段都会被运行。也就是说，<code>mvn clean</code>等同于<code>mvn pre-clean clean</code>。如果我们运行<code>mvn post-clean</code>，那么<code>pre-clean</code>，<code>clean</code>都会被运行。这是Maven很重要的一个规则，可以大大简化命令行的输入。</p>
+<h6 class="mume-header" id="clean%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F">clean生命周期</h6>
+
 <p>lean生命周期的目的是清理项目，它包含三个阶段：</p>
-<ul>
+<p><?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="158px" preserveAspectRatio="none" style="width:355px;height:158px;" version="1.1" viewBox="0 0 355 158" width="355px" zoomAndPan="magnify"><defs><filter height="300%" id="f1pfvgp4fgw81a" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"></feGaussianBlur><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"></feColorMatrix><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"></feOffset><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"></feBlend></filter></defs><g><!--cluster CC--><rect fill="#F0FFFF" filter="url(#f1pfvgp4fgw81a)" height="123" style="stroke: #000000; stroke-width: 1.5;" width="322" x="22" y="24"></rect><image height="16" width="16" x="324" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMUlEQVR42mNgGCrgPzUM+E8NF/wnZAM+jNc7/ykNk/+UBixVXEBRGFAcC3RLB8MRAAB60yPd2BvdxQAAAABJRU5ErkJggg==" y="29"></image><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="38" x="164" y="57.0439">clean</text><!--entity C1--><rect fill="#F0FFFF" filter="url(#f1pfvgp4fgw81a)" height="54.1201" style="stroke: #000000; stroke-width: 1.5;" width="80" x="38" y="77"></rect><image height="16" width="16" x="93" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMUlEQVR42mNgGCrgPzUM+E8NF/wnZAM+jNc7/ykNk/+UBixVXEBRGFAcC3RLB8MRAAB60yPd2BvdxQAAAABJRU5ErkJggg==" y="87"></image><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="60" x="48" y="118.0439">pre-clean</text><!--entity C2--><rect fill="#F0FFFF" filter="url(#f1pfvgp4fgw81a)" height="54.1201" style="stroke: #000000; stroke-width: 1.5;" width="54" x="153" y="77"></rect><image height="16" width="16" x="182" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMUlEQVR42mNgGCrgPzUM+E8NF/wnZAM+jNc7/ykNk/+UBixVXEBRGFAcC3RLB8MRAAB60yPd2BvdxQAAAABJRU5ErkJggg==" y="87"></image><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="34" x="163" y="118.0439">clean</text><!--entity C3--><rect fill="#F0FFFF" filter="url(#f1pfvgp4fgw81a)" height="54.1201" style="stroke: #000000; stroke-width: 1.5;" width="86" x="242" y="77"></rect><image height="16" width="16" x="303" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMUlEQVR42mNgGCrgPzUM+E8NF/wnZAM+jNc7/ykNk/+UBixVXEBRGFAcC3RLB8MRAAB60yPd2BvdxQAAAABJRU5ErkJggg==" y="87"></image><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="66" x="252" y="118.0439">post-clean</text><!--link C1 to C2--><path d="M118.242,104 C128.103,104 137.964,104 147.824,104 " fill="none" id="C1-C2" style="stroke: #A80036; stroke-width: 1.0;"></path><polygon fill="#A80036" points="152.981,104,143.981,100,147.981,104,143.981,108,152.981,104" style="stroke: #A80036; stroke-width: 1.0;"></polygon><!--link C2 to C3--><path d="M207.07,104 C216.921,104 226.772,104 236.622,104 " fill="none" id="C2-C3" style="stroke: #A80036; stroke-width: 1.0;"></path><polygon fill="#A80036" points="241.773,104,232.773,100,236.773,104,232.773,108,241.773,104" style="stroke: #A80036; stroke-width: 1.0;"></polygon><!--
+@startuml
+skinparam componentBackgroundColor WhiteSmoke
+skinparam rectangleBackgroundColor Azure
+sprite $aProcess jar:archimate/process
+
+rectangle "clean" as CC <<$aProcess>> {
+  rectangle "pre-clean"  as C1 <<$aProcess>>
+  rectangle "clean"      as C2 <<$aProcess>>
+  rectangle "post-clean" as C3 <<$aProcess>>
+  C1 -right-> C2
+  C2 -right-> C3
+}
+@enduml
+
+PlantUML version 1.2018.01(Mon Jan 29 02:08:22 CST 2018)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Java Version: 1.8.0_162-b12
+Operating System: Windows 10
+OS Version: 10.0
+Default Encoding: GBK
+Language: zh
+Country: CN
+--></g></svg></p><ul>
 <li><code>pre-clean</code> 执行一些清理前需要完成的工作。</li>
 <li><code>clean</code> 清理上一次构建生成的文件。</li>
 <li><code>post-clean</code> 执行一些清理后需要完成的工作。</li>
 </ul>
-<p><strong>default生命周期</strong></p>
+<h6 class="mume-header" id="default%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F">default生命周期</h6>
+
 <p>default生命周期定义了真正构建时所需要执行的所有步骤，它是所有生命周期中最核心的部分，其包含的阶段如下：代码生成器可以开始生成在以后阶段中处理或编译的源代码。</p>
-<ul>
+<p><?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="272px" preserveAspectRatio="none" style="width:458px;height:272px;" version="1.1" viewBox="0 0 458 272" width="458px" zoomAndPan="magnify"><defs><filter height="300%" id="f180n5m872u56w" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"></feGaussianBlur><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"></feColorMatrix><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"></feOffset><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"></feBlend></filter></defs><g><!--cluster DD--><rect fill="#F0FFFF" filter="url(#f180n5m872u56w)" height="237" style="stroke: #000000; stroke-width: 1.5;" width="425" x="22" y="24"></rect><image height="16" width="16" x="427" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMUlEQVR42mNgGCrgPzUM+E8NF/wnZAM+jNc7/ykNk/+UBixVXEBRGFAcC3RLB8MRAAB60yPd2BvdxQAAAABJRU5ErkJggg==" y="29"></image><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="49" x="210" y="57.0439">default</text><!--entity D1--><rect fill="#F0FFFF" filter="url(#f180n5m872u56w)" height="54.1201" style="stroke: #000000; stroke-width: 1.5;" width="69" x="49.5" y="77"></rect><image height="16" width="16" x="93.5" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMUlEQVR42mNgGCrgPzUM+E8NF/wnZAM+jNc7/ykNk/+UBixVXEBRGFAcC3RLB8MRAAB60yPd2BvdxQAAAABJRU5ErkJggg==" y="87"></image><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="49" x="59.5" y="118.0439">validate</text><!--entity D2--><rect fill="#F0FFFF" filter="url(#f180n5m872u56w)" height="54.1201" style="stroke: #000000; stroke-width: 1.5;" width="68" x="154" y="77"></rect><image height="16" width="16" x="197" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMUlEQVR42mNgGCrgPzUM+E8NF/wnZAM+jNc7/ykNk/+UBixVXEBRGFAcC3RLB8MRAAB60yPd2BvdxQAAAABJRU5ErkJggg==" y="87"></image><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="48" x="164" y="118.0439">compile</text><!--entity D3--><rect fill="#F0FFFF" filter="url(#f180n5m872u56w)" height="54.1201" style="stroke: #000000; stroke-width: 1.5;" width="43" x="257.5" y="77"></rect><image height="16" width="16" x="275.5" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMUlEQVR42mNgGCrgPzUM+E8NF/wnZAM+jNc7/ykNk/+UBixVXEBRGFAcC3RLB8MRAAB60yPd2BvdxQAAAABJRU5ErkJggg==" y="87"></image><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="23" x="267.5" y="118.0439">test</text><!--entity D4--><rect fill="#F0FFFF" filter="url(#f180n5m872u56w)" height="54.1201" style="stroke: #000000; stroke-width: 1.5;" width="74" x="336" y="77"></rect><image height="16" width="16" x="385" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMUlEQVR42mNgGCrgPzUM+E8NF/wnZAM+jNc7/ykNk/+UBixVXEBRGFAcC3RLB8MRAAB60yPd2BvdxQAAAABJRU5ErkJggg==" y="87"></image><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="54" x="346" y="118.0439">package</text><!--entity D5--><rect fill="#F0FFFF" filter="url(#f180n5m872u56w)" height="54.1201" style="stroke: #000000; stroke-width: 1.5;" width="115" x="315.5" y="191"></rect><image height="16" width="16" x="405.5" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMUlEQVR42mNgGCrgPzUM+E8NF/wnZAM+jNc7/ykNk/+UBixVXEBRGFAcC3RLB8MRAAB60yPd2BvdxQAAAABJRU5ErkJggg==" y="201"></image><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="95" x="325.5" y="232.0439">integration-test</text><!--entity D6--><rect fill="#F0FFFF" filter="url(#f180n5m872u56w)" height="54.1201" style="stroke: #000000; stroke-width: 1.5;" width="54" x="226" y="191"></rect><image height="16" width="16" x="255" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMUlEQVR42mNgGCrgPzUM+E8NF/wnZAM+jNc7/ykNk/+UBixVXEBRGFAcC3RLB8MRAAB60yPd2BvdxQAAAABJRU5ErkJggg==" y="201"></image><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="34" x="236" y="232.0439">verify</text><!--entity D7--><rect fill="#F0FFFF" filter="url(#f180n5m872u56w)" height="54.1201" style="stroke: #000000; stroke-width: 1.5;" width="56" x="135" y="191"></rect><image height="16" width="16" x="166" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMUlEQVR42mNgGCrgPzUM+E8NF/wnZAM+jNc7/ykNk/+UBixVXEBRGFAcC3RLB8MRAAB60yPd2BvdxQAAAABJRU5ErkJggg==" y="201"></image><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="36" x="145" y="232.0439">install</text><!--entity D8--><rect fill="#F0FFFF" filter="url(#f180n5m872u56w)" height="54.1201" style="stroke: #000000; stroke-width: 1.5;" width="62" x="38" y="191"></rect><image height="16" width="16" x="75" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMUlEQVR42mNgGCrgPzUM+E8NF/wnZAM+jNc7/ykNk/+UBixVXEBRGFAcC3RLB8MRAAB60yPd2BvdxQAAAABJRU5ErkJggg==" y="201"></image><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="42" x="48" y="232.0439">deploy</text><!--link D1 to D2--><path d="M118.531,104 C128.545,104 138.558,104 148.572,104 " fill="none" id="D1-D2" style="stroke: #A80036; stroke-width: 1.0;"></path><polygon fill="#A80036" points="153.808,104,144.808,100,148.808,104,144.808,108,153.808,104" style="stroke: #A80036; stroke-width: 1.0;"></polygon><!--link D2 to D3--><path d="M222.125,104 C232.089,104 242.053,104 252.017,104 " fill="none" id="D2-D3" style="stroke: #A80036; stroke-width: 1.0;"></path><polygon fill="#A80036" points="257.228,104,248.228,100,252.228,104,248.228,108,257.228,104" style="stroke: #A80036; stroke-width: 1.0;"></polygon><!--link D3 to D4--><path d="M300.664,104 C310.69,104 320.716,104 330.741,104 " fill="none" id="D3-D4" style="stroke: #A80036; stroke-width: 1.0;"></path><polygon fill="#A80036" points="335.984,104,326.984,100,330.984,104,326.984,108,335.984,104" style="stroke: #A80036; stroke-width: 1.0;"></polygon><!--link D4 to D5--><path d="M373,131.259 C373,147.548 373,168.567 373,185.7169 " fill="none" id="D4-D5" style="stroke: #A80036; stroke-width: 1.0;"></path><polygon fill="#A80036" points="373,190.9055,377,181.9055,373,185.9055,369,181.9055,373,190.9055" style="stroke: #A80036; stroke-width: 1.0;"></polygon><!--link D6 to D5--><path d="M285.408,218 C295.39,218 305.372,218 315.355,218 " fill="none" id="D6-D5" style="stroke: #A80036; stroke-width: 1.0;"></path><polygon fill="#A80036" points="280.188,218,289.188,222,285.188,218,289.188,214,280.188,218" style="stroke: #A80036; stroke-width: 1.0;"></polygon><!--link D7 to D6--><path d="M196.291,218 C206.171,218 216.05,218 225.93,218 " fill="none" id="D7-D6" style="stroke: #A80036; stroke-width: 1.0;"></path><polygon fill="#A80036" points="191.125,218,200.125,222,196.125,218,200.125,214,191.125,218" style="stroke: #A80036; stroke-width: 1.0;"></polygon><!--link D8 to D7--><path d="M105.308,218 C115.055,218 124.802,218 134.549,218 " fill="none" id="D8-D7" style="stroke: #A80036; stroke-width: 1.0;"></path><polygon fill="#A80036" points="100.2109,218,109.2109,222,105.2109,218,109.2109,214,100.2109,218" style="stroke: #A80036; stroke-width: 1.0;"></polygon><!--
+@startuml
+skinparam componentBackgroundColor WhiteSmoke
+skinparam rectangleBackgroundColor Azure
+sprite $aProcess jar:archimate/process
+rectangle "default" as DD <<$aProcess>> {
+  rectangle "validate" as D1 <<$aProcess>>
+  rectangle "compile"  as D2 <<$aProcess>>
+  rectangle "test"     as D3 <<$aProcess>>
+  rectangle "package"  as D4 <<$aProcess>>
+  rectangle "integration-test" as D5 <<$aProcess>>
+  rectangle "verify"   as D6 <<$aProcess>>
+  rectangle "install"  as D7 <<$aProcess>>
+  rectangle "deploy"   as D8 <<$aProcess>>
+  D1 -right-> D2
+  D2 -right-> D3
+  D3 -right-> D4
+  D4 -down-> D5
+  D5 -left-> D6
+  D6 -left-> D7
+  D7 -left-> D8
+}
+@enduml
+
+PlantUML version 1.2018.01(Mon Jan 29 02:08:22 CST 2018)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Java Version: 1.8.0_162-b12
+Operating System: Windows 10
+OS Version: 10.0
+Default Encoding: GBK
+Language: zh
+Country: CN
+--></g></svg></p><ul>
 <li><code>validate</code> 确保当前配置和 POM 的内容是有效的。这包含对 pom.xml 文件树的验证。</li>
 <li><code>initialize</code> 在执行构建生命周期的主任务之前可以进行初始化。</li>
 <li><code>generate-sources</code> 代码生成器可以开始生成在以后阶段中处理或编译的源代码。</li>
@@ -717,15 +978,92 @@ Maven设计了插件机制。每个构建步骤都可以绑定一个或者多个
 <li><code>deploy</code> 将最终的包复制到远程仓库，供其他开发人员和Maven项目使用。</li>
 </ul>
 <p>若想了解进一步的这些阶段的详细信息，可以参阅<a href="http://maven.apache.org/guides/introduc-tion/introduction-to-the-lifecycle.html">官方的解释</a>。</p>
-<p><strong>site生命周期</strong></p>
+<h6 class="mume-header" id="site%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F">site生命周期</h6>
+
 <p>site生命周期的目的是建立和发布项目站点，Maven能够基于POM所包含的信息，自动生成一个友好的站点，方便团队交流和发布项目信息。该生命周期包含如下阶段：</p>
-<ul>
+<p><?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="158px" preserveAspectRatio="none" style="width:444px;height:158px;" version="1.1" viewBox="0 0 444 158" width="444px" zoomAndPan="magnify"><defs><filter height="300%" id="f5dgkc7dwbe9b" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"></feGaussianBlur><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"></feColorMatrix><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"></feOffset><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"></feBlend></filter></defs><g><!--cluster SS--><rect fill="#F0FFFF" filter="url(#f5dgkc7dwbe9b)" height="123" style="stroke: #000000; stroke-width: 1.5;" width="411" x="22" y="24"></rect><image height="16" width="16" x="413" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMUlEQVR42mNgGCrgPzUM+E8NF/wnZAM+jNc7/ykNk/+UBixVXEBRGFAcC3RLB8MRAAB60yPd2BvdxQAAAABJRU5ErkJggg==" y="29"></image><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="26" x="214.5" y="57.0439">site</text><!--entity S1--><rect fill="#F0FFFF" filter="url(#f5dgkc7dwbe9b)" height="54.1201" style="stroke: #000000; stroke-width: 1.5;" width="68" x="38" y="77"></rect><image height="16" width="16" x="81" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMUlEQVR42mNgGCrgPzUM+E8NF/wnZAM+jNc7/ykNk/+UBixVXEBRGFAcC3RLB8MRAAB60yPd2BvdxQAAAABJRU5ErkJggg==" y="87"></image><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="48" x="48" y="118.0439">pre-site</text><!--entity S2--><rect fill="#F0FFFF" filter="url(#f5dgkc7dwbe9b)" height="54.1201" style="stroke: #000000; stroke-width: 1.5;" width="42" x="141" y="77"></rect><image height="16" width="16" x="158" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMUlEQVR42mNgGCrgPzUM+E8NF/wnZAM+jNc7/ykNk/+UBixVXEBRGFAcC3RLB8MRAAB60yPd2BvdxQAAAABJRU5ErkJggg==" y="87"></image><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="22" x="151" y="118.0439">site</text><!--entity S3--><rect fill="#F0FFFF" filter="url(#f5dgkc7dwbe9b)" height="54.1201" style="stroke: #000000; stroke-width: 1.5;" width="74" x="218" y="77"></rect><image height="16" width="16" x="267" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMUlEQVR42mNgGCrgPzUM+E8NF/wnZAM+jNc7/ykNk/+UBixVXEBRGFAcC3RLB8MRAAB60yPd2BvdxQAAAABJRU5ErkJggg==" y="87"></image><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="54" x="228" y="118.0439">post-site</text><!--entity S4--><rect fill="#F0FFFF" filter="url(#f5dgkc7dwbe9b)" height="54.1201" style="stroke: #000000; stroke-width: 1.5;" width="89" x="327.5" y="77"></rect><image height="16" width="16" x="391.5" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMUlEQVR42mNgGCrgPzUM+E8NF/wnZAM+jNc7/ykNk/+UBixVXEBRGFAcC3RLB8MRAAB60yPd2BvdxQAAAABJRU5ErkJggg==" y="87"></image><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="69" x="337.5" y="118.0439">site-deploy</text><!--link S1 to S2--><path d="M106.102,104 C115.894,104 125.687,104 135.48,104 " fill="none" id="S1-S2" style="stroke: #A80036; stroke-width: 1.0;"></path><polygon fill="#A80036" points="140.601,104,131.601,100,135.601,104,131.601,108,140.601,104" style="stroke: #A80036; stroke-width: 1.0;"></polygon><!--link S2 to S3--><path d="M183.07,104 C192.96,104 202.85,104 212.74,104 " fill="none" id="S2-S3" style="stroke: #A80036; stroke-width: 1.0;"></path><polygon fill="#A80036" points="217.911,104,208.911,100,212.911,104,208.911,108,217.911,104" style="stroke: #A80036; stroke-width: 1.0;"></polygon><!--link S3 to S4--><path d="M292.02,104 C302.041,104 312.062,104 322.083,104 " fill="none" id="S3-S4" style="stroke: #A80036; stroke-width: 1.0;"></path><polygon fill="#A80036" points="327.323,104,318.323,100,322.323,104,318.323,108,327.323,104" style="stroke: #A80036; stroke-width: 1.0;"></polygon><!--
+@startuml
+skinparam componentBackgroundColor WhiteSmoke
+skinparam rectangleBackgroundColor Azure
+sprite $aProcess jar:archimate/process
+rectangle "site" as SS <<$aProcess>> {
+  rectangle "pre-site"    as S1 <<$aProcess>>
+  rectangle "site"        as S2 <<$aProcess>>
+  rectangle "post-site"   as S3 <<$aProcess>>
+  rectangle "site-deploy" as S4 <<$aProcess>>
+  S1 -right-> S2
+  S2 -right-> S3
+  S3 -right-> S4
+}
+@enduml
+
+PlantUML version 1.2018.01(Mon Jan 29 02:08:22 CST 2018)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Java Version: 1.8.0_162-b12
+Operating System: Windows 10
+OS Version: 10.0
+Default Encoding: GBK
+Language: zh
+Country: CN
+--></g></svg></p><ul>
 <li><code>pre-site</code> 执行一些在生成项目站点之前需要完成的工作。</li>
 <li><code>site</code> 生成项目站点文档。</li>
 <li><code>post-site</code> 执行一些在生成项目站点之后需要完成的工作。</li>
 <li><code>site-deploy</code> 将生成的项目站点发布到服务器上。</li>
 </ul>
+<hr>
+<h6 class="mume-header" id="maven%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5">Maven核心概念</h6>
 
+<p><?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="466px" preserveAspectRatio="none" style="width:490px;height:466px;" version="1.1" viewBox="0 0 490 466" width="490px" zoomAndPan="magnify"><defs><filter height="300%" id="f5mhdebd1tu54" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"></feGaussianBlur><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"></feColorMatrix><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"></feOffset><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"></feBlend></filter></defs><g><!--class Project--><rect fill="#F5F5F5" filter="url(#f5mhdebd1tu54)" height="102.4805" id="Project" style="stroke: #C0C0C0; stroke-width: 1.5;" width="61" x="168" y="232"></rect><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="38" x="179.5" y="250.752">Project</text><line style="stroke: #C0C0C0; stroke-width: 1.5;" x1="169" x2="228" y1="258.3887" y2="258.3887"></line><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="37" x="174" y="274.9946">groupID</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="42" x="174" y="290.0176">artifactId</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="36" x="174" y="305.0405">version</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="49" x="174" y="320.0635">packaging</text><line style="stroke: #C0C0C0; stroke-width: 1.5;" x1="169" x2="228" y1="326.4805" y2="326.4805"></line><!--class PackageType--><rect fill="#F5F5F5" filter="url(#f5mhdebd1tu54)" height="42.3887" id="PackageType" style="stroke: #C0C0C0; stroke-width: 1.5;" width="80" x="158.5" y="111"></rect><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="74" x="161.5" y="129.752">PackageType</text><line style="stroke: #C0C0C0; stroke-width: 1.5;" x1="159.5" x2="237.5" y1="137.3887" y2="137.3887"></line><line style="stroke: #C0C0C0; stroke-width: 1.5;" x1="159.5" x2="237.5" y1="145.3887" y2="145.3887"></line><!--class Repository--><rect fill="#F5F5F5" filter="url(#f5mhdebd1tu54)" height="42.3887" id="Repository" style="stroke: #C0C0C0; stroke-width: 1.5;" width="65" x="6" y="262"></rect><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="59" x="9" y="280.752">Repository</text><line style="stroke: #C0C0C0; stroke-width: 1.5;" x1="7" x2="70" y1="288.3887" y2="288.3887"></line><line style="stroke: #C0C0C0; stroke-width: 1.5;" x1="7" x2="70" y1="296.3887" y2="296.3887"></line><!--class Dependency--><rect fill="#F5F5F5" filter="url(#f5mhdebd1tu54)" height="42.3887" id="Dependency" style="stroke: #C0C0C0; stroke-width: 1.5;" width="75" x="162" y="413"></rect><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="69" x="165" y="431.752">Dependency</text><line style="stroke: #C0C0C0; stroke-width: 1.5;" x1="163" x2="236" y1="439.3887" y2="439.3887"></line><line style="stroke: #C0C0C0; stroke-width: 1.5;" x1="163" x2="236" y1="447.3887" y2="447.3887"></line><!--class Management--><rect fill="#F5F5F5" filter="url(#f5mhdebd1tu54)" height="42.3887" id="Management" style="stroke: #C0C0C0; stroke-width: 1.5;" width="78" x="48.5" y="413"></rect><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="72" x="51.5" y="431.752">Management</text><line style="stroke: #C0C0C0; stroke-width: 1.5;" x1="49.5" x2="125.5" y1="439.3887" y2="439.3887"></line><line style="stroke: #C0C0C0; stroke-width: 1.5;" x1="49.5" x2="125.5" y1="447.3887" y2="447.3887"></line><!--class DependencyScope--><rect fill="#F5F5F5" filter="url(#f5mhdebd1tu54)" height="42.3887" id="DependencyScope" style="stroke: #C0C0C0; stroke-width: 1.5;" width="110" x="272.5" y="413"></rect><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="104" x="275.5" y="431.752">DependencyScope</text><line style="stroke: #C0C0C0; stroke-width: 1.5;" x1="273.5" x2="381.5" y1="439.3887" y2="439.3887"></line><line style="stroke: #C0C0C0; stroke-width: 1.5;" x1="273.5" x2="381.5" y1="447.3887" y2="447.3887"></line><!--class LifeCycle--><rect fill="#F5F5F5" filter="url(#f5mhdebd1tu54)" height="42.3887" id="LifeCycle" style="stroke: #C0C0C0; stroke-width: 1.5;" width="56" x="268.5" y="8"></rect><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="50" x="271.5" y="26.752">LifeCycle</text><line style="stroke: #C0C0C0; stroke-width: 1.5;" x1="269.5" x2="323.5" y1="34.3887" y2="34.3887"></line><line style="stroke: #C0C0C0; stroke-width: 1.5;" x1="269.5" x2="323.5" y1="42.3887" y2="42.3887"></line><!--class Phase--><rect fill="#F5F5F5" filter="url(#f5mhdebd1tu54)" height="42.3887" id="Phase" style="stroke: #C0C0C0; stroke-width: 1.5;" width="42" x="275.5" y="111"></rect><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="36" x="278.5" y="129.752">Phase</text><line style="stroke: #C0C0C0; stroke-width: 1.5;" x1="276.5" x2="316.5" y1="137.3887" y2="137.3887"></line><line style="stroke: #C0C0C0; stroke-width: 1.5;" x1="276.5" x2="316.5" y1="145.3887" y2="145.3887"></line><!--class Build--><rect fill="#F5F5F5" filter="url(#f5mhdebd1tu54)" height="42.3887" id="Build" style="stroke: #C0C0C0; stroke-width: 1.5;" width="34" x="282.5" y="262"></rect><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="28" x="285.5" y="280.752">Build</text><line style="stroke: #C0C0C0; stroke-width: 1.5;" x1="283.5" x2="315.5" y1="288.3887" y2="288.3887"></line><line style="stroke: #C0C0C0; stroke-width: 1.5;" x1="283.5" x2="315.5" y1="296.3887" y2="296.3887"></line><!--class Execution--><rect fill="#F5F5F5" filter="url(#f5mhdebd1tu54)" height="42.3887" id="Execution" style="stroke: #C0C0C0; stroke-width: 1.5;" width="59" x="353" y="111"></rect><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="53" x="356" y="129.752">Execution</text><line style="stroke: #C0C0C0; stroke-width: 1.5;" x1="354" x2="411" y1="137.3887" y2="137.3887"></line><line style="stroke: #C0C0C0; stroke-width: 1.5;" x1="354" x2="411" y1="145.3887" y2="145.3887"></line><!--class Goal--><rect fill="#F5F5F5" filter="url(#f5mhdebd1tu54)" height="42.3887" id="Goal" style="stroke: #C0C0C0; stroke-width: 1.5;" width="32" x="447.5" y="111"></rect><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="26" x="450.5" y="129.752">Goal</text><line style="stroke: #C0C0C0; stroke-width: 1.5;" x1="448.5" x2="478.5" y1="137.3887" y2="137.3887"></line><line style="stroke: #C0C0C0; stroke-width: 1.5;" x1="448.5" x2="478.5" y1="145.3887" y2="145.3887"></line><!--class Plugin--><rect fill="#F5F5F5" filter="url(#f5mhdebd1tu54)" height="42.3887" id="Plugin" style="stroke: #C0C0C0; stroke-width: 1.5;" width="41" x="396" y="262"></rect><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="35" x="399" y="280.752">Plugin</text><line style="stroke: #C0C0C0; stroke-width: 1.5;" x1="397" x2="436" y1="288.3887" y2="288.3887"></line><line style="stroke: #C0C0C0; stroke-width: 1.5;" x1="397" x2="436" y1="296.3887" y2="296.3887"></line><!--link Project to Project--><path d="M242.195,266.204 C254.525,266.92 264,272.519 264,283 C264,296.975 247.155,302.27 229.159,298.885 " fill="none" id="Project-Project" style="stroke: #C0C0C0; stroke-width: 1.0;"></path><polygon fill="#FFFFFF" points="229.159,267.115,235.4235,270.6865,241.1297,266.2776,234.8652,262.706,229.159,267.115" style="stroke: #C0C0C0; stroke-width: 1.0;"></polygon><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="36" x="236.914" y="241.6945">parent</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="22" x="243.914" y="259.4489">0..1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="42" x="232.5378" y="323.1146">module</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="22" x="242.5378" y="340.869">0..1</text><!--link PackageType to Project--><path d="M198.5,153.095 C198.5,173.192 198.5,204.903 198.5,231.843 " fill="none" id="PackageType-Project" style="stroke: #696969; stroke-width: 1.0;"></path><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="5" x="193.1328" y="220.9989">*</text><!--link Repository to Project--><path d="M71.3125,283 C103.4406,283 135.569,283 167.697,283 " fill="none" id="Repository-Project" style="stroke: #696969; stroke-width: 1.0;"></path><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="5" x="79.0371" y="279.0786">*</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="5" x="154.9957" y="278.964">*</text><!--link Repository to Repository--><path d="M71.1436,266.932 C89.2898,263.933 106,269.289 106,283 C106,296.711 89.2898,302.067 71.1436,299.068 " fill="none" id="Repository-Repository" style="stroke: #C0C0C0; stroke-width: 1.0;"></path><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="32" x="112" y="289.3979">proxy</text><!--link Project to Dependency--><path d="M167.873,331.133 C160.847,347.481 156.887,365.9788 162.5,383 C166.085,393.8709 173.045,404.3118 179.97,412.8149 " fill="none" id="Project-Dependency" style="stroke: #696969; stroke-width: 1.0;"></path><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="25" x="163.5" y="379.8979">from</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="5" x="168.4987" y="402.0466">*</text><!--link Project to Dependency--><path d="M198.836,334.029 C199.016,360.914 199.229,392.5816 199.364,412.7198 " fill="none" id="Project-Dependency" style="stroke: #696969; stroke-width: 1.0;"></path><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="11" x="199.5" y="379.8979">to</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="5" x="193.6226" y="402.2935">*</text><!--link Management to Dependency--><path d="M126.875,434 C138.506,434 150.138,434 161.769,434 " fill="none" id="Management-Dependency" style="stroke: #696969; stroke-width: 1.0;"></path><!--link Dependency to DependencyScope--><path d="M237.5,434 C249.102,434 260.703,434 272.305,434 " fill="none" id="Dependency-DependencyScope" style="stroke: #696969; stroke-width: 1.0;"></path><!--link LifeCycle to Phase--><path d="M296.5,63.909 C296.5,79.522 296.5,97.516 296.5,110.936 " fill="none" id="LifeCycle-Phase" style="stroke: #696969; stroke-width: 1.0;"></path><polygon fill="#696969" points="296.5,50.439,292.5,56.439,296.5,62.439,300.5,56.439,296.5,50.439" style="stroke: #696969; stroke-width: 1.0;"></polygon><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="20" x="273.5625" y="100.2032">1..*</text><!--link Phase to Build--><path d="M297.01,158.324 C297.598,187.511 298.552,234.896 299.092,261.748 " fill="none" id="Phase-Build" style="stroke: #696969; stroke-width: 1.0;"></path><polygon fill="#696969" points="296.905,153.095,293.0858,162.1732,297.005,158.094,301.0842,162.0132,296.905,153.095" style="stroke: #696969; stroke-width: 1.0;"></polygon><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="25" x="298.5" y="198.8979">goto</text><!--link Project to Build--><path d="M229.273,283 C247.013,283 264.752,283 282.492,283 " fill="none" id="Project-Build" style="stroke: #696969; stroke-width: 1.0;"></path><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="20" x="254.5584" y="278.4548">1..*</text><!--link Phase to Execution--><path d="M317.664,132 C329.399,132 341.133,132 352.868,132 " fill="none" id="Phase-Execution" style="stroke: #696969; stroke-width: 1.0;"></path><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="20" x="325.0655" y="128.2605">1..*</text><!--link Execution to Goal--><path d="M412.242,132 C423.989,132 435.735,132 447.482,132 " fill="none" id="Execution-Goal" style="stroke: #696969; stroke-width: 1.0;"></path><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="20" x="419.514" y="127.3508">1..*</text><!--link Goal to Plugin--><path d="M457.161,153.095 C449.382,177.756 436.087,219.904 426.826,249.266 " fill="none" id="Goal-Plugin" style="stroke: #696969; stroke-width: 1.0;"></path><polygon fill="#696969" points="422.888,261.748,428.508,257.2296,426.4987,250.3041,420.8787,254.8225,422.888,261.748" style="stroke: #696969; stroke-width: 1.0;"></polygon><!--link Build to Plugin--><path d="M316.513,283 C337.554,283 373.349,283 395.917,283 " fill="none" id="Build-Plugin" style="stroke: #696969; stroke-width: 1.0;"></path><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="28" x="342.25" y="276.8979">need</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="5" x="382.9822" y="278.0389">*</text><!--
+@startuml
+skinparam class {
+  BackgroundColor WhiteSmoke 
+  ArrowColor DimGray
+  BorderColor Silver
+}
+hide circle
+
+class Project {
+  groupID
+  artifactId
+  version
+  packaging
+}
+
+Project "parent\n0..1" o-[#Silver]right- "module\n0..1" Project
+
+PackageType -down- "*" Project
+Repository "*" -right- "*" Project
+Repository -up[#Silver]- Repository: proxy
+Project -down- "*" Dependency: from 
+Dependency "*" -up- Project: to
+Management -right- Dependency
+Dependency -right- DependencyScope
+
+LifeCycle *-down- "1..*" Phase
+Build -up-> Phase: goto 
+Project -right- "1..*" Build
+
+Phase -right- "1..*" Execution
+Execution -right- "1..*" Goal
+Plugin *-up- Goal 
+Build -right- "*" Plugin: need
+
+@endumls
+
+PlantUML version 1.2018.01(Mon Jan 29 02:08:22 CST 2018)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Java Version: 1.8.0_162-b12
+Operating System: Windows 10
+OS Version: 10.0
+Default Encoding: GBK
+Language: zh
+Country: CN
+--></g></svg></p>
       </div>
       <div class="md-sidebar-toc"><ul>
 <li><a href="#maven-3">Maven 3</a></li>
@@ -746,13 +1084,26 @@ Maven设计了插件机制。每个构建步骤都可以绑定一个或者多个
 </ul>
 </li>
 <li><a href="#maven-%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5">Maven 核心概念</a><br>
+* <a href="#%E6%A6%82%E5%BF%B5%E8%AF%B4%E6%98%8E">概念说明</a><br>
 * <a href="#pomxml">pom.xml</a><br>
 * <a href="#maven-%E6%A0%87%E5%87%86%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84">Maven 标准目录结构</a><br>
 * <a href="#%E4%BD%BF%E7%94%A8archetype%E7%94%9F%E6%88%90%E9%A1%B9%E7%9B%AE%E9%AA%A8%E6%9E%B6">使用Archetype生成项目骨架</a><br>
+* <a href="#%E5%B7%A5%E7%A8%8Bproject">工程（Project）</a><br>
+* <a href="#%E5%B7%A5%E7%A8%8B%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB">工程依赖关系</a><br>
+* <a href="#%E5%B7%A5%E7%A8%8B%E8%81%9A%E5%90%88%E5%85%B3%E7%B3%BB">工程聚合关系</a><br>
 * <a href="#maven%E5%9D%90%E6%A0%87">Maven坐标</a><br>
+* <a href="#%E5%9D%90%E6%A0%87%E6%A0%B7%E4%BE%8B">坐标样例</a><br>
+* <a href="#%E5%9D%90%E6%A0%87%E8%A7%84%E5%88%92%E7%9A%84%E5%8E%9F%E5%88%99">坐标规划的原则</a><br>
 * <a href="#%E4%BE%9D%E8%B5%96">依赖</a><br>
-* <a href="#%E5%AD%98%E5%82%A8%E5%BA%93">存储库</a></li>
-<li><a href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F">生命周期</a></li>
+* <a href="#%E4%BE%9D%E8%B5%96%E9%85%8D%E7%BD%AE%E7%A4%BA%E4%BE%8B">依赖配置示例</a><br>
+* <a href="#%E4%BE%9D%E8%B5%96%E8%8C%83%E5%9B%B4">依赖范围</a><br>
+* <a href="#%E5%AD%98%E5%82%A8%E5%BA%93">存储库</a><br>
+* <a href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F">生命周期</a><br>
+* <a href="#%E4%B8%89%E5%A5%97%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F">三套生命周期</a><br>
+* <a href="#clean%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F">clean生命周期</a><br>
+* <a href="#default%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F">default生命周期</a><br>
+* <a href="#site%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F">site生命周期</a><br>
+* <a href="#maven%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5">Maven核心概念</a></li>
 </ul>
 </div>
       <a id="sidebar-toc-btn">≡</a>
