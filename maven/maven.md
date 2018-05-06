@@ -15,7 +15,7 @@
 * [生命周期](#lifecycle)
 
 ## 使用
-初始化  
+使用模板初始化新项目  
 `mvn archetype:generate -DgroupId=net.dsl -DartifactId=myproject -Dversion=1.0-SNAPSHOT`
 
 #### Maven Archetype
@@ -63,23 +63,34 @@ mvn archetype:generate
 
 ###### 示例: 原型创建
 从现有项目创建原型涉及三个步骤：
-* 原型决议
-* 原型安装：部署
-* 原型用法
+1. 创建： 调用 `mvn archetype:create-from-project` 插件。
+   首先通过猜测项目目录来解析包。
+   然后它在目标 `target/generated-sources/archetype` 目录中生成原型的目录树。
+2. 安装： 移至生成的目录，并在创建的原型上调用 `mvn install`。
+   ```bash
+   $ cd target/generated-sources/archetype/
+   $ mvn install  
+   ```
+4. 使用： 最后移动到一个新的目录并使用你的原型。
+   ```bash
+   $ mkdir /tmp/archetype
+   $ cd /tmp/archetype
+   $ mvn archetype:generate -DarchetypeCatalog=local
+   ```
 
-* 调用 `mvn archetype:create-from-project` 插件首先通过猜测项目目录来解析包。
-* 然后它在目标 `target/generated-sources/archetype` 目录中生成原型的目录树。
-* 然后移至生成的目录，并在创建的原型上调用 `mvn install`。
-  ```bash
-  $ cd target/generated-sources/archetype/
-  $ mvn install  
-  ```
-* 最后移动到一个新的目录并使用你的原型。
-  ```bash
-  $ mkdir /tmp/archetype
-  $ cd /tmp/archetype
-  $ mvn archetype:generate -DarchetypeCatalog=local
-  ```
+从现有项目创建原型：
+```bash
+## 创建原型（从现有项目创建）
+mvn archetype:create-from-project
+
+## 安装原型
+cd target/generated-sources/archetype/
+mvn install  
+
+## 使用原型
+mvn archetype:generate -DarchetypeCatalog=local
+```
+
 
 ###### 示例: 从多模块项目创建一个原型
 创建一个多模块项目的原型和创建一个单个模块项目原型同样简单。
