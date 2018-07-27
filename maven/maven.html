@@ -226,16 +226,12 @@ code.language-yaml {
 }
 .markdown-preview.markdown-preview pre,
 .markdown-preview.markdown-preview code {
-  font-family: "Microsoft Yahei Mono", "Consolas", "Courier New", sans-serif;
+  font-family: "Consolas", "Courier New", sans-serif;
   background-color: whitesmoke;
-}
-.markdown-preview.markdown-preview pre {
-  border-width: thin;
-  border-color: gray;
 }
 .markdown-preview.markdown-preview.phantomjs-pdf {
   font-family: Geneva, Arial, Helvetica, "Microsoft YaHei", "华文细黑", sans-serif;
-  font-size: 15px;
+  font-size: 14px;
   color: black;
   background-color: white;
 }
@@ -248,12 +244,15 @@ code.language-yaml {
   border-style: solid;
   border-width: thin;
 }
+.markdown-preview.markdown-preview.phantomjs-pdf .token {
+  color: black;
+}
  
       </style>
     </head>
     <body for="html-export">
       <div class="mume markdown-preview   ">
-      <h2 class="mume-header" id="maven-3">Maven 3</h2>
+      <h2 class="mume-header undefined" id="maven-3">Maven 3</h2>
 
 <p>参考</p>
 <ul>
@@ -263,18 +262,31 @@ code.language-yaml {
 <li><a href="https://docs.gradle.org/current/userguide/maven_plugin.html">Gradle - The Maven Plugin</a></li>
 <li><a href="http://www.trinea.cn/android/maven/">Maven Intro</a></li>
 </ul>
-<p>内容</p>
+<p>目录</p>
 <ul>
-<li>使用</li>
-<li><a href="#intro">概述</a></li>
-<li><a href="#install">安装与配置</a></li>
-<li><a href="#concept">核心概念</a></li>
-<li><a href="#pom">pom.xml</a></li>
-<li><a href="#lifecycle">生命周期</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8">使用</a><br>
+* <a href="#maven-archetype">Maven Archetype</a><br>
+* <a href="#mvn-archetypegenerate">mvn archetype:generate</a><br>
+* <a href="#maven-%E4%B8%8E-gradle-%E4%BA%92%E7%9B%B8%E8%BD%AC%E5%8C%96">Maven 与 Gradle 互相转化</a><br>
+* <a href="#%E5%BA%93">库</a><br>
+* <a href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4">常用命令</a></li>
+<li><a href="#%E5%AE%89%E8%A3%85%E8%AE%BE%E7%BD%AE">安装设置</a><br>
+* <a href="#%E6%A6%82%E8%BF%B0">概述</a><br>
+* <a href="#%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE">安装与配置</a></li>
+<li><a href="#maven-%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5">Maven 核心概念</a><br>
+* <a href="#pomxml">pom.xml</a><br>
+* <a href="#maven-%E6%A0%87%E5%87%86%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84">Maven 标准目录结构</a><br>
+* <a href="#%E4%BD%BF%E7%94%A8archetype%E7%94%9F%E6%88%90%E9%A1%B9%E7%9B%AE%E9%AA%A8%E6%9E%B6">使用Archetype生成项目骨架</a><br>
+* <a href="#%E5%B7%A5%E7%A8%8Bproject">工程（Project）</a><br>
+* <a href="#maven%E5%9D%90%E6%A0%87">Maven坐标</a><br>
+* <a href="#%E4%BE%9D%E8%B5%96">依赖</a><br>
+* <a href="#%E5%AD%98%E5%82%A8%E5%BA%93">存储库</a><br>
+* <a href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F">生命周期</a></li>
 </ul>
+<hr>
 <h2 class="mume-header" id="%E4%BD%BF%E7%94%A8">使用</h2>
 
-<p>初始化<br>
+<p>使用模板初始化新项目<br>
 <code>mvn archetype:generate -DgroupId=net.dsl -DartifactId=myproject -Dversion=1.0-SNAPSHOT</code></p>
 <h4 class="mume-header" id="maven-archetype">Maven Archetype</h4>
 
@@ -322,35 +334,29 @@ code.language-yaml {
 </pre><h6 class="mume-header" id="%E7%A4%BA%E4%BE%8B-%E5%8E%9F%E5%9E%8B%E5%88%9B%E5%BB%BA">示例: 原型创建</h6>
 
 <p>从现有项目创建原型涉及三个步骤：</p>
-<ul>
-<li>
-<p>原型决议</p>
-</li>
-<li>
-<p>原型安装：部署</p>
-</li>
-<li>
-<p>原型用法</p>
-</li>
-<li>
-<p>调用 <code>mvn archetype:create-from-project</code> 插件首先通过猜测项目目录来解析包。</p>
-</li>
-<li>
-<p>然后它在目标 <code>target/generated-sources/archetype</code> 目录中生成原型的目录树。</p>
-</li>
-<li>
-<p>然后移至生成的目录，并在创建的原型上调用 <code>mvn install</code>。</p>
-<pre data-role="codeBlock" data-info="bash" class="language-bash">$ <span class="token function">cd</span> target/generated-sources/archetype/
+<ol>
+<li>创建： 调用 <code>mvn archetype:create-from-project</code> 插件。<br>
+首先通过猜测项目目录来解析包。<br>
+然后它在目标 <code>target/generated-sources/archetype</code> 目录中生成原型的目录树。</li>
+<li>安装： 移至生成的目录，并在创建的原型上调用 <code>mvn install</code>。<pre data-role="codeBlock" data-info="bash" class="language-bash">$ <span class="token function">cd</span> target/generated-sources/archetype/
 $ mvn <span class="token function">install</span>  
 </pre></li>
-<li>
-<p>最后移动到一个新的目录并使用你的原型。</p>
-<pre data-role="codeBlock" data-info="bash" class="language-bash">$ <span class="token function">mkdir</span> /tmp/archetype
+<li>使用： 最后移动到一个新的目录并使用你的原型。<pre data-role="codeBlock" data-info="bash" class="language-bash">$ <span class="token function">mkdir</span> /tmp/archetype
 $ <span class="token function">cd</span> /tmp/archetype
 $ mvn archetype:generate -DarchetypeCatalog<span class="token operator">=</span>local
 </pre></li>
-</ul>
-<h6 class="mume-header" id="%E7%A4%BA%E4%BE%8B-%E4%BB%8E%E5%A4%9A%E6%A8%A1%E5%9D%97%E9%A1%B9%E7%9B%AE%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%8E%9F%E5%9E%8B">示例: 从多模块项目创建一个原型</h6>
+</ol>
+<p>从现有项目创建原型：</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash"><span class="token comment">## 创建原型（从现有项目创建）</span>
+mvn archetype:create-from-project
+
+<span class="token comment">## 安装原型</span>
+<span class="token function">cd</span> target/generated-sources/archetype/
+mvn <span class="token function">install</span>  
+
+<span class="token comment">## 使用原型</span>
+mvn archetype:generate -DarchetypeCatalog<span class="token operator">=</span>local
+</pre><h6 class="mume-header" id="%E7%A4%BA%E4%BE%8B-%E4%BB%8E%E5%A4%9A%E6%A8%A1%E5%9D%97%E9%A1%B9%E7%9B%AE%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%8E%9F%E5%9E%8B">示例: 从多模块项目创建一个原型</h6>
 
 <p>创建一个多模块项目的原型和创建一个单个模块项目原型同样简单。</p>
 <p>移动到多模块项目的根目录并调用 <code>mvn archetype:create-from-project</code>。在作为例子的原型中，一些文件需要不被过滤。这是通过给 archetype 插件 <code>archetype.filteredExtensions</code> 属性中的一些值来实现的。</p>
@@ -497,8 +503,9 @@ mvn hibernate3:hbm2ddl   &#x4F7F;&#x7528; Hibernate3 &#x63D2;&#x4EF6;&#x6784;&#x
 <p>发布第三方Jar到本地库中：<br>
 <code>mvn install:install-file -DgroupId=com -DartifactId=client -Dversion=0.1.0 -Dpackaging=jar -Dfile=d:\client-0.1.0.jar -DdownloadSources=true -DdownloadJavadocs=true</code></p>
 <hr>
-<p><span id="intro"></span></p>
-<h3 class="mume-header" id="%E6%A6%82%E8%BF%B0">概述</h3>
+<h2 class="mume-header" id="%E5%AE%89%E8%A3%85%E8%AE%BE%E7%BD%AE">安装设置</h2>
+
+<h4 class="mume-header" id="%E6%A6%82%E8%BF%B0">概述</h4>
 
 <p>Maven主要服务于基于Java平台的项目构建、依赖管理和项目信息管理。</p>
 <ul>
@@ -509,8 +516,7 @@ mvn hibernate3:hbm2ddl   &#x4F7F;&#x7528; Hibernate3 &#x63D2;&#x4EF6;&#x6784;&#x
 <li>Maven还为全世界的Java开发者提供了一个免费的中央仓库，在其中几乎可以找到任何的流行开源类库。</li>
 <li>Maven对于项目目录结构、测试用例命名方式等内容都有既定的规则，只要遵循了这些成熟的规则，用户在项目间切换的时候就免去了额外的学习成本，可以说是约定优于配置（Convention Over Configuration）。</li>
 </ul>
-<p><span id="install"></span></p>
-<h3 class="mume-header" id="%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE">安装与配置</h3>
+<h4 class="mume-header" id="%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE">安装与配置</h4>
 
 <p><strong>安装Maven</strong></p>
 <ul>
@@ -524,7 +530,265 @@ $M2_HOME/conf/settings.xml  &#x5728;&#x673A;&#x5668;&#x4E0A;&#x5168;&#x5C40;&#x5
 ~/.m2                       &#x7528;&#x6237;maven&#x76EE;&#x5F55;
 ~/.m2/repository            Maven&#x672C;&#x5730;&#x4ED3;&#x5E93;
 ~/.m2/settings.xml          &#x5728;&#x7528;&#x6237;&#x8303;&#x56F4;&#x5B9A;&#x5236;Maven&#x7684;&#x884C;&#x4E3A;
-</code></pre><p><code>mvn help:system</code><br>
+</code></pre><pre data-role="codeBlock" data-info="xml" class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
+
+<span class="token comment">&lt;!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+--></span>
+
+<span class="token comment">&lt;!--
+ | This is the configuration file for Maven. It can be specified at two levels:
+ |
+ |  1. User Level. This settings.xml file provides configuration for a single user,
+ |                 and is normally provided in ${user.home}/.m2/settings.xml.
+ |
+ |                 NOTE: This location can be overridden with the CLI option:
+ |
+ |                 -s /path/to/user/settings.xml
+ |
+ |  2. Global Level. This settings.xml file provides configuration for all Maven
+ |                 users on a machine (assuming they're all using the same Maven
+ |                 installation). It's normally provided in
+ |                 ${maven.conf}/settings.xml.
+ |
+ |                 NOTE: This location can be overridden with the CLI option:
+ |
+ |                 -gs /path/to/global/settings.xml
+ |
+ | The sections in this sample file are intended to give you a running start at
+ | getting the most out of your Maven installation. Where appropriate, the default
+ | values (values used when the setting is not specified) are provided.
+ |
+ |--></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>settings</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/SETTINGS/1.0.0<span class="token punctuation">"</span></span>
+          <span class="token attr-name"><span class="token namespace">xmlns:</span>xsi</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="token punctuation">"</span></span>
+          <span class="token attr-name"><span class="token namespace">xsi:</span>schemaLocation</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token comment">&lt;!-- localRepository
+   | The path to the local repository maven will use to store artifacts.
+   |
+   | Default: ${user.home}/.m2/repository
+  &lt;localRepository>/path/to/local/repo&lt;/localRepository>
+  --></span>
+
+  <span class="token comment">&lt;!-- interactiveMode
+   | This will determine whether maven prompts you when it needs input. If set to false,
+   | maven will use a sensible default value, perhaps based on some other setting, for
+   | the parameter in question.
+   |
+   | Default: true
+  &lt;interactiveMode>true&lt;/interactiveMode>
+  --></span>
+
+  <span class="token comment">&lt;!-- offline
+   | Determines whether maven should attempt to connect to the network when executing a build.
+   | This will have an effect on artifact downloads, artifact deployment, and others.
+   |
+   | Default: false
+  &lt;offline>false&lt;/offline>
+  --></span>
+
+  <span class="token comment">&lt;!-- pluginGroups
+   | This is a list of additional group identifiers that will be searched when resolving plugins by their prefix, i.e.
+   | when invoking a command line like "mvn prefix:goal". Maven will automatically add the group identifiers
+   | "org.apache.maven.plugins" and "org.codehaus.mojo" if these are not already contained in the list.
+   |--></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>pluginGroups</span><span class="token punctuation">></span></span>
+    <span class="token comment">&lt;!-- pluginGroup
+     | Specifies a further group identifier to use for plugin lookup.
+    &lt;pluginGroup>com.your.plugins&lt;/pluginGroup>
+    --></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>pluginGroups</span><span class="token punctuation">></span></span>
+
+  <span class="token comment">&lt;!-- proxies
+   | This is a list of proxies which can be used on this machine to connect to the network.
+   | Unless otherwise specified (by system property or command-line switch), the first proxy
+   | specification in this list marked as active will be used.
+   |--></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>proxies</span><span class="token punctuation">></span></span>
+    <span class="token comment">&lt;!-- proxy
+     | Specification for one proxy, to be used in connecting to the network.
+     |
+    &lt;proxy>
+      &lt;id>optional&lt;/id>
+      &lt;active>true&lt;/active>
+      &lt;protocol>http&lt;/protocol>
+      &lt;username>proxyuser&lt;/username>
+      &lt;password>proxypass&lt;/password>
+      &lt;host>proxy.host.net&lt;/host>
+      &lt;port>80&lt;/port>
+      &lt;nonProxyHosts>local.net|some.host.com&lt;/nonProxyHosts>
+    &lt;/proxy>
+    --></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>proxies</span><span class="token punctuation">></span></span>
+
+  <span class="token comment">&lt;!-- servers
+   | This is a list of authentication profiles, keyed by the server-id used within the system.
+   | Authentication profiles can be used whenever maven must make a connection to a remote server.
+   |--></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>servers</span><span class="token punctuation">></span></span>
+    <span class="token comment">&lt;!-- server
+     | Specifies the authentication information to use when connecting to a particular server, identified by
+     | a unique name within the system (referred to by the 'id' attribute below).
+     |
+     | NOTE: You should either specify username/password OR privateKey/passphrase, since these pairings are
+     |       used together.
+     |
+    &lt;server>
+      &lt;id>deploymentRepo&lt;/id>
+      &lt;username>repouser&lt;/username>
+      &lt;password>repopwd&lt;/password>
+    &lt;/server>
+    --></span>
+
+    <span class="token comment">&lt;!-- Another sample, using keys to authenticate.
+    &lt;server>
+      &lt;id>siteServer&lt;/id>
+      &lt;privateKey>/path/to/private/key&lt;/privateKey>
+      &lt;passphrase>optional; leave empty if not used.&lt;/passphrase>
+    &lt;/server>
+    --></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>servers</span><span class="token punctuation">></span></span>
+
+  <span class="token comment">&lt;!-- mirrors
+   | This is a list of mirrors to be used in downloading artifacts from remote repositories.
+   |
+   | It works like this: a POM may declare a repository to use in resolving certain artifacts.
+   | However, this repository may have problems with heavy traffic at times, so people have mirrored
+   | it to several places.
+   |
+   | That repository definition will have a unique id, so we can create a mirror reference for that
+   | repository, to be used as an alternate download site. The mirror site will be the preferred
+   | server for that repository.
+   |--></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>mirrors</span><span class="token punctuation">></span></span>
+    <span class="token comment">&lt;!-- mirror
+     | Specifies a repository mirror site to use instead of a given repository. The repository that
+     | this mirror serves has an ID that matches the mirrorOf element of this mirror. IDs are used
+     | for inheritance and direct lookup purposes, and must be unique across the set of mirrors.
+     |
+    &lt;mirror>
+      &lt;id>mirrorId&lt;/id>
+      &lt;mirrorOf>repositoryId&lt;/mirrorOf>
+      &lt;name>Human Readable Name for this Mirror.&lt;/name>
+      &lt;url>http://my.repository.com/repo/path&lt;/url>
+    &lt;/mirror>
+     --></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>mirrors</span><span class="token punctuation">></span></span>
+
+  <span class="token comment">&lt;!-- profiles
+   | This is a list of profiles which can be activated in a variety of ways, and which can modify
+   | the build process. Profiles provided in the settings.xml are intended to provide local machine-
+   | specific paths and repository locations which allow the build to work in the local environment.
+   |
+   | For example, if you have an integration testing plugin - like cactus - that needs to know where
+   | your Tomcat instance is installed, you can provide a variable here such that the variable is
+   | dereferenced during the build process to configure the cactus plugin.
+   |
+   | As noted above, profiles can be activated in a variety of ways. One way - the activeProfiles
+   | section of this document (settings.xml) - will be discussed later. Another way essentially
+   | relies on the detection of a system property, either matching a particular value for the property,
+   | or merely testing its existence. Profiles can also be activated by JDK version prefix, where a
+   | value of '1.4' might activate a profile when the build is executed on a JDK version of '1.4.2_07'.
+   | Finally, the list of active profiles can be specified directly from the command line.
+   |
+   | NOTE: For profiles defined in the settings.xml, you are restricted to specifying only artifact
+   |       repositories, plugin repositories, and free-form properties to be used as configuration
+   |       variables for plugins in the POM.
+   |
+   |--></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>profiles</span><span class="token punctuation">></span></span>
+    <span class="token comment">&lt;!-- profile
+     | Specifies a set of introductions to the build process, to be activated using one or more of the
+     | mechanisms described above. For inheritance purposes, and to activate profiles via &lt;activatedProfiles/>
+     | or the command line, profiles have to have an ID that is unique.
+     |
+     | An encouraged best practice for profile identification is to use a consistent naming convention
+     | for profiles, such as 'env-dev', 'env-test', 'env-production', 'user-jdcasey', 'user-brett', etc.
+     | This will make it more intuitive to understand what the set of introduced profiles is attempting
+     | to accomplish, particularly when you only have a list of profile id's for debug.
+     |
+     | This profile example uses the JDK version to trigger activation, and provides a JDK-specific repo.
+    &lt;profile>
+      &lt;id>jdk-1.4&lt;/id>
+
+      &lt;activation>
+        &lt;jdk>1.4&lt;/jdk>
+      &lt;/activation>
+
+      &lt;repositories>
+        &lt;repository>
+          &lt;id>jdk14&lt;/id>
+          &lt;name>Repository for JDK 1.4 builds&lt;/name>
+          &lt;url>http://www.myhost.com/maven/jdk14&lt;/url>
+          &lt;layout>default&lt;/layout>
+          &lt;snapshotPolicy>always&lt;/snapshotPolicy>
+        &lt;/repository>
+      &lt;/repositories>
+    &lt;/profile>
+    --></span>
+
+    <span class="token comment">&lt;!--
+     | Here is another profile, activated by the system property 'target-env' with a value of 'dev',
+     | which provides a specific path to the Tomcat instance. To use this, your plugin configuration
+     | might hypothetically look like:
+     |
+     | ...
+     | &lt;plugin>
+     |   &lt;groupId>org.myco.myplugins&lt;/groupId>
+     |   &lt;artifactId>myplugin&lt;/artifactId>
+     |
+     |   &lt;configuration>
+     |     &lt;tomcatLocation>${tomcatPath}&lt;/tomcatLocation>
+     |   &lt;/configuration>
+     | &lt;/plugin>
+     | ...
+     |
+     | NOTE: If you just wanted to inject this configuration whenever someone set 'target-env' to
+     |       anything, you could just leave off the &lt;value/> inside the activation-property.
+     |
+    &lt;profile>
+      &lt;id>env-dev&lt;/id>
+
+      &lt;activation>
+        &lt;property>
+          &lt;name>target-env&lt;/name>
+          &lt;value>dev&lt;/value>
+        &lt;/property>
+      &lt;/activation>
+
+      &lt;properties>
+        &lt;tomcatPath>/path/to/tomcat/instance&lt;/tomcatPath>
+      &lt;/properties>
+    &lt;/profile>
+    --></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>profiles</span><span class="token punctuation">></span></span>
+
+  <span class="token comment">&lt;!-- activeProfiles
+   | List of profiles that are active for all builds.
+   |
+  &lt;activeProfiles>
+    &lt;activeProfile>alwaysActiveProfile&lt;/activeProfile>
+    &lt;activeProfile>anotherAlwaysActiveProfile&lt;/activeProfile>
+  &lt;/activeProfiles>
+  --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>settings</span><span class="token punctuation">></span></span>
+
+</pre><p><code>mvn help:system</code><br>
 打印出所有的Java系统属性和环境变量</p>
 <p><strong>设置HTTP代理</strong><br>
 在<code>settings.xml</code>中为Maven配置HTTP代理</p>
@@ -702,7 +966,7 @@ PlantUML version 1.2018.01(Mon Jan 29 02:08:22 CST 2018)
 (GPL source distribution)
 Java Runtime: Java(TM) SE Runtime Environment
 JVM: Java HotSpot(TM) 64-Bit Server VM
-Java Version: 1.8.0_162-b12
+Java Version: 1.8.0_172-b11
 Operating System: Windows 10
 OS Version: 10.0
 Default Encoding: GBK
@@ -801,16 +1065,16 @@ Maven定义了一套完整的版本规范，以及快照（SNAPSHOT）的概念�
 
 <h6 class="mume-header" id="%E4%BE%9D%E8%B5%96%E9%85%8D%E7%BD%AE%E7%A4%BA%E4%BE%8B">依赖配置示例</h6>
 
-<pre data-role="codeBlock" data-info="xml" class="language-xml"><span class="token comment" spellcheck="true">&lt;!--添加依赖配置--></span>
+<pre data-role="codeBlock" data-info="xml" class="language-xml"><span class="token comment">&lt;!--添加依赖配置--></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencies</span><span class="token punctuation">></span></span>
-  <span class="token comment" spellcheck="true">&lt;!--项目要使用到junit的jar包，所以在这里添加junit的jar包的依赖--></span>
+  <span class="token comment">&lt;!--项目要使用到junit的jar包，所以在这里添加junit的jar包的依赖--></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>junit<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>junit<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>4.9<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>scope</span><span class="token punctuation">></span></span>test<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>scope</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
-  <span class="token comment" spellcheck="true">&lt;!--项目要使用到Hello的jar包，所以在这里添加Hello的jar包的依赖--></span>
+  <span class="token comment">&lt;!--项目要使用到Hello的jar包，所以在这里添加Hello的jar包的依赖--></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>me.gacl.maven<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>Hello<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
@@ -856,7 +1120,7 @@ PlantUML version 1.2018.01(Mon Jan 29 02:08:22 CST 2018)
 (GPL source distribution)
 Java Runtime: Java(TM) SE Runtime Environment
 JVM: Java HotSpot(TM) 64-Bit Server VM
-Java Version: 1.8.0_162-b12
+Java Version: 1.8.0_172-b11
 Operating System: Windows 10
 OS Version: 10.0
 Default Encoding: GBK
@@ -900,7 +1164,7 @@ PlantUML version 1.2018.01(Mon Jan 29 02:08:22 CST 2018)
 (GPL source distribution)
 Java Runtime: Java(TM) SE Runtime Environment
 JVM: Java HotSpot(TM) 64-Bit Server VM
-Java Version: 1.8.0_162-b12
+Java Version: 1.8.0_172-b11
 Operating System: Windows 10
 OS Version: 10.0
 Default Encoding: GBK
@@ -942,7 +1206,7 @@ PlantUML version 1.2018.01(Mon Jan 29 02:08:22 CST 2018)
 (GPL source distribution)
 Java Runtime: Java(TM) SE Runtime Environment
 JVM: Java HotSpot(TM) 64-Bit Server VM
-Java Version: 1.8.0_162-b12
+Java Version: 1.8.0_172-b11
 Operating System: Windows 10
 OS Version: 10.0
 Default Encoding: GBK
@@ -1001,7 +1265,7 @@ PlantUML version 1.2018.01(Mon Jan 29 02:08:22 CST 2018)
 (GPL source distribution)
 Java Runtime: Java(TM) SE Runtime Environment
 JVM: Java HotSpot(TM) 64-Bit Server VM
-Java Version: 1.8.0_162-b12
+Java Version: 1.8.0_172-b11
 Operating System: Windows 10
 OS Version: 10.0
 Default Encoding: GBK
@@ -1057,7 +1321,7 @@ PlantUML version 1.2018.01(Mon Jan 29 02:08:22 CST 2018)
 (GPL source distribution)
 Java Runtime: Java(TM) SE Runtime Environment
 JVM: Java HotSpot(TM) 64-Bit Server VM
-Java Version: 1.8.0_162-b12
+Java Version: 1.8.0_172-b11
 Operating System: Windows 10
 OS Version: 10.0
 Default Encoding: GBK
@@ -1066,44 +1330,24 @@ Country: CN
 --></g></svg></p>
       </div>
       <div class="md-sidebar-toc"><ul>
-<li><a href="#maven-3">Maven 3</a></li>
 <li><a href="#%E4%BD%BF%E7%94%A8">使用</a><br>
 * <a href="#maven-archetype">Maven Archetype</a><br>
-* <a href="#maven-archetype-%E6%8F%92%E4%BB%B6">Maven Archetype 插件</a><br>
-* <a href="#%E7%A4%BA%E4%BE%8B-%E4%BB%A5%E6%89%B9%E5%A4%84%E7%90%86%E6%A8%A1%E5%BC%8F%E7%94%9F%E6%88%90%E9%A1%B9%E7%9B%AE">示例: 以批处理模式生成项目</a><br>
-* <a href="#%E7%A4%BA%E4%BE%8B-%E4%BD%BF%E7%94%A8%E6%9B%BF%E4%BB%A3-catalog-%E7%94%9F%E6%88%90%E9%A1%B9%E7%9B%AE">示例： 使用替代 catalog 生成项目</a><br>
-* <a href="#%E7%A4%BA%E4%BE%8B-%E5%8E%9F%E5%9E%8B%E5%88%9B%E5%BB%BA">示例: 原型创建</a><br>
-* <a href="#%E7%A4%BA%E4%BE%8B-%E4%BB%8E%E5%A4%9A%E6%A8%A1%E5%9D%97%E9%A1%B9%E7%9B%AE%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%8E%9F%E5%9E%8B">示例: 从多模块项目创建一个原型</a><br>
 * <a href="#mvn-archetypegenerate">mvn archetype:generate</a><br>
 * <a href="#maven-%E4%B8%8E-gradle-%E4%BA%92%E7%9B%B8%E8%BD%AC%E5%8C%96">Maven 与 Gradle 互相转化</a><br>
 * <a href="#%E5%BA%93">库</a><br>
-* <a href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4">常用命令</a>
-<ul>
-<li><a href="#%E6%A6%82%E8%BF%B0">概述</a></li>
-<li><a href="#%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE">安装与配置</a></li>
-</ul>
-</li>
+* <a href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4">常用命令</a></li>
+<li><a href="#%E5%AE%89%E8%A3%85%E8%AE%BE%E7%BD%AE">安装设置</a><br>
+* <a href="#%E6%A6%82%E8%BF%B0">概述</a><br>
+* <a href="#%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE">安装与配置</a></li>
 <li><a href="#maven-%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5">Maven 核心概念</a><br>
-* <a href="#%E6%A6%82%E5%BF%B5%E8%AF%B4%E6%98%8E">概念说明</a><br>
 * <a href="#pomxml">pom.xml</a><br>
 * <a href="#maven-%E6%A0%87%E5%87%86%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84">Maven 标准目录结构</a><br>
 * <a href="#%E4%BD%BF%E7%94%A8archetype%E7%94%9F%E6%88%90%E9%A1%B9%E7%9B%AE%E9%AA%A8%E6%9E%B6">使用Archetype生成项目骨架</a><br>
 * <a href="#%E5%B7%A5%E7%A8%8Bproject">工程（Project）</a><br>
-* <a href="#%E5%B7%A5%E7%A8%8B%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB">工程依赖关系</a><br>
-* <a href="#%E5%B7%A5%E7%A8%8B%E8%81%9A%E5%90%88%E5%85%B3%E7%B3%BB">工程聚合关系</a><br>
 * <a href="#maven%E5%9D%90%E6%A0%87">Maven坐标</a><br>
-* <a href="#%E5%9D%90%E6%A0%87%E6%A0%B7%E4%BE%8B">坐标样例</a><br>
-* <a href="#%E5%9D%90%E6%A0%87%E8%A7%84%E5%88%92%E7%9A%84%E5%8E%9F%E5%88%99">坐标规划的原则</a><br>
 * <a href="#%E4%BE%9D%E8%B5%96">依赖</a><br>
-* <a href="#%E4%BE%9D%E8%B5%96%E9%85%8D%E7%BD%AE%E7%A4%BA%E4%BE%8B">依赖配置示例</a><br>
-* <a href="#%E4%BE%9D%E8%B5%96%E8%8C%83%E5%9B%B4">依赖范围</a><br>
 * <a href="#%E5%AD%98%E5%82%A8%E5%BA%93">存储库</a><br>
-* <a href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F">生命周期</a><br>
-* <a href="#%E4%B8%89%E5%A5%97%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F">三套生命周期</a><br>
-* <a href="#clean%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F">clean生命周期</a><br>
-* <a href="#default%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F">default生命周期</a><br>
-* <a href="#site%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F">site生命周期</a><br>
-* <a href="#maven%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5">Maven核心概念</a></li>
+* <a href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F">生命周期</a></li>
 </ul>
 </div>
       <a id="sidebar-toc-btn">≡</a>
@@ -1114,19 +1358,6 @@ Country: CN
     
     
     
-    <script>
-(function bindTaskListEvent() {
-  var taskListItemCheckboxes = document.body.getElementsByClassName('task-list-item-checkbox')
-  for (var i = 0; i < taskListItemCheckboxes.length; i++) {
-    var checkbox = taskListItemCheckboxes[i]
-    var li = checkbox.parentElement
-    if (li.tagName !== 'LI') li = li.parentElement
-    if (li.tagName === 'LI') {
-      li.classList.add('task-list-item')
-    }
-  }
-}())    
-</script>
     
 <script>
 

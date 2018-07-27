@@ -1,4 +1,11 @@
-## Maven 3
+---
+toc:
+  depth_from: 1
+  depth_to: 4
+  ordered: false
+---
+
+## Maven 3 {ignore=true}
 参考
 * [Welcome to Apache Maven](https://maven.apache.org/index.html)
 * [Maven Archetype Plugin](https://maven.apache.org/archetype/maven-archetype-plugin/index.html)
@@ -6,14 +13,10 @@
 * [Gradle - The Maven Plugin](https://docs.gradle.org/current/userguide/maven_plugin.html)
 * [Maven Intro](http://www.trinea.cn/android/maven/)
 
-内容
-* 使用
-* [概述](#intro)
-* [安装与配置](#install)
-* [核心概念](#concept)
-* [pom.xml](#pom)
-* [生命周期](#lifecycle)
+目录
+[toc]
 
+---
 ## 使用
 使用模板初始化新项目  
 `mvn archetype:generate -DgroupId=net.dsl -DartifactId=myproject -Dversion=1.0-SNAPSHOT`
@@ -261,8 +264,8 @@ mvn hibernate3:hbm2ddl   使用 Hibernate3 插件构造数据库
 
 
 ----
-<span id="intro"></span>
-### 概述
+## 安装设置
+#### 概述
 
 Maven主要服务于基于Java平台的项目构建、依赖管理和项目信息管理。
 * Maven是一个异常强大的构建工具，能够帮我们自动化构建过程，从清理、编译、测试到生成报告，再到打包和部署。
@@ -272,15 +275,14 @@ Maven主要服务于基于Java平台的项目构建、依赖管理和项目信�
 * Maven还为全世界的Java开发者提供了一个免费的中央仓库，在其中几乎可以找到任何的流行开源类库。
 * Maven对于项目目录结构、测试用例命名方式等内容都有既定的规则，只要遵循了这些成熟的规则，用户在项目间切换的时候就免去了额外的学习成本，可以说是约定优于配置（Convention Over Configuration）。
 
-<span id="install"></span>
-### 安装与配置
+#### 安装与配置
 
-**安装Maven**  
+###### 安装Maven
 * 下载maven的bin
 * 设置环境变量 `MAVEN_HOME`, 在PATH里加入maven的bin的路径
 * `mvn -v` 测试安装
 
-**目录与文件**
+###### 目录与文件
 ```
 $M2_HOME                    环境变量指向Maven的安装目录。
 $M2_HOME/conf/settings.xml  在机器上全局地定制Maven的行为。
@@ -292,18 +294,43 @@ $M2_HOME/conf/settings.xml  在机器上全局地定制Maven的行为。
 `mvn help:system`  
 打印出所有的Java系统属性和环境变量
 
-**设置HTTP代理**  
+
+###### 设置仓库默认位置
+```xml
+<localRepository>d:/work/workspace/maven/repository</localRepository>
+```
+
+###### 设置下载路径
+下载路径 (使用阿里云下载路径)
+```xml
+<mirrors>
+  <mirror>
+    <id>alimaven</id>
+    <mirrorOf>central</mirrorOf>
+    <name>aliyun maven</name>
+    <url>http://maven.aliyun.com/nexus/content/repositories/central/</url>
+  </mirror>
+</mirrors>
+```
+
+###### 设置HTTP代理  
 在`settings.xml`中为Maven配置HTTP代理
 
-**设置MAVEN_OPTS环境变量**  
+###### 设置MAVEN_OPTS环境变量  
 通常需要设置`MAVEN_OPTS`的值为`-Xms128m-Xmx512m`
 
-**Maven Eclipse配置**  
-* Eclipse Marketplace搜索关键字maven到插件Maven Integration for Eclipse 并点击安装即可。
-* 点击Window -> Preference -> Maven -> Installation -> Add进行设置
+###### Maven Eclipse配置  
+* `Eclipse Marketplace` 搜索关键字 `maven` 到插件 `Maven Integration for Eclipse` 并点击 安装 即可。
+* 点击 `Window` -> `Preference` -> `Maven` -> `Installation` -> `Add` 进行设置
 
 
 <br/>
 
 ---
-@import "./maven.-concept.md"
+@import "./maven-concept.md"
+
+
+---
+## 附录
+###### settings.xml
+@import "./doc/settings.xml"
