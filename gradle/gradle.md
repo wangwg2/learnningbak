@@ -1,4 +1,19 @@
+---
+html:
+  embed_local_images: true
+  embed_svg: true
+  offline: true
+  toc: Gradle
+print_background: false
+toc:
+  depth_from: 1
+  depth_to: 3
+  ordered: false
+---
+# Gradle {ignore=true}
+[TOC]
 
+---
 ## Getting Started
 
 #### 在线文档代码
@@ -15,20 +30,7 @@
 * `gradle-demo`: gradle项目示例
 * `gradle-in-action-source`: gradle-in-action代码
 
-
-**目录内容**
-* [Gradle 使用](#100)
-* [Gradle 插件](#plugin)
-* [概念与原理](#101)
-* [安装与配置](#102)
-* [Gradle 命令](#103)
-* [项目结构](#104)
-* [Gradle 构建脚本基础](#301)
-* [Gradle 语法](#302)
-* [Gradle in Action](#401)
-
-
-<span id="100"></span>
+---
 ## Gradle 使用
 
 #### 常用项目构建任务
@@ -38,8 +40,7 @@
 * `gradle check`: 编译并测试你的代码.
 
 
-
-<span id="plugin"></span>
+---
 ## Gradle 插件
 
 Gradle 的核心为真实世界提供了很少的自动化. 所有的实用特性,类似编译java源码的能力, 是由插件提供的. 
@@ -113,13 +114,8 @@ apply plugin: "com.jfrog.bintray"
 你可以在维基上找到外部插件的列表。
 
 
+---
 
-
-
-
-------
-
-<span id="104"></span>
 ## 项目结构
 
 #### 初始化Gradle项目
@@ -218,9 +214,7 @@ include 'sub-project1', 'sub-project2', 'sub-project3'
 4. 如果找到了，并且发现当前项目是多项目构建的一部分，则执行多项目构建。没找到，则执行单项目构建。
 
 
-------------------
-
-<span id="101"></span>
+---
 ## 概念与原理
 
 Gradle 是一个基于 Apache Ant 和 Apache Maven 概念的项目自动化建构工具。它使用一种基于 Groovy 的特定领域语言来声明项目设置，而不是传统的XML。 当前其支持的语言限于 Java、 Groovy 和 Scala，计划未来将支持更多的语言。
@@ -260,8 +254,7 @@ Gradle让java项目在构建上有了跨越性发展。Gradle提供了：
   可能是编译一些 classes, 创建一个 JAR, 生成 javadoc, 或者生成某个目录的压缩文件.
   目前, 我们先来看看定义构建里的一些简单的 task. 以后的章节会讲解多项目构建以及如何通过 projects 和 tasks 工作.
 
-
-<span id="102"></span>
+---
 ## 安装与配置
 
 **安装**
@@ -287,7 +280,7 @@ gradle/wrapper/   -- 声明了gradle的目录与下载路径以及当前项目�
 ```
 
 
-<span id="103"></span>
+---
 ## Gradle命令
 
 命令语法
@@ -384,7 +377,6 @@ USAGE: gradle [option...] [task...]
 
 
 ---
-<span id="301"></span>
 ## Gradle 构建脚本基础
 
 [Gradle docs 16. Build Script Basics](https://docs.gradle.org/3.4.1/userguide/tutorial_using_tasks.html)
@@ -558,7 +550,6 @@ gradle.taskGraph.whenReady {taskGraph ->
 
 
 ---
-<span id="302"></span>
 ## Gradle 语法
 
 Gradle脚本是使用Groovy语言来写的。Groovy的语法有点像Java，希望你能接受它。  
@@ -723,8 +714,6 @@ android {
 
 
 ---
-
-<span id="401"></span>
 ## Gradle in Action (Gradle实战)
 
 **Gradle 介绍**

@@ -1,4 +1,19 @@
+---
+html:
+  embed_local_images: true
+  embed_svg: true
+  offline: true
+  toc: Gradle User Guide
+print_background: false
+toc:
+  depth_from: 1
+  depth_to: 3
+  ordered: false
+---
+# Gradle {ignore=true}
+[TOC]
 
+---
 ## Gradle User Guide
 
 **文档参考**
@@ -7,33 +22,8 @@
 * [Gradle入门系列](hhttp://blog.jobbole.com/71999/)
 * [Getting Started With Gradle](https://www.petrikainulainen.net/getting-started-with-gradle/)
 
-
-#### 内容目录
-* [Gradle入门系列：简介](#gradleguide001)
-    - [Gradle构建简介](#3001)
-    - [Gradle插件简介](#3002)
-* [Gradle入门系列：第一个Java项目](#gradleguide002)
-* [Gradle入门系列：依赖管理](#gradleguide003)
-    - [java演示项目](#dependency-management)
-* [Gradle入门系列：创建二进制发布版本](#gradleguide004)
-* [Gradle入门系列：创建多项目构建](#gradleguide005)
-* [Gradle入门系列：创建Web应用项目](#gradleguide006)
-* [Gradle入门系列：创建 Spring Boot Web 应用项目](#gradleguide007)
-* [Gradle构建java项目](#javaproject)
-    - [Java 插件](#javaplug)
-    - [简单java项目](#simpjava)
-    - [初始化java项目](#japp)
-    - [Java演示项目](#javaapp)
-* [Java 构建入门](#javaguide)
-* [Java Gradle之gretty插件](#gradle-gretty)
-* [Gradle SSH Plugin部署项目到远程服务器](#gradle-ssh-plugin)
-* [Gradle Cargo plugin部署项目到远程服务器](#gradle-cargo-plugin)
-
-
-
 ---
 
-<span id="gradle-cargo-plugin"></span>
 ## Gradle Cargo plugin部署项目到远程服务器 
 
 参考文档
@@ -70,12 +60,7 @@ cargo {
 ```
 
 
-
-
 ---
-
-
-<span id="gradle-ssh-plugin"></span>
 ## Gradle SSH Plugin部署项目到远程服务器 
 
 参考文档
@@ -121,7 +106,7 @@ task deploy {
 * 配置远程服务器信息
 * 配置gradle task、共四个任务：关闭tomcat、删除war包及目录、拷贝文件、启动tomcat，且后者依赖前者
 
-#### Gradle SSH Plugin Template
+##### Gradle SSH Plugin Template
 build.gradle 模板
 ```
 plugins {
@@ -164,8 +149,6 @@ task deploy(dependsOn: war) << {
 
 ----
 
-
-<span id="gradleguide001"></span>
 ## Gradle入门系列：简介
 
 参考文档
@@ -175,8 +158,7 @@ task deploy(dependsOn: war) << {
 下载安装gradle。  
 安装验证： `gradle -v`
 
-<span id="3001"></span>
-#### Gradle构建简介
+### Gradle构建简介
 
 在Gradle中，有两个基本概念：项目和任务。请看以下详解：
 * 项目是指我们的构建产物（比如Jar包）或实施产物（将应用程序部署到生产环境）。一个项目包含一个或多个任务。
@@ -189,8 +171,7 @@ task deploy(dependsOn: war) << {
 * [Gradle属性文件](http://www.gradle.org/docs/current/userguide/build_environment.html#sec:gradle_configuration_properties)（`gradle.properties`）用来配置构建属性。
 * [Gradle设置文件](http://www.gradle.org/docs/current/userguide/build_lifecycle.html#sec:settings_file)（`gradle.settings`）对于只有一个项目的构建而言是可选的，如果我们的构建中包含多于一个项目，那么它就是必须的，因为它描述了哪一个项目参与构建。每一个多项目的构建都必须在项目结构的根目录中加入一个设置文件。
 
-<span id="3002"></span>
-#### Gradle插件简介
+### Gradle插件简介
 
 Gradle的设计理念是，所有有用的特性都由[Gradle插件](http://www.gradle.org/docs/current/userguide/plugins.html)提供，一个Gradle插件能够：
 * 在项目中添加新任务
@@ -204,7 +185,7 @@ Gradle用户手册提供了[一系列标准Gradle插件](https://docs.gradle.org
 `apply plugin: 'foo'`
 
 
-<span id="gradleguide002"></span>
+---
 ## Gradle入门系列：第一个Java项目
 
 参考文档
@@ -558,8 +539,7 @@ applicationDistribution.from(copyLicense) {
 ```
 
 
-
-<span id="gradleguide005"></span>
+---
 ## Gradle入门系列：创建多项目构建
 
 参考文档
@@ -570,7 +550,7 @@ applicationDistribution.from(copyLicense) {
 尽管我们可以仅使用单个组件来创建可工作的应用程序，但有时候更广泛的做法是将应用程序划分为多个更小的模块。
 由于这是一个非常普通的案例，因此每个成熟的构建工具都必须支持这项功能，Gradle也不例外。倘若Gradle项目拥有多于一个组件，我们就将其称之为多项目构建（multi-project build）。
 
-#### Gradle Build 的需求
+### Gradle Build 的需求
 
 我们的示例程序拥有两个模块：
 * `core`模块包含一些通用的组件，它们能够被程序的其他模块使用。在我们的例子上，只包含一个类：`MessageService`类返回‘Hello World!’字符串。该模块只有一个依赖：它包含一个单元测试，使用`Junit 4.11`。
@@ -580,7 +560,7 @@ applicationDistribution.from(copyLicense) {
 * 我们必须要使用Gradle运行程序。
 * 我们必须要创建一个可运行的二进制发布，而且不能使用所谓的`“fat jar”`方式。
 
-#### 创建一个多项目构建
+### 创建一个多项目构建
 下一步，我们将创建一个多项目的Gradle构建，包括两个子项目：`app` 和 `core`。初始阶段，先要建立Gradle构建的目录结构。
 
 **建立目录结构**   
@@ -697,8 +677,7 @@ subprojects {
 ```
 
 
-
-<span id="gradleguide006"></span>
+---
 ## Gradle入门系列：创建Web应用项目
 
 参考文档
@@ -766,8 +745,7 @@ gretty {
 * `gradle appStop`命令能终止Web应用。
 
 
-
-<span id="gradleguide007"></span>
+---
 ## Gradle入门：创建 Spring Boot Web 应用项目
 
 参考文档
@@ -911,10 +889,7 @@ tasks.withType(Test) {
 
 
 
-----
-
-
-<span id="javaproject"></span>
+---
 ## Gradle构建java项目
 
 * [Java 插件](#javaplug)
@@ -1191,7 +1166,7 @@ mainClassName = 'com.dsl.gradle.HelloWorld'
 
 [Gradle docs 46. Java Quickstart](https://docs.gradle.org/3.4.1/userguide/userguide.html)
 
-#### Java 插件
+### Java 插件
 
 如你所见, Gradle 是一种多用途的构建工具. 它可以在你的构建脚本里构建任何你想要实现的东西. 但前提是你必须先在构建脚本里加入代码, 不然它什么都不会执行.
 
@@ -1201,7 +1176,7 @@ mainClassName = 'com.dsl.gradle.HelloWorld'
 
 Java 插件是基于合约的. 这意味着插件已经给项目的许多方面定义了默认的参数, 比如 Java 源文件的位置. 如果你在项目里遵从这些合约, 你通常不需要在你的构建脚本里加入太多东西. 如果你不想要或者是你不能遵循合约, Gradle 也允许你自己定制你的项目. 事实上, 因为对 Java 项目的支持是通过插件实现的, 如果你不想要的话, 你一点也不需要使用这个插件来构建你的项目.
 
-#### 一个基础的 Java 项目
+### 一个基础的 Java 项目
 `build.gradle` 文件
 ````
 apply plugin: 'java'
@@ -1324,7 +1299,7 @@ test.testLogging {
 ```
 
 
-#### 多项目的 Java 构建
+### 多项目的 Java 构建
 
 典型的多项目构建的项目布局
 ````
@@ -1403,8 +1378,6 @@ artifacts {
 
 ---
 
-
-<span id="gradle-gretty"></span>
 ## Java Gradle之gretty插件
 
 参考文档

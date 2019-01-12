@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <title>gradle</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:///C:\Users\wangw\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.3.5\node_modules\@shd101wyy\mume\dependencies\katex\katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+      <style> 
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+.markdown-preview.markdown-preview {
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  color: black;
+  /* 等宽字体 */
+  /* HEAD字体 */
+  /* 文本字体 */
+  font-family: Geneva, Arial, Helvetica, "Microsoft YaHei", "华文细黑", sans-serif;
+}
+.markdown-preview.markdown-preview h1,
+.markdown-preview.markdown-preview h2,
+.markdown-preview.markdown-preview h3,
+.markdown-preview.markdown-preview h4,
+.markdown-preview.markdown-preview h5,
+.markdown-preview.markdown-preview h6 {
+  font-family: Geneva, Arial, Helvetica, "Microsoft YaHei", sans-serif;
+}
+.markdown-preview.markdown-preview pre,
+.markdown-preview.markdown-preview code {
+  font-family: "Yahei Ubuntu Mono", "Consolas", "Courier New", sans-serif;
+  background-color: whitesmoke;
+}
+.markdown-preview.markdown-preview.phantomjs-pdf {
+  font-family: Geneva, Arial, Helvetica, "Microsoft YaHei", "华文细黑", sans-serif;
+  font-size: 14px;
+  color: black;
+  background-color: white;
+}
+.markdown-preview.markdown-preview.phantomjs-pdf pre,
+.markdown-preview.markdown-preview.phantomjs-pdf code {
+  background-color: white;
+}
+.markdown-preview.markdown-preview.phantomjs-pdf pre {
+  color: black;
+  border-style: solid;
+  border-width: thin;
+}
+.markdown-preview.markdown-preview.phantomjs-pdf .token {
+  color: black;
+}
+ 
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview   ">
+      <h1 class="mume-header undefined" id="gradle">Gradle</h1>
+
+<ul>
+<li><a href="#getting-started">Getting Started</a></li>
+<li><a href="#gradle-%E4%BD%BF%E7%94%A8">Gradle 使用</a></li>
+<li><a href="#gradle-%E6%8F%92%E4%BB%B6">Gradle 插件</a></li>
+<li><a href="#%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84">项目结构</a></li>
+<li><a href="#%E6%A6%82%E5%BF%B5%E4%B8%8E%E5%8E%9F%E7%90%86">概念与原理</a></li>
+<li><a href="#%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE">安装与配置</a></li>
+<li><a href="#gradle%E5%91%BD%E4%BB%A4">Gradle命令</a></li>
+<li><a href="#gradle-%E6%9E%84%E5%BB%BA%E8%84%9A%E6%9C%AC%E5%9F%BA%E7%A1%80">Gradle 构建脚本基础</a></li>
+<li><a href="#gradle-%E8%AF%AD%E6%B3%95">Gradle 语法</a></li>
+<li><a href="#gradle-in-action-gradle%E5%AE%9E%E6%88%98">Gradle in Action (Gradle实战)</a></li>
+</ul>
+<hr>
+<h2 class="mume-header" id="getting-started">Getting Started</h2>
+
+<h4 class="mume-header" id="%E5%9C%A8%E7%BA%BF%E6%96%87%E6%A1%A3%E4%BB%A3%E7%A0%81">在线文档代码</h4>
+
+<ul>
+<li><a href="https://docs.gradle.org/current/userguide/userguide.html">Gradle User Guide</a></li>
+<li><a href="http://udn.yyuap.com/doc/wiki/project/GradleUserGuide-Wiki/index.html">Gradle User Guide 中文版</a></li>
+<li>构建语言参考(DSL)：<a href="https://docs.gradle.org/current/dsl/">Gradle Build Language Reference</a></li>
+<li>Gradle in Action：<a href="https://github.com/bmuschko/gradle-in-action-source">gradle-in-action-source</a></li>
+</ul>
+<h4 class="mume-header" id="%E7%9B%AE%E5%BD%95%E6%96%87%E4%BB%B6%E8%AF%B4%E6%98%8E">目录文件说明</h4>
+
+<ul>
+<li><code>gradle.md</code> -- Gradle文档</li>
+<li><code>gradle-guide.md</code> -- Gradle入门</li>
+<li><code>gradle-examples</code> -- Gradle入门系列 (示例代码)</li>
+<li><code>gradle-guide</code> : gradle guide 示例</li>
+<li><code>gradle-demo</code>: gradle项目示例</li>
+<li><code>gradle-in-action-source</code>: gradle-in-action代码</li>
+</ul>
+<hr>
+<h2 class="mume-header" id="gradle-%E4%BD%BF%E7%94%A8">Gradle 使用</h2>
+
+<h4 class="mume-header" id="%E5%B8%B8%E7%94%A8%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA%E4%BB%BB%E5%8A%A1">常用项目构建任务</h4>
+
+<ul>
+<li><code>gradle build</code>: 编译和测试你的代码, 并且创建一个包含类和资源的 JAR 文件</li>
+<li><code>gradle clean</code>: 删除 build 生成的目录和所有生成的文件.</li>
+<li><code>gradle assemble</code>: 编译并打包你的代码, 但是并不运行单元测试.</li>
+<li><code>gradle check</code>: 编译并测试你的代码.</li>
+</ul>
+<hr>
+<h2 class="mume-header" id="gradle-%E6%8F%92%E4%BB%B6">Gradle 插件</h2>
+
+<p>Gradle 的核心为真实世界提供了很少的自动化. 所有的实用特性,类似编译java源码的能力, 是由插件提供的.<br>
+插件添加了新的任务(如:JavaCompile),域对象(如:SourceSet),公约(如:Java资源位置是src/main/java)以及来自其他插件延伸核心对象和对象。</p>
+<p>应用插件到项目允许插件来扩展项目的能力。它可以做的事情，如：</p>
+<ul>
+<li>扩展摇篮模型（如:添加可配置新的DSL元素）</li>
+<li>按照惯例配置项目(如:添加新的任务或配置合理的默认值)</li>
+<li>应用特定的配置（如:增加组织库或执行标准）</li>
+</ul>
+<p>通过应用插件,而不是向项目构建脚本添加逻辑,我们可以收获很多好处.应用插件:</p>
+<ul>
+<li>促进重用和减少维护在多个项目类似的逻辑的开销</li>
+<li>允许更高程度的模块化，提高综合性和组织</li>
+<li>封装必要的逻辑，并允许构建脚本尽可能是声明性地</li>
+</ul>
+<p><strong>插件的类型</strong><br>
+在Gradle中一般有两种类型的插件,脚本插件和二进制插件(对象插件).</p>
+<ul>
+<li>脚本插件是普通的Gradle构建脚本,可以被导入到其他的构建脚本中。</li>
+<li>二进制插件是实现了<code>org.gradle.api.Plugin</code>接口的类。二进制插件的源代码通常放在<code>buildSrc</code>目录下，要么和项目在一起， 要么是独立项目，作为JAR文件发布。</li>
+</ul>
+<p><strong>使用插件</strong><br>
+脚本插件</p>
+<ul>
+<li>脚本插件可以从本地文件系统或在远程位置的脚本中应用.</li>
+<li>文件系统的位置是相对于项目目录,而远程脚本位置的是由一个HTTP URL指定的.</li>
+<li>多个脚本插件（两种形式之一）可以被应用到给定的构建。</li>
+<li>使用：<code>apply from: 'other.gradle'</code></li>
+</ul>
+<p>二进制插件</p>
+<ul>
+<li>插件可以使用插件ID应用。 插件的id作为给定插件的唯一标识符。</li>
+<li>核心插件注册一个可以用作插件的id的短名称. 在上述情况下,我们可以使用简称java的插件以应用JavaPlugin.</li>
+<li>社区插件,一方面会使用一个完全合格的形式的插件id (如<code>com.github.foo.bar</code>),但还是有一些传统的插件可能仍然使用很短的不合格的格式.</li>
+<li>使用：<code>apply plugin: 'java'</code></li>
+</ul>
+<p><strong>使用 <code>buildscript</code> 应用插件</strong></p>
+<ul>
+<li>项目可以通过添加向构建脚本中加入插件的类路径然后再应用插件,添加作为外部JAR文件的二进制插件。</li>
+<li>外部jar可以使用<code>buildscrip{}</code>块添加到构建脚本类路径</li>
+</ul>
+<p><code>buildscript</code> 定义插件的位置、仓库和插件依赖</p>
+<pre data-role="codeBlock" data-info="" class="language-"><code>buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath &quot;com.jfrog.bintray.gradle:gradle-bintray-plugin:0.4.1&quot;
+    }
+}
+
+apply plugin: &quot;com.jfrog.bintray&quot;
+</code></pre><p><strong>使用插件的DSL应用插件</strong></p>
+<ul>
+<li>新的插件DSL提供了更为简洁,方便的方式来声明插件的依赖关系。它的适用于与新的Gradle Plugin Portal，同时提供了方便的核心和社区插件.该插件脚本块配置PluginDependenciesSpec的实例.</li>
+<li>要应用的核心插件,可以使用短名称:<br>
+<code>plugins { id 'java' }</code></li>
+<li>要从插件门户应用一个社区插件,必须使用插件的完全限定id:<br>
+<code>plugins { id &quot;com.jfrog.bintray&quot; version &quot;0.4.1&quot; }</code></li>
+<li>不必要进行进一步的配置,就是说没有必要配置<code>buildscript</code>的类路径,Gradle会从插件门户找到该插件,并使构建可用.</li>
+</ul>
+<h4 class="mume-header" id="%E6%A0%87%E5%87%86%E7%9A%84-gradle-%E6%8F%92%E4%BB%B6">标准的 Gradle 插件</h4>
+
+<ul>
+<li>语言插件： <code>java</code>,<code>groovy</code>,<code>scala</code>,<code>antlr</code></li>
+<li>正在孵化的语言插件: <code>assembler</code>,<code>c</code>,<code>cpp</code>,<code>objective-c</code>,<code>objective-cpp</code>,<code>windows-resources</code></li>
+<li>集成插件: <code>application</code>,<code>ear</code>,<code>jetty</code>,<code>maven</code>,<code>osgi</code>,<code>war</code></li>
+<li>孵化中的集成插件: <code>distribution</code>,<code>java-library-distribution</code>,<code>ivy-publish</code>,<code>maven-publish</code></li>
+<li>软件开发插件: <code>announce</code>,<code>checkstyle</code>,<code>eclipse</code>,<code>eclipse-wtp</code>,<code>idea</code>,<code>sonar</code>,<code>project-report</code>等等</li>
+<li>基本插件： <code>base</code>,<code>java-base</code>,<code>groovy-base</code>,<code>scala-base</code>,<code>reporting-base</code></li>
+</ul>
+<p><strong>第三方插件</strong></p>
+<p>你可以在维基上找到外部插件的列表。</p>
+<hr>
+<h2 class="mume-header" id="%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84">项目结构</h2>
+
+<h4 class="mume-header" id="%E5%88%9D%E5%A7%8B%E5%8C%96gradle%E9%A1%B9%E7%9B%AE">初始化Gradle项目</h4>
+
+<p><code>gradle init --type=java-application</code><br>
+支持的类型包括：<code>pom</code>/<code>java-applicatio</code>/<code>java-library</code>/<code>scala-library</code>/<code>groovy-library</code>/<code>basic</code></p>
+<p><code>gradle init --type java-application --test-framework spock</code><br>
+<code>gradle init --type java-application --test-framework testng</code></p>
+<h4 class="mume-header" id="%E5%85%B8%E5%9E%8B%E9%A1%B9%E7%9B%AE%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84">典型项目目录结构</h4>
+
+<pre data-role="codeBlock" data-info="" class="language-"><code>.gradle           --
+------- gradle wrapper --------------------------------------------------
+gradlew           -- &#x6267;&#x884C; Gradle &#x547D;&#x4EE4;&#x7684;&#x5305;&#x88C5;&#x5668;&#x811A;&#x672C;&#xFF08;windows&#x4E0B;&#xFF09;
+gradlew.bat       -- &#x6267;&#x884C; Gradle &#x547D;&#x4EE4;&#x7684;&#x5305;&#x88C5;&#x5668;&#x811A;&#x672C; (*nix&#x4E0B;)
+gradle/wrapper/   -- &#x58F0;&#x660E;&#x4E86;gradle&#x7684;&#x76EE;&#x5F55;&#x4E0E;&#x4E0B;&#x8F7D;&#x8DEF;&#x5F84;&#x4EE5;&#x53CA;&#x5F53;&#x524D;&#x9879;&#x76EE;&#x4F7F;&#x7528;&#x7684;gradle&#x7248;&#x672C;
+  gradle-wrapper.properties
+  gradle-wrapper.jar
+-------------------------------------------------------------------------
+build.gradle      -- Gradle &#x6784;&#x5EFA;&#x811A;&#x672C;
+settings.gradle   -- &#x5168;&#x5C40;&#x7684;&#x9879;&#x76EE;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF0C;&#x6307;&#x5B9A;&#x5DE5;&#x7A0B;&#x540D;&#x3002;
+gradle.properties -- &#x5C5E;&#x6027;&#x5B9A;&#x4E49;&#x6587;&#x4EF6;
+-------------------------------------------------------------------------
+src/              -- &#x9879;&#x76EE;&#x6E90;&#x4EE3;&#x7801;
+  main
+  src
+-------------------------------------------------------------------------
+build/            -- &#x6784;&#x5EFA;&#x8FD0;&#x884C;&#x8F93;&#x51FA;
+</code></pre><h4 class="mume-header" id="gradleproperties">gradle.properties</h4>
+
+<p>属性定义文件。 <a href="https://docs.gradle.org/current/userguide/build_environment.html">Online docs</a></p>
+<pre data-role="codeBlock" data-info="" class="language-"><code>jspApiVersion = 2.1
+jstlVersion = 1.2
+junitVersion=4.12
+servletApiVersion = 3.1.0
+</code></pre><p>在项目根目录下建立名为<code>gradle.properties</code>文件，在该文件中定义需要的属性。这些属性在Gradle构建Gradle领域对象（即project对象实例）时会被自动加到project对象实例中作为其属性被直接调用。<br>
+在命令行中通过<code>-D</code>或者<code>-P</code>给Gradle实时创建属性。<br>
+<code>gradle.properties</code>加载顺序：</p>
+<ul>
+<li>from <code>gradle.properties</code> in project build dir.</li>
+<li>from <code>gradle.properties</code> in gradle user home.</li>
+<li>from system properties, e.g. when <code>-Dsome.property</code> is set on the command line.</li>
+</ul>
+<h4 class="mume-header" id="buildgradle">build.gradle</h4>
+
+<pre data-role="codeBlock" data-info="" class="language-"><code>// &#x63D2;&#x4EF6;
+apply plugin: &apos;java&apos;
+apply plugin: &apos;application&apos;
+mainClassName = &apos;App&apos;
+
+// &#x4ED3;&#x5E93;
+repositories {
+  mavenLocal()
+  mavenCentral()
+  jcenter()
+}
+
+//&#x4F9D;&#x8D56;&#x5173;&#x7CFB;
+dependencies {
+  compile &apos;com.google.guava:guava:20.0&apos;
+  testCompile &apos;junit:junit:4.12&apos;
+}
+</code></pre><p>构建脚本内部结构</p>
+<ul>
+<li><code>allprojects { }</code>:    配置项目和每个子项目.</li>
+<li><code>artifacts { }</code>:      配置每个发布构件.</li>
+<li><code>buildscript { }</code>:    配置构建脚本路径.</li>
+<li><code>configurations { }</code>: 配置项目的依赖配置.</li>
+<li><code>dependencies { }</code>:   配置依赖关系.</li>
+<li><code>repositories { }</code>:   配置软件仓库.</li>
+<li><code>sourceSets { }</code>:     配置源代码集.</li>
+<li><code>subprojects { }</code>:    配置子项目.</li>
+<li><code>publishing { }</code> :    配置发布插件.</li>
+</ul>
+<h4 class="mume-header" id="settingsgradle">settings.gradle</h4>
+
+<p><code>settings.gradle</code> 文件示例</p>
+<pre data-role="codeBlock" data-info="" class="language-"><code>rootProject.name = &apos;myapp&apos;
+include&#xA0;&apos;sub-project1&apos;,&#xA0;&apos;sub-project2&apos;,&#xA0;&apos;sub-project3&apos;
+</code></pre><p>表示当前项目名为 <code>myapp</code>。 在当前的项目下建立三个子项目，分别为<code>sub-project1</code>, <code>sub-project2</code>,<code>sub-project3</code>。<br>
+默认情况下，每个子项目的名称对应着当前操作系统目录下的一个子目录。</p>
+<p>在Gradle中，使用文件<code>settings.gradle</code>定义当前项目的子项目。<br>
+默认情况下，<code>settings.gradle</code> 文件和 <code>build.gradle</code> 文件的位置相同。 而在没有 <code>settings.gradle</code> 文件的项目中，如果执行构建，则Gradle按这个顺序查找 <code>settings.gradle</code>：</p>
+<ol>
+<li>从当前目录的master文件夹内寻找。</li>
+<li>如果master目录中也没有，则搜索父目录。</li>
+<li>如果父目录也没找到，则把构建当成单个项目构建。</li>
+<li>如果找到了，并且发现当前项目是多项目构建的一部分，则执行多项目构建。没找到，则执行单项目构建。</li>
+</ol>
+<hr>
+<h2 class="mume-header" id="%E6%A6%82%E5%BF%B5%E4%B8%8E%E5%8E%9F%E7%90%86">概念与原理</h2>
+
+<p>Gradle 是一个基于 Apache Ant 和 Apache Maven 概念的项目自动化建构工具。它使用一种基于 Groovy 的特定领域语言来声明项目设置，而不是传统的XML。 当前其支持的语言限于 Java、 Groovy 和 Scala，计划未来将支持更多的语言。</p>
+<p>Gradle 是一种构建工具,它可以帮你管理项目中的差异,依赖,编译,打包,部署......,你可以定义满足自己需要的构建逻辑,写入到<code>build.gradle</code>中供日后复用.</p>
+<p>Gradle的构建分两个阶段</p>
+<ul>
+<li>第一阶段是设置阶段(configuration phase)，分析构建脚本，处理依赖关系和执行顺序等，脚本本身也需要依赖来完成自身的分析。</li>
+<li>第二阶段是执行阶段(execution phase)，此阶段真正构建项目并执行项目下的各个任务。</li>
+</ul>
+<p>和 Maven 一样，Gradle 只是提供了构建项目的一个框架，真正起作用的是<code>Plugin</code>。 Gradle 在默认情况下为我们提供了许多常用的 <code>Plugin</code>，其中便包括构建<code>Java</code>项目的<code>Plugin</code>，还有<code>War</code>，<code>Ear</code>等。 与 Maven 不同的是，Gradle 不提供内建的项目生命周期管理，只是<code>Java</code>的 Plugin 向 Project 中添加了许多Task，这些Task依次执行，为我们营造了一种如同Maven般项目构建周期。</p>
+<p>现在我们都在谈领域驱动设计，而 Gradle 本身的领域对象主要有 <code>Project</code> 和 <code>Task</code>。 <code>Project</code> 为 <code>Task</code> 提供了执行上下文，所有的 <code>Plugin</code> 要么向 <code>Project</code> 中添加了用于配置的 <code>Property</code>，要么向 <code>Project</code> 中添加不同的<code>Task</code>。一个<code>Task</code>表示一个逻辑上较为独立的执行过程，比如编译Java源代码，拷贝文件，打包Jar文件，甚至可以是执行一个系统命令或者调用Ant。另外，一个 <code>Task</code> 可以读取和设置 <code>Project</code> 的 <code>Property</code> 以完成特定的操作。</p>
+<h4 class="mume-header" id="gradle%E7%89%B9%E5%BE%81">Gradle特征</h4>
+
+<p>Gradle让java项目在构建上有了跨越性发展。Gradle提供了：</p>
+<ul>
+<li>很灵活的通用构建工具，就像ant。</li>
+<li>使用可切换的，已经约定好的框架，就像maven。但是Gradle不会对你做任何限制。</li>
+<li>支持多项目的构建</li>
+<li>强大的依赖管理（基于Apache lvy）。</li>
+<li>完美兼容maven或Ivy仓库</li>
+<li>无需提供远程仓库、<code>pom.xml</code>、<code>ivy.xml</code>就支持依赖管理</li>
+<li>支持Ant类的<code>task</code>和<code>builds</code></li>
+<li>Groovy构建脚本</li>
+<li>提供rich domain model来描述构建信息</li>
+</ul>
+<h4 class="mume-header" id="%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5">基本概念</h4>
+
+<ul>
+<li><strong>projects(项目)</strong><br>
+每一个构建都是由一个或多个 projects 构成的.<br>
+一个 project 到底代表什么取决于你想用 Gradle 做什么.<br>
+举个例子, 一个 project 可以代表一个 JAR 或者一个网页应用. 它也可能代表一个发布的 ZIP 压缩包, 这个 ZIP 可能是由许多其他项目的 JARs 构成的.<br>
+但是一个 project 不一定非要代表被构建的某个东西. 它可以代表一件**要做的事, 比如部署你的应用.<br>
+不要担心现在看不懂这些说明. Gradle 的合约构建可以让你来具体定义一个 project 到底该做什么.</li>
+<li><strong>tasks(任务)</strong><br>
+每一个 project 是由一个或多个 tasks 构成的.<br>
+一个 task 代表一些更加细化的构建.<br>
+可能是编译一些 classes, 创建一个 JAR, 生成 javadoc, 或者生成某个目录的压缩文件.<br>
+目前, 我们先来看看定义构建里的一些简单的 task. 以后的章节会讲解多项目构建以及如何通过 projects 和 tasks 工作.</li>
+</ul>
+<hr>
+<h2 class="mume-header" id="%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE">安装与配置</h2>
+
+<p><strong>安装</strong></p>
+<ul>
+<li>需要Java环境。</li>
+<li>下载安装，<code>GRADLE_HOME</code>环境变量为安装路径，<code>GRADLE_HOME/bin</code>添加到执行路径。</li>
+<li><code>gradle -v</code>检查安装。</li>
+<li>JVM选项可以通过设置环境变量来更改. 您可以使用<code>GRADLE_OPTS</code>或者<code>JAVA_OPTS</code>.</li>
+</ul>
+<p><strong>Gradle Eclipse配置</strong></p>
+<p><strong>Gradle Wrapper</strong><br>
+Gradle Wrapper (Gradle包装器)，Gradle的核心特征， 让机器在没有安装Gradle运行时环境的情况下运行Gradle构建。</p>
+<ul>
+<li>可指定Gradle版本。通过自动从中心仓库下载Gradle运行时，解压和使用来实现的。</li>
+<li>建议对每个Gradle项目使用包装器。</li>
+</ul>
+<p>项目目录下的 Gradle Wrapper 内容：</p>
+<pre data-role="codeBlock" data-info="" class="language-"><code>gradlew           -- &#x6267;&#x884C; Gradle &#x547D;&#x4EE4;&#x7684;&#x5305;&#x88C5;&#x5668;&#x811A;&#x672C;&#xFF08;windows&#x4E0B;&#xFF09;
+gradlew.bat       -- &#x6267;&#x884C; Gradle &#x547D;&#x4EE4;&#x7684;&#x5305;&#x88C5;&#x5668;&#x811A;&#x672C; (*nix&#x4E0B;)
+gradle/wrapper/   -- &#x58F0;&#x660E;&#x4E86;gradle&#x7684;&#x76EE;&#x5F55;&#x4E0E;&#x4E0B;&#x8F7D;&#x8DEF;&#x5F84;&#x4EE5;&#x53CA;&#x5F53;&#x524D;&#x9879;&#x76EE;&#x4F7F;&#x7528;&#x7684;gradle&#x7248;&#x672C;
+  gradle-wrapper.properties
+  gradle-wrapper.jar
+</code></pre><hr>
+<h2 class="mume-header" id="gradle%E5%91%BD%E4%BB%A4">Gradle命令</h2>
+
+<p>命令语法</p>
+<pre data-role="codeBlock" data-info="" class="language-"><code>gradle [option...] [task...]
+</code></pre><p><code>build.gradle</code> 默认项目构建文件</p>
+<h4 class="mume-header" id="%E5%91%BD%E4%BB%A4%E7%AE%80%E8%A6%81%E8%AF%B4%E6%98%8E">命令简要说明</h4>
+
+<ul>
+<li>日志输出
+<ul>
+<li><code>-q</code>(<code>--quiet</code>) 启用重要信息级别，只会输出错误信息。</li>
+<li><code>-i</code>(<code>--info</code>) 输出除debug以外的所有信息。</li>
+<li><code>-d</code>(<code>--debug</code>) 输出所有日志信息。</li>
+</ul>
+</li>
+<li>堆栈跟踪
+<ul>
+<li><code>-s</code>(<code>--stacktrace</code>) 输出详细的错误堆栈。</li>
+<li><code>-S</code>(<code>--full-stacktrace</code>) 输出全部堆栈信息</li>
+</ul>
+</li>
+<li>跳过指定的测试: <code>-x</code><br>
+<code>gradle build -x test</code></li>
+<li>继续执行task而忽略前面失败的task: <code>--continue</code></li>
+<li>调用task时使用短名或缩写, 可通过全名调用、前缀调用或首字母调用</li>
+<li>使用指定的gradle文件(<em><code>myfile.gradle</code></em>)调用task：<code>-b</code><br>
+<code>gradle -b</code> <em><code>myfile.gradle</code></em></li>
+<li>使用指定的项目目录调用task：<code>-p</code><br>
+<code>gradle -p</code> <em><code>projectname</code></em> <em><code>taskname</code></em></li>
+<li>显示task之间的依赖关系.<br>
+<code>gradle tasks --all</code></li>
+<li>查看指定阶段的依赖关系。<br>
+<code>gradle dependencies</code></li>
+<li>查看指定dependency的依赖情况: <code>dependecyInsight</code><br>
+<code>gradle dependencyInsight --dependency junit --configuration testCompile</code></li>
+<li>产生build运行时间的报告: <code>--profile</code><br>
+<code>gradle build --profile</code></li>
+<li>试运行build: <code>-m</code><br>
+<code>gradle -m build</code></li>
+<li>Gradle的图形界面: <code>--gui</code></li>
+<li>重新编译Gradle脚本: <code>--recompile-scripts</code></li>
+<li>添加 <code>apply plugin: 'application'</code>, 可以运行应用 <code>gradle run</code></li>
+</ul>
+<h4 class="mume-header" id="%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3">命令详解</h4>
+
+<pre data-role="codeBlock" data-info="" class="language-"><code>USAGE: gradle [option...] [task...]
+
+-?, -h, --help          Shows this help message.
+-a, --no-rebuild        Do not rebuild project dependencies.
+-b, --build-file        Specifies the build file.
+-c, --settings-file     Specifies the settings file.
+--configure-on-demand   Only relevant projects are configured in this build run.
+                        This means faster build for large multi-project builds. [incubating]
+--console               Specifies which type of console output to generate.
+                        Values are &apos;plain&apos;, &apos;auto&apos; (default) or &apos;rich&apos;.
+--continue              Continues task execution after a task failure.
+-D, --system-prop       Set system property of the JVM (e.g. -Dmyprop=myvalue).
+-d, --debug             Log in debug mode (includes normal stacktrace).
+--daemon                Uses the Gradle Daemon to run the build. Starts the Daemon if not running.
+--foreground            Starts the Gradle Daemon in the foreground. [incubating]
+-g, --gradle-user-home  Specifies the gradle user home directory.
+--gui                   Launches the Gradle GUI.
+-I, --init-script       Specifies an initialization script.
+-i, --info              Set log level to info.
+--include-build         Includes the specified build in the composite. [incubating]
+-m, --dry-run           Runs the builds with all task actions disabled.
+--max-workers           Configure the number of concurrent workers Gradle is allowed to use. [incubating]
+--no-daemon             Do not use the Gradle Daemon to run the build.
+--no-scan               Disables the creation of a build scan. [incubating]
+--offline               The build should operate without accessing network resources.
+-P, --project-prop      Set project property for the build script (e.g. -Pmyprop=myvalue).
+-p, --project-dir       Specifies the start directory for Gradle. Defaults to current directory.
+--parallel              Build projects in parallel. Gradle will attempt to determine the optimal
+                        number of executor threads to use. [incubating]
+--profile               Profiles build execution time and generates a report in the
+                        &lt;build_dir&gt;/reports/profile directory.
+--project-cache-dir     Specifies the project-specific cache directory.
+                        Defaults to .gradle in the root project directory.
+-q, --quiet             Log errors only.
+--recompile-scripts     Force build script recompiling.
+--refresh-dependencies  Refresh the state of dependencies.
+--rerun-tasks           Ignore previously cached task results.
+-S, --full-stacktrace   Print out the full (very verbose) stacktrace for all exceptions.
+-s, --stacktrace        Print out the stacktrace for all exceptions.
+--scan                  Creates a build scan. Gradle will fail the build if the build scan
+                        plugin has not been applied. [incubating]
+--status                Shows status of running and recently stopped Gradle Daemon(s).
+--stop                  Stops the Gradle Daemon if it is running.
+-t, --continuous        Enables continuous build. Gradle does not exit and will re-execute tasks
+                        when task file inputs change. [incubating]
+-u, --no-search-upward  Don&apos;t search in parent folders for a settings.gradle file.
+-v, --version           Print version info.
+-x, --exclude-task      Specify a task to be excluded from execution.
+</code></pre><hr>
+<h2 class="mume-header" id="gradle-%E6%9E%84%E5%BB%BA%E8%84%9A%E6%9C%AC%E5%9F%BA%E7%A1%80">Gradle 构建脚本基础</h2>
+
+<p><a href="https://docs.gradle.org/3.4.1/userguide/tutorial_using_tasks.html">Gradle docs 16. Build Script Basics</a></p>
+<h4 class="mume-header" id="%E6%A6%82%E5%BF%B5-projects-%E4%B8%8E-tasks">概念： projects 与 tasks</h4>
+
+<p>projects(项目)：每一个构建都是由一个或多个 projects 构成的. 一个 project 到底代表什么取决于你想用 Gradle 做什么.<br>
+tasks(任务)： 每一个 project 是由一个或多个 tasks 构成的. 一个 task 代表一些更加细化的构建.</p>
+<blockquote>
+<p>代码说明<br>
+<code>guide</code>目录，<code>basic.gradle</code>、<code>basic02.gradle</code>文件</p>
+</blockquote>
+<h4 class="mume-header" id="%E6%9E%84%E5%BB%BA%E8%84%9A%E6%9C%AC%E5%9F%BA%E7%A1%80%E7%A4%BA%E4%BE%8B">构建脚本基础示例</h4>
+
+<p><strong>Hello World</strong></p>
+<pre data-role="codeBlock" data-info="" class="language-"><code>task hello {
+    group &apos;basic&apos;
+    description &apos;Produces a greeting&apos;
+    doLast {
+        println &apos;Hello, World&apos;
+    }
+}
+</code></pre><p>运行 <code>gradle -q hello</code><br>
+这个构建脚本定义了一个独立的 task, 叫做 <code>hello</code>, 并且加入了一个 <code>action</code>.</p>
+<p><strong>构建脚本代码</strong></p>
+<p>使用Groovy脚本</p>
+<pre data-role="codeBlock" data-info="" class="language-"><code>task upper {
+    doLast {
+        String someString = &apos;mY_nAmE&apos;
+        println &quot;Original: &quot; + someString
+        println &quot;Upper case: &quot; + someString.toUpperCase()
+    }
+}
+
+task count {
+    doLast {
+        4.times { print &quot;$it &quot; }
+    }
+}
+</code></pre><p><strong>任务依赖</strong></p>
+<pre data-role="codeBlock" data-info="" class="language-"><code>task intro(dependsOn: hello) {
+    doLast { println &quot;I&apos;m Gradle&quot; }
+}
+
+task taskX(dependsOn: &apos;taskY&apos;) {
+    doLast {
+        println &apos;taskX&apos;
+    }
+}
+task taskY {
+    doLast {
+        println &apos;taskY&apos;
+    }
+}
+</code></pre><p><strong>动态任务</strong><br>
+动态创建了 task1, task2, task3, task4</p>
+<pre data-role="codeBlock" data-info="" class="language-"><code>4.times {
+    counter -&gt;
+    task &quot;task$counter&quot; &lt;&lt; {
+        println &quot;I&apos;m task number $counter&quot;
+    }
+}
+</code></pre><p><strong>使用已存在task(任务)</strong><br>
+加入依赖</p>
+<pre data-role="codeBlock" data-info="" class="language-"><code>task0.dependsOn task2, task3
+</code></pre><p>加入行为</p>
+<pre data-role="codeBlock" data-info="" class="language-"><code>hello.doFirst {
+    println &apos;Hello Venus&apos;
+}
+</code></pre><p><strong>短标记法</strong><br>
+有一个短标记 $ 可以访问一个存在的任务. 也就是说每个任务都可以作为构建脚本的属性:<br>
+name 是任务的默认属性, 代表当前任务的名称</p>
+<pre data-role="codeBlock" data-info="" class="language-"><code>hello.doLast {
+    println &quot;Greetings from the $hello.name task.&quot;
+}
+</code></pre><p><strong>自定义属性</strong></p>
+<pre data-role="codeBlock" data-info="" class="language-"><code>task myTask {
+    ext.myProperty = &quot;myValue&quot;
+}
+
+task printTaskProperties {
+    doLast { println myTask.myProperty }
+}
+</code></pre><p><strong>调用 Ant 任务</strong><br>
+Gradle 通过 Groovy 出色的集成了 Ant 任务. Groovy 自带了一个 <code>AntBuilder</code>. 相比于从一个 <code>build.xml</code> 文件中使用 Ant 任务, 在 Gradle 里使用 Ant 任务更为方便和强大.</p>
+<pre data-role="codeBlock" data-info="" class="language-"><code>task antloadfile {
+    doLast {
+        def files = file(&apos;../antLoadfileResources&apos;).listFiles().sort()
+        files.each { File file -&gt;
+            if (file.isFile()) {
+                ant.loadfile(srcFile: file, property: file.name)
+                println &quot; *** $file.name ***&quot;
+                println &quot;${ant.properties[file.name]}&quot;
+            }
+        }
+    }
+}
+</code></pre><p><strong>使用方法</strong></p>
+<pre data-role="codeBlock" data-info="" class="language-"><code>task checksum &lt;&lt; {
+    fileList(&apos;../antLoadfileResources&apos;).each {File file -&gt;
+        ant.checksum(file: file, property: &quot;cs_$file.name&quot;)
+        println &quot;$file.name Checksum: ${ant.properties[&quot;cs_$file.name&quot;]}&quot;
+    }
+}
+
+task loadfile &lt;&lt; {
+    fileList(&apos;../antLoadfileResources&apos;).each {File file -&gt;
+        ant.loadfile(srcFile: file, property: file.name)
+        println &quot;I&apos;m fond of $file.name&quot;
+    }
+}
+
+File[] fileList(String dir) {
+    file(dir).listFiles({file -&gt; file.isFile() } as FileFilter).sort()
+}
+</code></pre><p><strong>默认任务</strong></p>
+<pre data-role="codeBlock" data-info="" class="language-"><code>defaultTasks &apos;hello&apos;, &apos;count&apos;
+</code></pre><p><strong>通过 DAG 配置</strong></p>
+<p>Gradle 有一个配置阶段和执行阶段. 在配置阶段后, Gradle 将会知道应执行的所有任务.Gradle 为你提供一个&quot;钩子&quot;, 以便利用这些信息.</p>
+<pre data-role="codeBlock" data-info="" class="language-"><code>task distribution {
+    doLast { println &quot;We build the zip with version=$version&quot; }
+}
+
+task release(dependsOn: &apos;distribution&apos;) {
+    doLast { println &apos;We release now&apos; }
+}
+
+gradle.taskGraph.whenReady {taskGraph -&gt;
+    if (taskGraph.hasTask(release)) {
+        version = &apos;1.0&apos;
+    } else {
+        version = &apos;1.0-SNAPSHOT&apos;
+    }
+}
+</code></pre><p>分别运行命令 <code>gradle -q distribution</code> 和 <code>gradle -q release</code></p>
+<hr>
+<h2 class="mume-header" id="gradle-%E8%AF%AD%E6%B3%95">Gradle 语法</h2>
+
+<p>Gradle脚本是使用Groovy语言来写的。Groovy的语法有点像Java，希望你能接受它。<br>
+Groovy中有一个很重要的概念你必要要弄懂–Closure（闭包）</p>
+<p><strong>Closures</strong></p>
+<p>Closure是一段单独的代码块，它可以接收参数，返回值，也可以被赋值给变量。和Java中的<code>Callable</code>接口，<code>Future</code>类似，也像函数指针，你自己怎么方便理解都好。</p>
+<p>关键是这块代码会在你调用的时候执行，而不是在创建的时候。看一个Closure的例子：</p>
+<pre data-role="codeBlock" data-info="" class="language-"><code>def myClosure = { println &apos;Hello world!&apos; }
+
+//execute our closure
+myClosure()
+
+#output: Hello world!
+</code></pre><p>下面是一个接收参数的Closure：</p>
+<pre data-role="codeBlock" data-info="" class="language-"><code>def myClosure = {String str -&gt; println str }
+
+//execute our closure
+myClosure(&apos;Hello world!&apos;)
+
+#output: Hello world!
+</code></pre><p>接收多个参数的Closure：</p>
+<pre data-role="codeBlock" data-info="" class="language-"><code>def myClosure = {String str, int num -&gt; println &quot;$str : $num&quot; }
+
+//execute our closure
+myClosure(&apos;my string&apos;, 21)
+
+#output: my string : 21
+</code></pre><p>另外，参数的类型是可选的，上面的例子可以简写成这样：</p>
+<pre data-role="codeBlock" data-info="" class="language-"><code>def myClosure = {str, num -&gt; println &quot;$str : $num&quot; }
+
+//execute our closure
+myClosure(&apos;my string&apos;, 21)
+
+#output: my string : 21
+</code></pre><p>很酷的是Closure中可以使用当前上下文中的变量。默认情况下，当前的上下文就是closure被创建时所在的类：</p>
+<pre data-role="codeBlock" data-info="" class="language-"><code>def myVar = &apos;Hello World!&apos;
+def myClosure = {println myVar}
+myClosure()
+
+#output: Hello world!
+</code></pre><p>如你所见，在创建closure的时候，<code>myVar</code>并不存在。这并没有什么问题，因为当我们执行closure的时候，在closure的上下文中，<code>myVar</code>是存在的。这个例子中。因为我在执行closure之前改变了它的上下文为m，因此<code>myVar</code>是存在的。</p>
+<p>把closure当做参数传递</p>
+<p>closure的好处就是可以传递给不同的方法，这样可以帮助我们解耦执行逻辑。前面的例子中我已经展示了如何把closure传递给一个类的实例。下面我们将看一下各种接收closure作为参数的方法：</p>
+<ol>
+<li>只接收一个参数，且参数是closure的方法： <code>myMethod(myClosure)</code></li>
+<li>如果方法只接收一个参数，括号可以省略： <code>myMethod myClosure</code></li>
+<li>可以使用内联的closure：<code>myMethod {println ‘Hello World’}</code></li>
+<li>接收两个参数的方法： <code>myMethod(arg1, myClosure)</code></li>
+<li>和4类似，单数closure是内联的： <code>myMethod(arg1, { println ‘Hello World’ })</code></li>
+<li>如果最后一个参数是closure，它可以从小括号从拿出来：<code>myMethod(arg1) { println ‘Hello World’ }</code></li>
+</ol>
+<p>这里我只想提醒你一下，3和6的写法是不是看起来很眼熟？</p>
+<p><strong>Gradle</strong></p>
+<p>现在我们已经了解了基本的语法了，那么如何在Gradle脚本中使用呢？先看下面的例子吧：</p>
+<pre data-role="codeBlock" data-info="" class="language-"><code>buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath &apos;com.android.tools.build:gradle:1.2.3&apos;
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+    }
+</code></pre><p>知道了Groovy的语法，是不是上面的例子就很好理解了?<br>
+首先就是一个buildscript方法，它接收一个closure：<br>
+<code>def buildscript(Closure closure)</code></p>
+<p>接着是allprojects方法，它也接收一个closure参数：<br>
+<code>def allprojects(Closure closure)</code></p>
+<p>其他的都类似。。。<br>
+现在看起来容易多了，但是还有一点不明白，那就是这些方法是在哪里定义的？答案就是Project.</p>
+<p><strong>Project</strong></p>
+<p>这是理解Gradle脚本的一个关键。</p>
+<blockquote>
+<p>构建脚本顶层的语句块都会被委托给Project的实例</p>
+</blockquote>
+<p>这就说明Project正是我要找得地方。</p>
+<p>在Project的文档页面搜索buildscript方法,会找到<code>buildscript{}</code> script block(脚本块).等等，script block是什么鬼？根据文档：</p>
+<blockquote>
+<p>script block就是只接收closure作为参数的方法</p>
+</blockquote>
+<p>继续阅读buildscript的文档，文档上说Delegates to: <code>ScriptHandler from buildscript</code>。也就是说，我们传递给buildscript方法的closure，最终执行的上下文是ScriptHandler。在上面的例子中，我们的传递给buildscript的closure调用了<code>repositories(closure)</code>和<code>dependencies(closure)</code>方法。既然closure被委托给了ScriptHandler，那么我们就去ScriptHandler中寻找<code>dependencies</code>方法。</p>
+<p>找到了<code>void dependencies(Closure configureClosure)</code>，根据文档，dependencies是用来配置脚本的依赖的。而dependencies最终又是委托到了DependencyHandler。</p>
+<p>看到了Gradles是多么广泛的使用委托了吧。理解委托是很重要滴。</p>
+<p><strong>Script blocks</strong></p>
+<p>默认情况下，Project中预先定义了很多script block，但是Gradle插件允许我们自己定义新的script blocks！<br>
+这就意味着，如果你在build脚本顶层发了一些{…}，但是你在Gradle的文档中却找不到这个script blocks或者方法，绝大多情况下，这是一些来自插件中定义的script block。</p>
+<p><strong><em>android Script block</em></strong></p>
+<p>我们来看看默认的Android app/build.gradle文件:</p>
+<pre data-role="codeBlock" data-info="" class="language-"><code>apply plugin: &apos;com.android.application&apos;
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion &quot;22.0.1&quot;
+
+    defaultConfig {
+        applicationId &quot;com.trickyandroid.testapp&quot;
+        minSdkVersion 16
+        targetSdkVersion 22
+        versionCode 1
+        versionName &quot;1.0&quot;
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile(&apos;proguard-android.txt&apos;), &apos;proguard-rules.pro&apos;
+        }
+    }
+}
+</code></pre><p>可以看到，这里有一个android方法，它接收一个closure参数。但是如果我们在Project的文档中搜索，是找不到这个方法的。原因很简单，这不是在Project中定义的方法。</p>
+<p>仔细查看build脚本，可以看到在抵用android方法之前，我们使用了com.android.application插件。Android application插件扩展了Project对象，添加了android Script block。</p>
+<p>哪里可以找到Android插件的文档呢？Android Tools website</p>
+<p>如果我们打开AppExtension的文档，我们就可以找打build script中使用的方法了属性：</p>
+<ol>
+<li>compileSdkVersion 22. 如果我们搜索compileSdkVersion，将会找到这个属性. 这里我们给这个属性赋值 “22”。</li>
+<li>buildToolsVersion和1类似</li>
+<li>defaultConfig - 是一个script block将会委托给ProductFlavor类来执行。</li>
+<li>其他</li>
+</ol>
+<p>现在我们已经能够理解Gradle脚本的语法了，也知道如何查找文档了。</p>
+<hr>
+<h2 class="mume-header" id="gradle-in-action-gradle%E5%AE%9E%E6%88%98">Gradle in Action (Gradle实战)</h2>
+
+<p><strong>Gradle 介绍</strong></p>
+<ul>
+<li>项目自动化介绍</li>
+<li>下一代构建工具：Gradle</li>
+<li>通过范例学习构建Gradle项目</li>
+</ul>
+<p><strong>掌握基本原理</strong></p>
+<ul>
+<li>构建脚本概要</li>
+<li>依赖管理</li>
+<li>多项目构建</li>
+<li>Gradle测试</li>
+<li>扩展Gradle</li>
+<li>集成与迁移</li>
+</ul>
+<p><strong>从构建到部署</strong></p>
+<ul>
+<li>IDE支持与工具</li>
+<li>构建多语言项目</li>
+<li>代码质量管理与监测</li>
+<li>持续集成</li>
+<li>打包与发布</li>
+<li>基础环境准备与部署</li>
+</ul>
+<p><strong>附录</strong></p>
+<ul>
+<li>驾驭命令行</li>
+<li>Gradle用户所需要了解的Groovy</li>
+</ul>
+
+      </div>
+      <div class="md-sidebar-toc"><ul>
+<li><a href="#getting-started">Getting Started</a></li>
+<li><a href="#gradle-%E4%BD%BF%E7%94%A8">Gradle 使用</a></li>
+<li><a href="#gradle-%E6%8F%92%E4%BB%B6">Gradle 插件</a></li>
+<li><a href="#%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84">项目结构</a></li>
+<li><a href="#%E6%A6%82%E5%BF%B5%E4%B8%8E%E5%8E%9F%E7%90%86">概念与原理</a></li>
+<li><a href="#%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE">安装与配置</a></li>
+<li><a href="#gradle%E5%91%BD%E4%BB%A4">Gradle命令</a></li>
+<li><a href="#gradle-%E6%9E%84%E5%BB%BA%E8%84%9A%E6%9C%AC%E5%9F%BA%E7%A1%80">Gradle 构建脚本基础</a></li>
+<li><a href="#gradle-%E8%AF%AD%E6%B3%95">Gradle 语法</a></li>
+<li><a href="#gradle-in-action-gradle%E5%AE%9E%E6%88%98">Gradle in Action (Gradle实战)</a></li>
+</ul>
+</div>
+      <a id="sidebar-toc-btn">≡</a>
+    </body>
+    
+    
+    
+    
+    
+    
+    
+<script>
+document.body.setAttribute('html-show-sidebar-toc', true)
+var sidebarTOCBtn = document.getElementById('sidebar-toc-btn')
+sidebarTOCBtn.addEventListener('click', function(event) {
+  event.stopPropagation()
+  if (document.body.hasAttribute('html-show-sidebar-toc')) {
+    document.body.removeAttribute('html-show-sidebar-toc')
+  } else {
+    document.body.setAttribute('html-show-sidebar-toc', true)
+  }
+})
+</script>
+      
+  </html>
