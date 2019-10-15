@@ -1,8 +1,7 @@
 ---
-toc:
-  depth_from: 1
-  depth_to: 4
-  ordered: false
+html: {embed_local_images: true, embed_svg: true, offline: true, toc: true}
+print_background: false
+toc: {depth_from: 1, depth_to: 4, ordered: false}
 ---
 
 ## Maven 3 {ignore=true}

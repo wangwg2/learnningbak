@@ -1,14 +1,7 @@
 ---
-html:
-  embed_local_images: true
-  embed_svg: true
-  offline: true
-  toc: Gradle
+html: {embed_local_images: true, embed_svg: true, offline: true, toc: true}
 print_background: false
-toc:
-  depth_from: 1
-  depth_to: 3
-  ordered: false
+toc: {depth_from: 1, depth_to: 3, ordered: false}
 ---
 # Gradle {ignore=true}
 [TOC]
