@@ -23,7 +23,7 @@ toc: {depth_from: 1, depth_to: 3, ordered: false}
 * [http://zhangley.com/article/cargo-gradle/](http://zhangley.com/article/cargo-gradle/)
 * [GitHub bmuschko/gradle-cargo-plugin](https://github.com/bmuschko/gradle-cargo-plugin)
 
-```
+```Groovy
 apply plugin: 'cargo'
 
 cargo {
@@ -62,7 +62,7 @@ cargo {
 * [GitHub gradle-ssh-plugin/template](https://github.com/gradle-ssh-plugin/template)
 
 **Gradle SSH Plugin**  
-```
+```Groovy
 // build.gradle
 plugins {
   id 'org.hidetake.ssh' version '2.9.0'
@@ -101,7 +101,7 @@ task deploy {
 
 ##### Gradle SSH Plugin Template
 build.gradle 模板
-```
+```Groovy
 plugins {
     id 'war'
     id 'org.hidetake.ssh' version '2.9.0'
@@ -189,7 +189,7 @@ Gradle用户手册提供了[一系列标准Gradle插件](https://docs.gradle.org
 该Java项目只有一个需求：我们的构建脚本必须创建一个可执行的Jar文件，换句话说，我们必须能够使用命令java -jar jarfile.jar 来运行我们的程序。
 
 使用Java插件, build.gradle
-```
+```Groovy
 apply plugin: 'java'
 
 jar {
@@ -257,7 +257,7 @@ Gradle支持以下仓库格式：
 
 **在构建中加入Ivy仓库**  
 我们可以通过URL地址或本地文件系统地址，将Ivy仓库加入到我们的构建中。
-```
+```Groovy
 repositories {
   ivy { url "http://ivy.petrikainulainen.net/repo" }
   ivy { url "../ivy-repo" }
@@ -266,7 +266,8 @@ repositories {
 
 **在构建中加入Maven仓库**  
 可以通过URL地址或本地文件系统地址，将Maven仓库加入到我们的构建中。  
-```
+
+```Groovy
 repositories {
   maven { url "http://maven.petrikainulainen.net/repo" }
   maven { url "../maven-repo" }
@@ -275,6 +276,7 @@ repositories {
   mavenCentral()
 }
 ```
+
 在加入Maven仓库时，Gradle提供了三种“别名”供我们使用，它们分别是：
 * `jcenter()`别名，表示依赖是从Bintary’s JCenter Maven 仓库中获取的。
 * `mavenLocal()`别名，表示依赖是从本地的Maven仓库中获取的。
@@ -282,7 +284,8 @@ repositories {
 
 **在构建中加入Flat Directory仓库**  
 这意味着系统将在`lib`, `libB`目录下搜索依赖
-```
+
+```Groovy
 repositories {
   flatDir { dirs 'lib','libB' }
 }
@@ -312,19 +315,21 @@ Java插件指定了若干依赖配置项，其描述如下：
 >小贴士：这些属性在Maven仓库中是必须的，如果你使用其他仓库，一些属性可能是可选的。打个比方，如果你使用Flat directory仓库，你可能只需要指定名称和版本。
 
 指定以下依赖：依赖的分组是foo,依赖的名称是foo,依赖的版本是0.1。
-```
+```Groovy
 dependencies {
     compile group: 'foo', name: 'foo', version: '0.1'
 }
 ```
+
 我们也可以采用一种快捷方式声明依赖：`[group]:[name]:[version]`。
-```
+```Groovy
 dependencies {
   compile 'foo:foo:0.1'
 }
 ```
+
 也可以在同一个配置项中加入多个依赖，传统的方式如下：
-```
+```Groovy
 dependencies {
     compile (
         [group: 'foo', name: 'foo', version: '0.1'],
@@ -333,13 +338,15 @@ dependencies {
 }
 ```
 或
-```
+
+```Groovy
 dependencies {
     compile 'foo:foo:0.1', 'bar:bar:0.1'
 }
 ```
+
 声明属于不同配置项的依赖(快捷方式)
-```
+```Groovy
 dependencies {
     compile 'foo:foo:0.1'
     testCompile 'test:test:0.1'
@@ -393,7 +400,7 @@ dependencies {
 * `log4j.properties` 配置`Log4j`。
 
 **`build.gradle` 文件**
-```
+```Groovy
 apply plugin: 'java'
 apply plugin: 'application'
 
@@ -485,7 +492,7 @@ mainClassName = 'net.petrikainulainen.gradle.HelloWorld'
 * 使用`CopySpec`接口中的`from()`方法配置源文件，将“`LICENSE`”作为参数调用。
 * 使用`CopySpec`接口中`into()`方法配置`target`目录，将`$buildDir`属性作为参数调用。
 
-```
+```Groovy
 task copyLicense(type: Copy) {
     from "LICENSE"
     into "$buildDir"
@@ -501,7 +508,7 @@ task copyLicense(type: Copy) {
     - 使用`CopySpec`接口中的`from()`方法配置许可证文件的位置，将`copyLicense`任务的输出作为方法参数。
     - 使用`CopySpec`接口中`into()`方法配置`target`目录，将一个空的字符串作为参数调用方法。
 
-```
+```Groovy
 apply plugin: 'application'
 apply plugin: 'java'
  
@@ -570,7 +577,7 @@ applicationDistribution.from(copyLicense) {
 * 确保`app`和`core`项目包含在我们的多项目构建中。
 
 `settings.gradle`文件如下：
-```
+```Groovy
 include 'app'
 include 'core'
 ```
@@ -582,7 +589,7 @@ include 'core'
 * 声明JUnit依赖(版本4.11)，并使用`testCompile`配置项，该配置项表明：`core`项目在它的单元测试被编译前，需要JUnit库。
 
 core项目的`build.gradle`文件如下：
-```
+```Groovy
 apply plugin: 'java'
  
 repositories {
@@ -607,7 +614,7 @@ dependencies {
 * 创建二进制发布版本
 
 `app`项目的`build.gradle`文件如下：
-```
+```Groovy
 apply plugin: 'application'
 apply plugin: 'java'
 
@@ -645,7 +652,7 @@ applicationDistribution.from(copyLicense) {
 * 两个项目都使用Maven2中央仓库(central Maven2 repository)。
 
 两个构建脚本都包含以下配置：
-```
+```Groovy
 apply plugin: 'java'
  
 repositories {
@@ -659,7 +666,7 @@ repositories {
 * `project ':core' {}` `core` 项目的配置
 
 在根项目的`build.gradle`文件中移除了重复配置后，代码如下：
-```
+```Groovy
 subprojects {
     apply plugin: 'java'
  
@@ -683,7 +690,7 @@ subprojects {
 **打包Web应用**
 
 在我们使用War插件打包Web应用前，需要将其加入到构建中。  
-```
+```Groovy
 apply plugin: 'java'
 apply plugin: 'war'
 ```
@@ -710,7 +717,7 @@ War插件在项目的目录布局下添加了一个新的目录，加入了两�
 * 配置Jetty，监听8080端口。
 * 配置Jetty，使用上下文路径’/’运行Web应用。
 
-```
+```Groovy
 buildscript {
     repositories {
         jcenter()
@@ -767,7 +774,7 @@ Spring Boot针对该问题提供了一种解决方案，它允许我们将web应
 * 应用Spring Boot Gradle插件。
 
 build.gradle文件的源代码如下：
-```
+```Groovy
 buildscript {
     repositories {
         jcenter()
@@ -819,7 +826,7 @@ starter POM是一族可以被包含到项目中的便捷依赖描述符。你可
 * 在`testCompile`配置里添加`spring-boot-starter-test`依赖，我们之所以需要该依赖，是因为我们需要在Web应用中编写单元测试和集成测试。
 
 build.gradle
-```
+```Groovy
 buildscript {
     repositories {
         jcenter()
@@ -885,12 +892,6 @@ tasks.withType(Test) {
 ---
 ## Gradle构建java项目
 
-* [Java 插件](#javaplug)
-* [简单java项目](#simpjava)
-* [初始化java项目](#japp)
-* [Java演示项目](#javaapp)
-
-<span id="javaplug"></span>
 ### Java 插件
 
 `apply plugin: 'java'`
@@ -903,8 +904,6 @@ tasks.withType(Test) {
 
 Java 插件是基于合约的. 这意味着插件已经给项目的许多方面定义了默认的参数, 比如 Java 源文件的位置. 如果你在项目里遵从这些合约, 你通常不需要在你的构建脚本里加入太多东西. 如果你不想要或者是你不能遵循合约, Gradle 也允许你自己定制你的项目. 事实上, 因为对 Java 项目的支持是通过插件实现的, 如果你不想要的话, 你一点也不需要使用这个插件来构建你的项目.
 
-
-<span id="simpjava"></span>
 ### 最简单java项目
 
 目录结构
@@ -919,7 +918,7 @@ Java 插件是基于合约的. 这意味着插件已经给项目的许多方面�
 **相关文件**
 
 build.gradle
-````
+````Groovy
 apply plugin: 'java'
 ````
 Gradle 希望能在 `src/main/java` 找到你的源代码, 在 `src/test/java` 找到你的测试代码, 也就是说 Gradle 默认地在这些路径里查找资源. 另外, 任何在 `src/main/resources` 的文件都将被包含在 JAR 文件里, 同时任何在 `src/test/resources` 的文件会被加入到 `classpath` 中以运行测试代码. 所有的输出文件将会被创建在构建目录里, JAR 文件存放在 `build/libs` 文件夹里.
@@ -947,7 +946,7 @@ public class SimpApp {
     `java -cp build/libs/simpjava.jar SimpApp`
 
 **修改 build.gradle**
-```
+```Groovy
 apply plugin: 'java'
 
 //jar文件增加manifest信息
@@ -968,7 +967,7 @@ mainClassName = 'SimpApp'
 * 构建运行： `gradle run`
 
 
-<span id="japp"></span>
+
 ### 初始化java项目 (japp)
 
 **初始化 java-application 项目**  
@@ -996,7 +995,7 @@ mainClassName = 'SimpApp'
 **相关文件**
 
 build.gradle  
-````
+````Groovy
 /*
  * This build file was generated by the Gradle 'init' task.
  *
@@ -1031,7 +1030,7 @@ mainClassName = 'App'
 ````
 
 settings.gradle  
-````
+````Groovy
 /*
  * This settings file was generated by the Gradle 'init' task.
  *
@@ -1060,14 +1059,13 @@ rootProject.name = 'japp'
 * 构建运行： `gradle run`
 
 
-<span id="javaapp"></span>
 ### Java演示项目 (javaapp)
 
 **项目说明**
-* 演示程序的构建脚本必须使用Maven central仓库。
-* 演示程序必须使用Log4j写入日志。
-* 演示程序必须包含包含单元测试，保证正确的信息返回，单元测试必须使用JUnit编写。
-* 演示程序必须创建一个可执行的Jar文件。
+- 演示程序的构建脚本必须使用Maven central仓库。
+- 演示程序必须使用Log4j写入日志。
+- 演示程序必须包含包含单元测试，保证正确的信息返回，单元测试必须使用JUnit编写。
+- 演示程序必须创建一个可执行的Jar文件。
 
 **项目目录结构**
 ```
@@ -1105,7 +1103,7 @@ rootProject.name = 'japp'
 * `log4j.properties` 配置`Log4j`。
 
 **`build.gradle` 文件**
-```
+```Groovy
 apply plugin: 'java'
 apply plugin: 'application'
 
@@ -1154,7 +1152,6 @@ mainClassName = 'com.dsl.gradle.HelloWorld'
 
 -------------------
 
-<span id="javaguide"></span>
 ## Java 构建入门
 
 [Gradle docs 46. Java Quickstart](https://docs.gradle.org/3.4.1/userguide/userguide.html)
@@ -1171,14 +1168,14 @@ Java 插件是基于合约的. 这意味着插件已经给项目的许多方面�
 
 ### 一个基础的 Java 项目
 `build.gradle` 文件
-````
+````Groovy
 apply plugin: 'java'
 ````
 Gradle 希望能在 `src/main/java` 找到你的源代码, 在 `src/test/java` 找到你的测试代码, 也就是说 Gradle 默认地在这些路径里查找资源. 另外, 任何在 `src/main/resources` 的文件都将被包含在 JAR 文件里, 同时任何在 `src/test/resources` 的文件会被加入到 `classpath` 中以运行测试代码. 所有的输出文件将会被创建在构建目录里, JAR 文件存放在 `build/libs` 文件夹里.
 
 **创建可执行应用**  
 `build.gradle` 文件
-````
+````Groovy
 apply plugin: 'application'
 mainClassName = 'com.dm.todo.ToDoApp'
 ````
@@ -1187,7 +1184,7 @@ mainClassName = 'com.dm.todo.ToDoApp'
 
 一个 Java 项目有许多外部的依赖, 既是指外部的 JAR 文件. 在 Gradle 中, JAR 文件位于一个仓库中， 这里的仓库类似于 MAVEN 的仓库. 仓库可以被用来提取依赖, 或者放入一个依赖, 或者两者皆可.    
 `build.gradle` 文件
-```
+```Groovy
 // 加入 Maven 仓库
 repositories {
     mavenCentral()
@@ -1204,7 +1201,7 @@ dependencies {
 
 Java 插件给项目加入了一些属性 (propertiy). 这些属性已经被赋予了默认的值, 已经足够来开始构建项目了. 如果你认为不合适, 改变它们的值也是很简单的.  
 `build.gradle` 文件
-````
+````Groovy
 //定制 MANIFEST.MF 文件
 sourceCompatibility = 1.7
 version = '1.0'
@@ -1224,7 +1221,7 @@ test {
 
 通常 JAR 文件需要在某个地方发布. 为了完成这一步, 你需要告诉 Gradle 哪里发布 JAR 文件. 在 Gradle 里, 生成的文件比如 JAR 文件将被发布到仓库里. 在我们的例子里, 我们将发布到一个本地的目录. 你也可以发布到一个或多个远程的地点.  
 `build.gradle` 文件
-````
+````Groovy
 uploadArchives {
     repositories {
        flatDir {
@@ -1238,13 +1235,13 @@ uploadArchives {
 
 为了把你的项目导入到 Eclipse, 你需要加入一个插件。 运行 gradle eclipse 命令来生成 Eclipse 的项目文件。
 `build.gradle` 文件
-```
+```Groovy
 apply plugin: 'eclipse'
 ```
 
 **完整build.gradle文件**
 build.gradle
-```
+```Groovy
 apply plugin: 'java'
 apply plugin: 'eclipse'
 
@@ -1295,7 +1292,7 @@ test.testLogging {
 ### 多项目的 Java 构建
 
 典型的多项目构建的项目布局
-````
+````Groovy
 multiproject/
   api/
   services/webservice/
@@ -1341,7 +1338,7 @@ subprojects {
 你可以在同一个构建里加入项目之间的依赖, 举个例子, 一个项目的 JAR 文件被用来编译另外一个项目. 在 `api` 构建文件里我们将加入一个由 `shared` 项目产生的 JAR 文件的依赖. 由于这个依赖, Gradle 将确保 `shared` 项目总是在 `api` 之前被构建.
 
 `api/build.gradle` 文件
-````
+````Groovy
 dependencies {
     compile project(':shared')
 }
@@ -1352,7 +1349,7 @@ dependencies {
 我们同时也加入了一个发行版本, 将会送到客户端:
 
 `api/build.gradle` 文件
-```
+```Groovy
 task dist(type: Zip) {
     dependsOn spiJar
     from 'src/dist'
@@ -1384,11 +1381,11 @@ gretty支持热部署、HTTPS、转发、调试、自动化运行环境等诸多
 **安装gretty**
 
 `build.gradle` 加入 gretty 插件
-```
+```Groovy
 apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
 ```
 或者
-```
+```Groovy
 buildscript {
   repositories { jcenter() }
   dependencies { classpath 'org.akhikhl.gretty:gretty:+' }
@@ -1438,7 +1435,7 @@ gretty {
 * fastReload属性，默认为true，监听webapp/中的内容，文件发生改变，无需重启。
 
 添加新的资源目录
-```
+```Groovy
 gretty{
     // ...
     extraResourceBase 'dir1',
@@ -1448,22 +1445,21 @@ gretty{
 ```
 
 HTTPS 支持
-* 生成自签名证书，仅在开发时使用
-```
-gretty {
+- 生成自签名证书，仅在开发时使用
+  ```Groovy
+  gretty {
   httpsEnabled = true
   // httpEnabled = false 禁用http
   // httpsPort = 443 httpsPort默认为 8443
-}
-```
+  }
+  ```
 * 支持手动配置
-
-转发
+  转发
 * 在`WEB-INF/web.xml`中加入 `RedirectFilter`设置
 * 创建WEB-INF/filter.groovy，设置转发规则
 
 调试（Debug）
-```
+```Groovy
 // 为所有的debug命令配置参数
 gretty {
   debugPort = 5005      // 默认
